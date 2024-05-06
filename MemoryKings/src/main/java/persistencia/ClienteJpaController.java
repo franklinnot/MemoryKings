@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package persistencia;
 
 import java.io.Serializable;
@@ -16,26 +13,36 @@ import javax.persistence.criteria.Root;
 import logica.Cliente;
 import persistencia.exceptions.NonexistentEntityException;
 
-/**
- *
- * @author frank
- */
+// Estos JPA se crean automaticamente luego de utilizar las anotations
+// en las clases. Estas anotations son necesarias
+// para que JPA mapee la clase e identifique cosas como
+// el nombre de la entidad, clave primaria y demas atributos
+// al hacer esto creara automaticamente una tabla y sus columnas respectivas
+// guiandose de la informacion proporcionada de la clase
+// estas tablas seran creadas en la base de datos con la que se ha hecho
+// conexion a la hora de utilizar un servidor como WampServer
+
+
 public class ClienteJpaController implements Serializable {
 
     public ClienteJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
-    
-    public ClienteJpaController(){
-        emf = Persistence.createEntityManagerFactory("MemoryKingsPU");
-    }
-    
     private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-
+    
+    
+    // Se agrega este constructor y siempre se coloca el mismo codigo
+    // solo se cambia lo que va entre comillas, pues debe ir el nombre de la
+    // unidad de persistencia, ubicado en persistence.xml
+    public ClienteJpaController() {
+        emf = Persistence.createEntityManagerFactory("memory_kings");
+    }
+    
+    
     public void create(Cliente cliente) {
         EntityManager em = null;
         try {

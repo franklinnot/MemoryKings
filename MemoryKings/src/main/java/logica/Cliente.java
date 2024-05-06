@@ -1,5 +1,4 @@
 
-
 package logica;
 import java.io.Serializable;
 import java.util.Date;
@@ -11,41 +10,39 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
 @Entity
 public class Cliente implements Serializable{
     
     
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     int idCliente;
-    
+    long telefono;
     @Basic
-    int dni;
-    String metodoPagoPref, estadoCuenta, nombres, apellidoPaterno, apellidoMaterno, correo, direccion, genero;
+    int dni;  
+    String nombres, apellidos, correo, direccion, genero, password; // Importante
+    String metodoPagoPref, estadoCuenta; // no necesario para el contructor
     
     @Temporal(TemporalType.DATE)
     Date fechaNacimiento;
     
     @Temporal(TemporalType.TIMESTAMP)
-    Date fechaRegistro;
+    Date fechaRegistro; // no necesario para el contructor
     
     public Cliente(){
         
     }
 
-    public Cliente(int idCliente, int dni, String metodoPagoPref, String estadoCuenta, String nombres, String apellidoPaterno, String apellidoMaterno, String correo, String direccion, String genero, Date fechaRegistro, Date fechaNacimiento) {
-        this.idCliente = idCliente;
+    // dni , nombres, apellidos, correo, password, telefono, direccion, genero, fechaNacimiento 
+    public Cliente(int dni, String nombres, String apellidos, String correo ,String password, long telefono, String direccion, String genero, Date fechaNacimiento) {
         this.dni = dni;
-        this.metodoPagoPref = metodoPagoPref;
-        this.estadoCuenta = estadoCuenta;
+        this.telefono = telefono;
         this.nombres = nombres;
-        this.apellidoPaterno = apellidoPaterno;
-        this.apellidoMaterno = apellidoMaterno;
+        this.apellidos = apellidos;
         this.correo = correo;
         this.direccion = direccion;
         this.genero = genero;
-        this.fechaRegistro = fechaRegistro;
+        this.password = password;
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -65,20 +62,12 @@ public class Cliente implements Serializable{
         this.dni = dni;
     }
 
-    public String getMetodoPagoPref() {
-        return metodoPagoPref;
+    public long getTelefono() {
+        return telefono;
     }
 
-    public void setMetodoPagoPref(String metodoPagoPref) {
-        this.metodoPagoPref = metodoPagoPref;
-    }
-
-    public String getEstadoCuenta() {
-        return estadoCuenta;
-    }
-
-    public void setEstadoCuenta(String estadoCuenta) {
-        this.estadoCuenta = estadoCuenta;
+    public void setTelefono(long telefono) {
+        this.telefono = telefono;
     }
 
     public String getNombres() {
@@ -89,20 +78,12 @@ public class Cliente implements Serializable{
         this.nombres = nombres;
     }
 
-    public String getApellidoPaterno() {
-        return apellidoPaterno;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setApellidoPaterno(String apellidoPaterno) {
-        this.apellidoPaterno = apellidoPaterno;
-    }
-
-    public String getApellidoMaterno() {
-        return apellidoMaterno;
-    }
-
-    public void setApellidoMaterno(String apellidoMaterno) {
-        this.apellidoMaterno = apellidoMaterno;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public String getCorreo() {
@@ -129,12 +110,28 @@ public class Cliente implements Serializable{
         this.genero = genero;
     }
 
-    public Date getFechaRegistro() {
-        return fechaRegistro;
+    public String getPassword() {
+        return password;
     }
 
-    public void setFechaRegistro(Date fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getMetodoPagoPref() {
+        return metodoPagoPref;
+    }
+
+    public void setMetodoPagoPref(String metodoPagoPref) {
+        this.metodoPagoPref = metodoPagoPref;
+    }
+
+    public String getEstadoCuenta() {
+        return estadoCuenta;
+    }
+
+    public void setEstadoCuenta(String estadoCuenta) {
+        this.estadoCuenta = estadoCuenta;
     }
 
     public Date getFechaNacimiento() {
@@ -145,7 +142,17 @@ public class Cliente implements Serializable{
         this.fechaNacimiento = fechaNacimiento;
     }
 
-   
+    public Date getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    
+
+    
     
     
    
