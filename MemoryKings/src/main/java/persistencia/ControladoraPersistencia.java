@@ -11,15 +11,17 @@ public class ControladoraPersistencia {
     ClienteJpaController clienteJpa = new ClienteJpaController();
     
     // OPERACIONES CRUD para CLIENTE
-    // Crear
+    // Create
     public void crearCliente(Cliente cliente){
         clienteJpa.create(cliente);
     }
     
     // Read
-    public List<Cliente> traerUsuario(){
+    public List<Cliente> traerClientes(){
         return clienteJpa.findClienteEntities();
     }
+    
+    // Update
     
     
 }

@@ -6,8 +6,8 @@
     text-decoration: none;
 }
 body {
-    background-color: #2C2F35; 
-    background-image: url('Image/fondo.jpg'); 
+    background-color: #FDF9FC; 
+    /*background-image: url('Image/fondo.png');*/
     background-size: cover; 
     background-position: center;
 }
@@ -31,7 +31,7 @@ body {
 .form-content h1{
     font-size: 30px;
     margin-bottom: 60px;
-    color: #FFFFFF;
+    color: #FDF9FC;
     position: relative;
 }
 
@@ -40,7 +40,7 @@ body {
     width: 30px;
     height: 4px;
     border-radius: 3px;
-    background: #FFC100;
+    background: #09C46A;
     position: absolute;
     bottom: -12px;
     left: 50%;
@@ -63,26 +63,26 @@ input{
     border: 0;
     outline: none;
     padding: 18px 15px;
-    color: #FFFFFF;
+    color: #FDF9FC;
 }
 
 input::placeholder{
-    color: #FFFFFF;
+    color: #FDF9FC;
 }
 
 .input-field i{
     margin-left: 15px;
-    color: #FFC100;
+    color: #09C46A;
 }
 
 form p{
-    color: #FFFFFF;
+    color: #FDF9FC;
     text-align: left;
     font-size: 13px;
 }
 
 form p a {
-    color: #FFC100;
+    color: #09C46A;
     margin-left: 5px;
 }
 
@@ -95,8 +95,8 @@ form p a {
 .btn-field button {
     flex-basis: 48%;
     font-size: 16px;
-    background-color: #FFC100;
-    color: #FFFFFF;
+    background-color: #09C46A;
+    color: #FDF9FC;
     height: 40px;
     border-radius: 10px;
     border: 0;
@@ -109,6 +109,6 @@ form p a {
 }
 
 .btn-field button.disable {
-    background-color: #EAEAEA;
+    background-color: #FDF9FC;
     color: #2C2F35;
 }

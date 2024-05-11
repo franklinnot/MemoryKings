@@ -22,9 +22,7 @@ public class Cliente implements Serializable{
     int dni;  
     String nombres, apellidos, correo, direccion, genero, password; // Importante
     String metodoPagoPref, estadoCuenta; // no necesario para el contructor
-    
-    @Temporal(TemporalType.DATE)
-    Date fechaNacimiento;
+    String fechaNacimiento;
     
     @Temporal(TemporalType.TIMESTAMP)
     Date fechaRegistro; // no necesario para el contructor
@@ -34,7 +32,7 @@ public class Cliente implements Serializable{
     }
 
     // dni , nombres, apellidos, correo, password, telefono, direccion, genero, fechaNacimiento 
-    public Cliente(int dni, String nombres, String apellidos, String correo ,String password, long telefono, String direccion, String genero, Date fechaNacimiento) {
+    public Cliente(int dni, String nombres, String apellidos, String correo ,String password, long telefono, String direccion, String genero, String fechaNacimiento) {
         this.dni = dni;
         this.telefono = telefono;
         this.nombres = nombres;
@@ -134,11 +132,11 @@ public class Cliente implements Serializable{
         this.estadoCuenta = estadoCuenta;
     }
 
-    public Date getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

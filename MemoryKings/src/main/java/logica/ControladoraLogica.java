@@ -11,11 +11,11 @@ public class ControladoraLogica {
     
     ControladoraPersistencia ctrl_persistencia = new ControladoraPersistencia();
     
-    public void crearUsuario(Cliente cliente){
+    public void crearCliente(Cliente cliente){
          ctrl_persistencia.crearCliente(cliente);
     }
     
-    public List<Cliente> traerCliente(){
-        return ctrl_persistencia.traerUsuario();
+    public List<Cliente> traerClientes(){
+        return ctrl_persistencia.traerClientes();
     }
 }

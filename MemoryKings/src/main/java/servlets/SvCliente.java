@@ -34,15 +34,13 @@ public class SvCliente extends HttpServlet {
         
         // dni , nombres, apellidos, correo, password, telefono, direccion, genero, fechaNacimiento 
         List<Cliente> listaClientes = new ArrayList<>();
-        listaClientes.add(new Cliente(57408026, "Tom", "Want", "tom@gmail.com", "123", 914252402, "Bunker", "Masculino", new Date()));
-        listaClientes.add(new Cliente(75048062, "Franklin", "Not", "franklinot@outlook.com", "remy", 941225240, "L.A.", "Masculino", new Date()));
-        listaClientes.add(new Cliente(85213697, "Ramiro", "Stom", "dont@outlook.com", "stock", 996284126, "Madrid", "Masculino", new Date()));
         
+        listaClientes = ctrl_logica.traerClientes();
         
         HttpSession miSesion = request.getSession();
         miSesion.setAttribute("listaClientes", listaClientes);
         
-        response.sendRedirect("mostrar_usuarios.jsp");
+        response.sendRedirect("mostrar_clientes.jsp");
         
     }
     
@@ -52,6 +50,16 @@ public class SvCliente extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         
+        // Recibimos los datos tras hacer la solicitud POST
+        // y las validamos antes de pasarlos a la logica
+        
+        int dni = Integer.getInteger(request.getParameter("txt_dni"));  
+        String name = request.getParameter("txt_name");
+        String lastname = request.getParameter("txt_lastname");
+        long phone_number = Long.getLong(request.getParameter("txt_phonenumber"));
+        String gender = request.getParameter("txt_gender");
+        String address = request.getParameter("txt_address");
+        String date_birth = request.getParameter("txt_date");
         String email = request.getParameter("txt_email");
         String password = request.getParameter("txt_password");
         
@@ -60,9 +68,12 @@ public class SvCliente extends HttpServlet {
         System.out.println("El email es: " + email);
         System.out.println("La contraseña es: " + password);
         
-        Cliente cliente = new Cliente(75048062, "Franklin", "Not", email, password, 941225240, "L.A.", "Masculino", new Date());
+        Cliente cliente = new Cliente(dni, name, lastname, email, password, phone_number, address, gender, date_birth);
         
-        ctrl_logica.crearUsuario(cliente);
+        ctrl_logica.crearCliente(cliente);
+        
+        // aqui, en vez de index, se debe colocar el nombre del jsp que cargara los productos
+        response.sendRedirect("productos.jsp");
         
     }
 
