@@ -15,24 +15,21 @@
     <div class="container">
         <div class="form-content">
             <h1 id="title">Inicio</h1>
-            <form action="SVCliente" method="GET">
+            <form action="SvCliente" method="GET">
                 <div class="input-group">
                     <div class="input-field">
                         <i class="fa-solid fa-user"></i>
-                        <input type="email" placeholder="Correo Electrónico">
+                        <input name="txt_email" type="email" placeholder="Correo Electrónico">
                     </div>
                     <div class="input-field">
                         <i class="fa-solid fa-lock"></i>
-                        <input type="password" placeholder="Contraseña">
+                        <input name="txt_password" type="password" placeholder="Contraseña">
                     </div>
                     <!-- <p> Olvidaste tu contraseña <a href="#">click aqui</a></p>-->
                 </div>
                 <div class="btn-field">
-                    <button name="btn_login" id="signIp" type="submit">Ingresar</button>
-                    <button name="btn_signup" id="btn_signUp" type="buttom" class="disable"><a href="signUp.jsp">Registrarse</a></button></button>
-                
-                    
-                
+                    <button name="btn_login" id="signIp" type="buttom">Ingresar</button>
+                    <button name="btn_signup" id="btn_signUp" type="buttom" class="disable"><a href="signUp.jsp">Registrarse</a></button></button>                           
                 </div>
                 
             </form>

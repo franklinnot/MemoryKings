@@ -15,7 +15,7 @@
 
 <body>
     <div class="wrapper">
-        <form action="SVCliente" method="POST">
+        <form action="SvCliente" method="POST">
             <h1>Sign Up</h1>
 
             <div class="input-box">
@@ -52,13 +52,7 @@
 
             <div class="input-box">
                 <div class="input-field">
-                    <label>Género</label>
-                    <select name="txt_gender">
-                        <option value="Otro...">Otro...</option>
-                        <option value="Masculino">Masculino</option>
-                        <option value="Femenino">Femenino</option>
-                        <option value="Pan francés">Pan francés</option>                      
-                    </select>
+                    <input name="txt_gender" type="text" placeholder="Gender" required>
                 </div>
                 <div class="input-field">
                     <input name="txt_address" type="text" placeholder="Address" oninput="validarDireccion(this)" required>
