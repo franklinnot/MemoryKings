@@ -1,11 +1,7 @@
-<%-- 
-    Document   : mostrar_usuarios
-    Created on : May 3, 2024, 9:21:12 PM
-    Author     : frank
---%>
 
 <%@page import="java.util.List"%>
 <%@page import="logica.Cliente"%>
+<%@page import="servlets.SvIndex"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

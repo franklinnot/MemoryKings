@@ -1,5 +1,5 @@
 
-<%@page import="servlets.SvCliente"%>
+<%@page import="servlets.SvIndex"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,14 +10,14 @@
     <link rel="stylesheet" href="CSS/sign_up.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="CSS/normalize.css">
+    <script src="JavaScript/preventBack.js"></script>
     <script src="JavaScript/validation.js"></script>
 </head>
 
 <body>
     <div class="wrapper">
-        <form action="SvCliente" method="POST">
+        <form action="SvIndex" method="POST">
             <h1>Sign Up</h1>
-
             <div class="input-box">
                 <div class="input-field">
                     <input name="txt_dni" type="number" placeholder="DNI" oninput="validarDNI(this)" min="0" max="99999999" required>
@@ -71,7 +71,7 @@
                     <i class='bx bxs-lock-alt'></i>
                 </div>
             </div>
-            <button type="submit" class="btn">Register</button>
+            <button type="buttom" class="btn">Register</button>
         </form>
     </div>
 </body>

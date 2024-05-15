@@ -1,44 +1,23 @@
 
-<%@page import="servlets.SvCliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MemoryKings | Inicio de sesión</title>
-    <link rel = "stylesheet" href="CSS/style.css">
-    <link rel="stylesheet" href="CSS/normalize.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body>
-    <div class="container">
-        <div class="form-content">
-            <h1 id="title">Inicio</h1>
-            <form action="SvCliente" method="GET">
-                <div class="input-group">
-                    <div class="input-field">
-                        <i class="fa-solid fa-user"></i>
-                        <input name="txt_email" type="email" placeholder="Correo Electrónico">
-                    </div>
-                    <div class="input-field">
-                        <i class="fa-solid fa-lock"></i>
-                        <input name="txt_password" type="password" placeholder="Contraseña">
-                    </div>
-                    <!-- <p> Olvidaste tu contraseña <a href="#">click aqui</a></p>-->
-                </div>
-                <div class="btn-field">
-                    <button name="btn_login" id="signIp" type="buttom">Ingresar</button>
-                    <button name="btn_signup" id="btn_signUp" type="buttom" class="disable"><a href="signUp.jsp">Registrarse</a></button></button>                           
-                </div>
-                
-            </form>
-        </div>
-    </div>
-    <h2>Ver lista de usuarios</h2>
-        <h3>Para ver la lista de ususarios, haga click en el siguiente boton</h3>
-        <form action="SvCliente" method="GET">
-            <button type="submit">Mostrar usuarios</button>
-        </form>
-</body>
-</html>
+<%
+    // El siguiente codigo es util para no redireccionar, o sea pasar 
+    // de una pagina a otra, aun sin importar que sea la misma.
+    // Lo que hacemos es que en esta misma URL, verificamos
+    // si ya hay una sesion o no, para cualquiera de las 2 opciones
+    // mostramos los jsp correcpondientes, pero no nos dirigimos a ellos
+    
+    // Verificar si hay una sesión activa
+    HttpSession bool_session = request.getSession(false);
+    if (bool_session != null && bool_session.getAttribute("datos_usuario") != null) {
+        // si hay una sesión activa, mostramos el jsp de productos
+        %>
+            <jsp:include page="productos.jsp" />
+        <%
+    } else {
+        // si no hay una sesión activa, incluir el contenido del JSP de inicio de sesión
+        %>
+            <jsp:include page="login.jsp" />
+        <%
+    }
+%>

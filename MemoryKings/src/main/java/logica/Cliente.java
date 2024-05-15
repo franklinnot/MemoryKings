@@ -2,6 +2,7 @@
 package logica;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.TimeZone;
 import org.mindrot.jbcrypt.BCrypt;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
@@ -42,8 +43,21 @@ public class Cliente implements Serializable{
         this.correo = correo;
         this.direccion = direccion;
         this.genero = genero;
-        this.password = BCrypt.hashpw(password, BCrypt.gensalt());;
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
         this.fechaNacimiento = fechaNacimiento;
+        
+        
+        TimeZone zonaHorariaPeru = TimeZone.getTimeZone("America/Lima");        
+        // Crear un objeto Date para la fecha actual
+        Date fechaActual = new Date();   
+        // Obtener el desplazamiento de la zona horaria de Perú en milisegundos
+        int desplazamientoPeru = zonaHorariaPeru.getRawOffset();      
+        // Ajustar la fecha actual para la zona horaria de Perú
+        this.fechaRegistro = new Date(fechaActual.getTime() + desplazamientoPeru);
+        
+        
+        this.metodoPagoPref = "Indefinido";
+        this.estadoCuenta = "Activo";
     }
 
     public int getIdCliente() {
