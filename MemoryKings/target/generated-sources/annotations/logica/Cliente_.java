@@ -2,13 +2,16 @@ package logica;
 
 import java.util.Date;
 import javax.annotation.Generated;
+import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
+import logica.Consulta;
 
-@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2024-05-17T22:19:07")
+@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2024-05-18T01:35:54")
 @StaticMetamodel(Cliente.class)
 public class Cliente_ { 
 
+    public static volatile ListAttribute<Cliente, Consulta> listaConsulta;
     public static volatile SingularAttribute<Cliente, String> apellidos;
     public static volatile SingularAttribute<Cliente, Date> fechaNacimiento;
     public static volatile SingularAttribute<Cliente, Date> fechaRegistro;

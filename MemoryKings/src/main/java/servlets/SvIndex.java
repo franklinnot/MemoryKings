@@ -58,17 +58,13 @@ public class SvIndex extends HttpServlet {
         
         if (usuarioEncontrado) {
             System.out.println("Eureka! xd");
-            
-            //response.sendRedirect("index.jsp"); --- esto ya no, por feo
-                     
+                                
             HttpSession session = request.getSession();
             session.setAttribute("datos_usuario", datos_usuario);
             
-            response.sendRedirect("http://localhost:8080/MemoryKings/");
-            
-        } else {
-            response.sendRedirect("http://localhost:8080/MemoryKings/");
-        }
+        } 
+        
+        response.sendRedirect("http://localhost:8080/MemoryKings/");
         
     }
     
@@ -81,15 +77,10 @@ public class SvIndex extends HttpServlet {
         // Recibimos los datos tras hacer la solicitud POST
         // y las validamos antes de pasarlos a la logica   
         
-        int dni = Integer.parseInt(request.getParameter("txt_dni"));  
-        
-        String name = request.getParameter("txt_name");
-        
-        String lastname = request.getParameter("txt_lastname");
-        
-        long phone_number = Long.parseLong(request.getParameter("txt_phonenumber"));
-        
-        
+        int dni = Integer.parseInt(request.getParameter("txt_dni"));          
+        String name = request.getParameter("txt_name");       
+        String lastname = request.getParameter("txt_lastname");       
+        long phone_number = Long.parseLong(request.getParameter("txt_phonenumber"));              
         String txt_date = request.getParameter("txt_date");
         
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -100,14 +91,10 @@ public class SvIndex extends HttpServlet {
             Logger.getLogger(SvIndex.class.getName()).log(Level.SEVERE, null, ex);
         }
              
-        String gender = request.getParameter("txt_gender");
-        
-        String address = request.getParameter("txt_address");
-        
-        String email = request.getParameter("txt_email");
-        
+        String gender = request.getParameter("txt_gender");       
+        String address = request.getParameter("txt_address");      
+        String email = request.getParameter("txt_email");      
         String password = request.getParameter("txt_password");
-        System.out.println("Contraseña: " + password);
 
         
         // dni , nombres, apellidos, correo, password, telefono, direccion, genero, fechaNacimiento 
@@ -116,19 +103,13 @@ public class SvIndex extends HttpServlet {
         
         Cliente datos_usuario = new Cliente();
         datos_usuario = cliente;
+            
+        HttpSession session = request.getSession(false);
+        session.setAttribute("datos_usuario", datos_usuario);
         
         // aqui, en vez de index, se debe colocar el nombre del jsp que cargara los productos
         response.sendRedirect("http://localhost:8080/MemoryKings/");
-        
-        HttpSession session = request.getSession();
-        session.setAttribute("datos_usuario", datos_usuario);
-        
-        // por alguna razon funciona bien si el session lo creo despues xd
-        // creo que porque primero carga el jsp y dentro de este busca el
-        // atributo "datos_usuario" que son basicamente los datos del usuario
-        // logueado
-        
-        
+         
     }
 
 

@@ -3,6 +3,8 @@
   <persistence-unit name="memorykings" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>logica.Cliente</class>
+    <class>logica.Consulta</class>
+    <class>logica.Empleado</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/memorykings?serverTimezone=UTC"/>

@@ -15,40 +15,42 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Cliente implements Serializable{
+public class Empleado implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    int idCliente;
-    @OneToMany(mappedBy="cliente")
+    int idEmpleado;
+    @OneToMany(mappedBy="empleado")
     private LinkedList<Consulta> listaConsulta;
     @Basic
     long telefono;
-    int dni;  
-    String nombres, apellidos, correo, direccion, genero, password; // Importante
-    String metodoPagoPref, estadoCuenta; // no necesario para el contructor
+    double salario;
+    int dni, nivelPrivilegio;  
+    String nombres, apellidos, correo, direccion, genero, password, cargo; // Importante
+    String estadoCuenta; // no necesario para el contructor
     @Temporal(TemporalType.DATE)
-    Date fechaNacimiento;
+    Date fechaNacimiento, fechaContrato, vencimientoContrato;
     @Temporal(TemporalType.TIMESTAMP)
     Date fechaRegistro; // no necesario para el contructor
-    
-    public Cliente(){
-        
-    }
-    
 
-    // dni , nombres, apellidos, correo, password, telefono, direccion, genero, fechaNacimiento 
-    public Cliente(int dni, String nombres, String apellidos, String correo, String password, long telefono, String direccion, String genero, Date fechaNacimiento) {
-        // BCrypt.hashpw(contrasenaPlana, BCrypt.gensalt());
+    public Empleado() {
+    }
+
+    public Empleado(long telefono, double salario, int dni, int nivelPrivilegio, String nombres, String apellidos, String correo, String direccion, String genero, String password, String cargo, Date fechaNacimiento, Date fechaContrato, Date vencimientoContrato) {
         this.telefono = telefono;
+        this.salario = salario;
         this.dni = dni;
+        this.nivelPrivilegio = nivelPrivilegio;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.correo = correo;
         this.direccion = direccion;
         this.genero = genero;
         this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+        this.cargo = cargo;
         this.fechaNacimiento = fechaNacimiento;
+        this.fechaContrato = fechaContrato;
+        this.vencimientoContrato = vencimientoContrato;
         
         
         TimeZone zonaHorariaPeru = TimeZone.getTimeZone("America/Lima");        
@@ -60,16 +62,14 @@ public class Cliente implements Serializable{
         this.fechaRegistro = new Date(fechaActual.getTime() + desplazamientoPeru);
         
         
-        this.metodoPagoPref = "Indefinido";
-        this.estadoCuenta = "Activo";
     }
 
-    public int getIdCliente() {
-        return idCliente;
+    public int getIdEmpleado() {
+        return idEmpleado;
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public void setIdEmpleado(int idEmpleado) {
+        this.idEmpleado = idEmpleado;
     }
 
     public LinkedList<Consulta> getListaConsulta() {
@@ -88,12 +88,28 @@ public class Cliente implements Serializable{
         this.telefono = telefono;
     }
 
+    public double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+
     public int getDni() {
         return dni;
     }
 
     public void setDni(int dni) {
         this.dni = dni;
+    }
+
+    public int getNivelPrivilegio() {
+        return nivelPrivilegio;
+    }
+
+    public void setNivelPrivilegio(int nivelPrivilegio) {
+        this.nivelPrivilegio = nivelPrivilegio;
     }
 
     public String getNombres() {
@@ -144,20 +160,12 @@ public class Cliente implements Serializable{
         this.password = password;
     }
 
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
+    public String getCargo() {
+        return cargo;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public String getMetodoPagoPref() {
-        return metodoPagoPref;
-    }
-
-    public void setMetodoPagoPref(String metodoPagoPref) {
-        this.metodoPagoPref = metodoPagoPref;
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
     }
 
     public String getEstadoCuenta() {
@@ -168,6 +176,30 @@ public class Cliente implements Serializable{
         this.estadoCuenta = estadoCuenta;
     }
 
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public Date getFechaContrato() {
+        return fechaContrato;
+    }
+
+    public void setFechaContrato(Date fechaContrato) {
+        this.fechaContrato = fechaContrato;
+    }
+
+    public Date getVencimientoContrato() {
+        return vencimientoContrato;
+    }
+
+    public void setVencimientoContrato(Date vencimientoContrato) {
+        this.vencimientoContrato = vencimientoContrato;
+    }
+
     public Date getFechaRegistro() {
         return fechaRegistro;
     }
@@ -176,5 +208,7 @@ public class Cliente implements Serializable{
         this.fechaRegistro = fechaRegistro;
     }
     
-   
+    
+    
+    
 }

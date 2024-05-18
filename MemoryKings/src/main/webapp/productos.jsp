@@ -8,9 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/normalize.css">
     <link rel="stylesheet" href="CSS/producto.css">
-    <script src="JavaScript/preventBack.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
     <title>Productos</title>
 </head>
 <body>     
@@ -19,7 +17,7 @@
             <button class="menu-btn"><i class='bx bx-menu'></i></button>
         </div>
         <div class="logo">
-            <a href="productos.jsp"><img src="Image/logo.png" alt="Logo"></a>          
+            <a href="http://localhost:8080/MemoryKings/"><img src="Image/logo.png" alt="Logo"></a>          
         </div>
         <div class="search">
             <input type="text" placeholder="Buscar">
@@ -28,27 +26,21 @@
 
         <div>
         <%
-
             Cliente cliente = (Cliente) session.getAttribute("datos_usuario");
-
             if (cliente != null) {
-
         %>
-
-            <h2>Hola <%=cliente.getNombres()%>!</h2>
-            <button name="btn_close_session" id="" type="button">
-                <%
-                    
-                    //session.invalidate();
-                %>
-                <a href="http://localhost:8080/MemoryKings/">Cerrar sesión</a>
-            </button>
-
-        <% } else { %>
-        
-            <h2><a style="text-decoration: none; color: white;" href="http://localhost:8080/MemoryKings/">Inicia sesión</a></h2>
-        
-        <% } %>      
+                <h2>Hola <%=cliente.getNombres()%>!</h2>
+                <form action="SvSession" method="POST">
+                    <button name="btn_close_session" type="submit">Cerrar sesión</button>
+                </form>
+        <% 
+            } else { 
+        %>
+                <h2><a style="text-decoration: none; color: white;" href="<%=request.getContextPath()%>/">Inicia sesión</a></h2>
+        <% 
+            } 
+        %>
+     
         </div>
 
         <div class="cart">

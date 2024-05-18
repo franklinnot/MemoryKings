@@ -1,8 +1,0 @@
-
-
-
-function refreshPage() {
-    location.reload();
-}
-
-

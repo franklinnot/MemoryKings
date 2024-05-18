@@ -23,7 +23,7 @@ body {
     width: 100%;
     max-width: 450px;
     background-color: #2C2F35;
-    padding: 50px 60px 70px;
+    padding: 50px 60px 60px;
     text-align: center;
     border-radius: 25px;
 }
@@ -47,10 +47,10 @@ body {
     transform: translateX(-50%);
 }
 
-.input-field{
+.input-fi{
     background-color: #515966;
-    margin: 15px 0;
-    border-radius: 3px;
+    margin: 15px 0px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     transition: max-height 05s;
@@ -70,12 +70,12 @@ input::placeholder{
     color: #FDF9FC;
 }
 
-.input-field i{
+.input-fi i{
     margin-left: 15px;
     color: #09C46A;
 }
 
-form p{
+/*form p{
     color: #FDF9FC;
     text-align: left;
     font-size: 13px;
@@ -84,12 +84,13 @@ form p{
 form p a {
     color: #09C46A;
     margin-left: 5px;
-}
+}*/
 
 .btn-field {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content:space-between;
+    margin-top: 50px;
 }
 
 .btn-field button {
@@ -97,11 +98,15 @@ form p a {
     font-size: 16px;
     background-color: #09C46A;
     color: #FDF9FC;
-    height: 40px;
+    height: 50px;
     border-radius: 10px;
     border: 0;
     cursor: pointer;
     transition: background 1s;
+   
+}
+.btn-field button#signUp a {
+    color: #515966; 
 }
 
 .input-group {
@@ -111,4 +116,15 @@ form p a {
 .btn-field button.disable {
     background-color: #FDF9FC;
     color: #2C2F35;
+}
+
+#modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FDF9FC;
+    padding: 20px;
+    border: 1px solid #FDF9FC;
+    border-radius: 5px;
 }
