@@ -1,4 +1,5 @@
 
+<%@page import="logica.Cliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     // El siguiente codigo es util para no redireccionar, o sea pasar 
@@ -8,8 +9,8 @@
     // mostramos los jsp correcpondientes, pero no nos dirigimos a ellos
     
     // Verificar si hay una sesión activa
-    HttpSession bool_session = request.getSession(false);
-    if (bool_session != null && bool_session.getAttribute("datos_usuario") != null) {
+    Cliente cliente = (Cliente) session.getAttribute("datos_usuario");
+    if (cliente != null && cliente.getNombres() != null) {
         // si hay una sesión activa, mostramos el jsp de productos
         %>
             <jsp:include page="productos.jsp" />

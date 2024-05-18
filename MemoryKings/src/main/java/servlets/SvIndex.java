@@ -60,11 +60,11 @@ public class SvIndex extends HttpServlet {
             System.out.println("Eureka! xd");
             
             //response.sendRedirect("index.jsp"); --- esto ya no, por feo
-            response.sendRedirect("http://localhost:8080/MemoryKings/");
-            
+                     
             HttpSession session = request.getSession();
             session.setAttribute("datos_usuario", datos_usuario);
             
+            response.sendRedirect("http://localhost:8080/MemoryKings/");
             
         } else {
             response.sendRedirect("http://localhost:8080/MemoryKings/");

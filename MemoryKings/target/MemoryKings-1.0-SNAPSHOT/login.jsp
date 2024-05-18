@@ -30,16 +30,11 @@
                     <!-- <p> Olvidaste tu contraseña <a href="#">click aqui</a></p>-->
                 </div>
                 <div class="btn-field">
-                    <button name="btn_login" id="signIp" type="buttom" onclick="refreshPage()" >Ingresar</button>
-                    <button name="btn_signup" id="btn_signUp" type="buttom" class="disable">Registrarme</button>                          
+                    <button name="btn_login" id="signIp" type="buttom">Ingresar</button>
+                    <button name="btn_signup" id="btn_signUp" type="buttom" class="disable"><a href="signUp.jsp">Registrarme</a></button>                          
                 </div>
             </form>
         </div>
     </div>
-    <h2>Ver lista de usuarios</h2>
-        <h3>Para ver la lista de ususarios, haga click en el siguiente boton</h3>
-        <form action="SvCliente" method="GET">
-            <button type="submit">Mostrar usuarios</button>
-        </form>
 </body>
 </html>

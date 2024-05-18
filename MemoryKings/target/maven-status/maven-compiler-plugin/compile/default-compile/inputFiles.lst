@@ -1,12 +1,10 @@
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\com\mycompany\memorykings\exceptions\NonexistentEntityException.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\com\mycompany\memorykings\exceptions\PreexistingEntityException.java
-C:\GitHub\MemoryKings\MemoryKings\src\main\java\servlets\SvDatosClienteProductos.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\persistencia\ClienteJpaController.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\com\mycompany\memorykings\JakartaRestConfiguration.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\persistencia\exceptions\NonexistentEntityException.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\com\mycompany\memorykings\exceptions\IllegalOrphanException.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\servlets\SvIndex.java
-C:\GitHub\MemoryKings\MemoryKings\src\main\java\servlets\SvSession.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\com\mycompany\memorykings\resources\JakartaEE8Resource.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\logica\Cliente.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\logica\ControladoraLogica.java

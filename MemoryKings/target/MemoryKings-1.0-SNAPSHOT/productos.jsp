@@ -1,6 +1,5 @@
 <%@page import="logica.Cliente"%>
 <%@page import="servlets.SvIndex"%>
-<%@page import="servlets.SvSession"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,19 +29,19 @@
         <div>
         <%
 
-            Cliente datos_usuario = (Cliente) request.getSession().getAttribute("datos_usuario");
+            Cliente cliente = (Cliente) session.getAttribute("datos_usuario");
 
-            if (datos_usuario != null) {
+            if (cliente != null) {
 
         %>
 
-            <h2>Hola <%=datos_usuario.getNombres()%>!</h2>
+            <h2>Hola <%=cliente.getNombres()%>!</h2>
             <button name="btn_close_session" id="" type="button">
                 <%
                     
-                    session.invalidate();
+                    //session.invalidate();
                 %>
-                <a target="_blank" href="http://localhost:8080/MemoryKings/">Cerrar sesión</a>
+                <a href="http://localhost:8080/MemoryKings/">Cerrar sesión</a>
             </button>
 
         <% } else { %>
