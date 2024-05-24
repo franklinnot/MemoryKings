@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="CSS/login.css">
     <link rel="stylesheet" href="CSS/normalize.css">
     <link rel="stylesheet" href="CSS/registro.css">
-    <script src="JavaScript/validation"></script>
+    
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
@@ -43,6 +43,7 @@
             </form>
 
             <dialog id="modal" modal>
+                <script src="JavaScript/validation.js"></script>
                 <div class="wrapper">
                     <div class="registro_head">
                         <button id="btn-cerrar">regresar</button>
@@ -52,8 +53,8 @@
                         <div class="input-box">
                             <div class="input-field">
 
-                                <input name="txt_dni" type="number" placeholder="DNI" oninput="validarDNI(this)" min="0"
-                                    max="99999999" required>
+                                <input name="txt_dni" type="text" placeholder="DNI" oninput="validarDNI(this)" min="0" max="99999999" required>
+                                
                                 <i class='bx bx-id-card'></i>
                             </div>
                         </div>
@@ -109,6 +110,7 @@
                         <button id="btn-registrar" type="buttom" class="btn"> Registrarse </button>
                     </form>
                 </div>
+                
             </dialog>
 
         </div>
