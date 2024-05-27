@@ -2,7 +2,6 @@
 package logica;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.TimeZone;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
@@ -24,10 +23,9 @@ public class Consulta implements Serializable {
     @ManyToOne
     private Empleado empleado;
     @Basic
-    String tipoConsulta, descripcion;
-    boolean estadoConsulta;
+    String tipoConsulta, descripcion, estadoConsulta;
     @Temporal(TemporalType.TIMESTAMP)
-    Date fechaRegistro, fechaRespuesta; // no necesario para el contructor
+    Date fechaRegistro, fechaRespuesta; // "fechaRespuesta" no necesario para el contructor
 
     public Consulta() {
     }
@@ -37,6 +35,16 @@ public class Consulta implements Serializable {
         this.empleado = empleado;
         this.tipoConsulta = tipoConsulta;
         this.descripcion = descripcion;
+        
+        this.estadoConsulta = "Pendiente";
+        
+        TimeZone zonaHorariaPeru = TimeZone.getTimeZone("America/Lima");        
+        // Crear un objeto Date para la fecha actual
+        Date fechaActual = new Date();   
+        // Obtener el desplazamiento de la zona horaria de Perú en milisegundos
+        int desplazamientoPeru = zonaHorariaPeru.getRawOffset();      
+        // Ajustar la fecha actual para la zona horaria de Perú
+        this.fechaRegistro = new Date(fechaActual.getTime() + desplazamientoPeru);
     }
 
     public int getIdConsulta() {
@@ -79,11 +87,11 @@ public class Consulta implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public boolean isEstadoConsulta() {
+    public String isEstadoConsulta() {
         return estadoConsulta;
     }
 
-    public void setEstadoConsulta(boolean estadoConsulta) {
+    public void setEstadoConsulta(String estadoConsulta) {
         this.estadoConsulta = estadoConsulta;
     }
 

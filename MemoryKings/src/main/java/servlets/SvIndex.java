@@ -75,10 +75,10 @@ public class SvIndex extends HttpServlet {
         // Recibimos los datos tras hacer la solicitud POST
         // y las validamos antes de pasarlos a la logica   
         
-        int dni = Integer.parseInt(request.getParameter("txt_dni"));          
+        String dni = request.getParameter("txt_dni");          
         String name = request.getParameter("txt_name");       
         String lastname = request.getParameter("txt_lastname");       
-        long phone_number = Long.parseLong(request.getParameter("txt_phonenumber"));              
+        String phone_number = request.getParameter("txt_phonenumber");              
         String txt_date = request.getParameter("txt_date");
         
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");

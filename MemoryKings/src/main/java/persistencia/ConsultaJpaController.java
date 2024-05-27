@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package persistencia;
 
 import java.io.Serializable;
@@ -10,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import logica.Cliente;
@@ -17,10 +15,6 @@ import logica.Consulta;
 import logica.Empleado;
 import persistencia.exceptions.NonexistentEntityException;
 
-/**
- *
- * @author frank
- */
 public class ConsultaJpaController implements Serializable {
 
     public ConsultaJpaController(EntityManagerFactory emf) {
@@ -32,6 +26,11 @@ public class ConsultaJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
+    //
+    public ConsultaJpaController(){
+        emf = Persistence.createEntityManagerFactory("memorykings");
+    }
+    
     public void create(Consulta consulta) {
         EntityManager em = null;
         try {

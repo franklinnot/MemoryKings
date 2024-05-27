@@ -22,11 +22,11 @@ public class Empleado implements Serializable {
     int idEmpleado;
     @OneToMany(mappedBy="empleado")
     private LinkedList<Consulta> listaConsulta;
+    @OneToMany(mappedBy="empleado")
+    private LinkedList<Pedido> listaPedido;
     @Basic
-    long telefono;
     double salario;
-    int dni, nivelPrivilegio;  
-    String nombres, apellidos, correo, direccion, genero, password, cargo; // Importante
+    String dni, nivelPrivilegio, nombres, apellidos, correo, direccion, genero, password, cargo, telefono; // Importante
     String estadoCuenta; // no necesario para el contructor
     @Temporal(TemporalType.DATE)
     Date fechaNacimiento, fechaContrato, vencimientoContrato;
@@ -36,7 +36,7 @@ public class Empleado implements Serializable {
     public Empleado() {
     }
 
-    public Empleado(long telefono, double salario, int dni, int nivelPrivilegio, String nombres, String apellidos, String correo, String direccion, String genero, String password, String cargo, Date fechaNacimiento, Date fechaContrato, Date vencimientoContrato) {
+    public Empleado(String telefono, double salario, String dni, String nivelPrivilegio, String nombres, String apellidos, String correo, String direccion, String genero, String password, String cargo, Date fechaNacimiento, Date fechaContrato, Date vencimientoContrato) {
         this.telefono = telefono;
         this.salario = salario;
         this.dni = dni;
@@ -80,11 +80,11 @@ public class Empleado implements Serializable {
         this.listaConsulta = listaConsulta;
     }
 
-    public long getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(long telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
@@ -96,19 +96,19 @@ public class Empleado implements Serializable {
         this.salario = salario;
     }
 
-    public int getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(int dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 
-    public int getNivelPrivilegio() {
+    public String getNivelPrivilegio() {
         return nivelPrivilegio;
     }
 
-    public void setNivelPrivilegio(int nivelPrivilegio) {
+    public void setNivelPrivilegio(String nivelPrivilegio) {
         this.nivelPrivilegio = nivelPrivilegio;
     }
 

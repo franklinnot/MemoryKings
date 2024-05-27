@@ -16,7 +16,6 @@ import javax.persistence.Persistence;
 import logica.Cliente;
 import persistencia.exceptions.NonexistentEntityException;
 
-
 public class ClienteJpaController implements Serializable {
 
     public ClienteJpaController(EntityManagerFactory emf) {

@@ -22,10 +22,10 @@ public class Cliente implements Serializable{
     int idCliente;
     @OneToMany(mappedBy="cliente")
     private LinkedList<Consulta> listaConsulta;
-    @Basic
-    long telefono;
-    int dni;  
-    String nombres, apellidos, correo, direccion, genero, password; // Importante
+    @OneToMany(mappedBy="cliente")
+    private LinkedList<Pedido> listaPedido;
+    @Basic 
+    String telefono, dni, nombres, apellidos, correo, direccion, genero, password; // Importante
     String metodoPagoPref, estadoCuenta; // no necesario para el contructor
     @Temporal(TemporalType.DATE)
     Date fechaNacimiento;
@@ -38,7 +38,7 @@ public class Cliente implements Serializable{
     
 
     // dni , nombres, apellidos, correo, password, telefono, direccion, genero, fechaNacimiento 
-    public Cliente(int dni, String nombres, String apellidos, String correo, String password, long telefono, String direccion, String genero, Date fechaNacimiento) {
+    public Cliente(String dni, String nombres, String apellidos, String correo, String password, String telefono, String direccion, String genero, Date fechaNacimiento) {
         // BCrypt.hashpw(contrasenaPlana, BCrypt.gensalt());
         this.telefono = telefono;
         this.dni = dni;
@@ -80,19 +80,19 @@ public class Cliente implements Serializable{
         this.listaConsulta = listaConsulta;
     }
 
-    public long getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(long telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
-    public int getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(int dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 

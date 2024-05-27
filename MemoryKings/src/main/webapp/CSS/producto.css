@@ -1,13 +1,24 @@
 /* Estilos generales */
 body {
     font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
     min-height: 100vh;
-    padding-bottom: 85px;
+    display: flex;
+    flex-direction: column;
+}
+
+header, main, footer {
+    flex-shrink: 0;
+}
+
+main {
+    flex: 1 0 auto;
 }
 
 /* Encabezado */
 header {
-    background-color:#2C2F35;
+    background-color: #2C2F35;
     color: #FDF9FC;
     padding: 30px;
     display: flex;
@@ -15,11 +26,25 @@ header {
     align-items: center;
 }
 
-#link_login {
-    text-decoration: none; /* Eliminar subrayado */
-    color: white;
+.juntarlogo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
+.espacio-separacion {
+    margin-left: 20px;
+}
+
+.logo img {
+    max-width: 200px;
+}
+
+@media (max-width: 700px) {
+    header {
+        flex-direction: column;
+    }
+}
 
 .menu-btn,
 .cart button {
@@ -31,51 +56,130 @@ header {
     outline: none;
 }
 
-.logo img {
-    max-width: 200px; 
+.container {
+    position: relative;
 }
 
-.search input {
-    padding: 5px;
-    border: 1px solid #FDF9FC;
+input {
+    width: 350px;
+    padding: 10px;
+    padding-right: 35px;
     border-radius: 5px;
-    width: 400px; 
+    border: 0;
+    outline: none;
+    font-size: 1rem;
 }
 
-.search button {
-    background-color: #FDF9FC;
-    border: none;
-    padding: 5px;
-    border-radius: 5px;
-    margin-left: 5px;
+#botonBusqueda {
+    background: #09C46A;
+    padding: 10px 15px;
+    position: absolute;
+    border: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 0 5px 5px 0;
+    color: #ffffff;
     cursor: pointer;
 }
 
-/* Contenido principal */
-main {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 20px;
+#botonBusqueda:hover {
+    background-color: #515966;
+}
+/* Menú desplegable (oculto) */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 109px; /* Ajusta según sea necesario */
+    left: 0;
+    background-color: #ede8ec;
+    border: 1px solid #ede8ec;
+    z-index: 1000;
 }
 
-.filters {
-    width: 200px; 
+.dropdown-menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown-menu ul li {
+    border-bottom: 1px solid #ede8ec;
+}
+
+.dropdown-menu ul li a {
+    display: block;
+    padding: 10px 60px;
+    text-decoration: none;
+    color: #515966;
+    font-weight: bold;
+}
+
+.dropdown-menu ul li a:hover {
+    color: #09C46A;
+}
+
+/* Main */
+.product-wrapper {
+    max-width: 800px; 
+    margin: 0 auto; 
+}
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.product {
+    width: calc(33.33% - 20px); 
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #9B9B9B;
+    border-radius: 5px;
+    text-align: center;
+    box-sizing: border-box; 
+}
+
+.product img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.product h3 {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.product p {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.product button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #09C46A;
+    color: #FDF9FC;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.product button:hover {
+    background-color: #515966;
 }
 
 /* Pie de página */
 footer {
     background-color: #2C2F35;
     color: #FDF9FC;
-    max-height: 85px;
     padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: absolute; 
-    bottom: 0; 
-    width: 100%; 
-   
+    width: 100%;
 }
 
 .consult button {
@@ -85,13 +189,21 @@ footer {
     border-radius: 5px;
     color: #FDF9FC;
     cursor: pointer;
-    
 }
-.consult button i{
+
+.consult button i {
     color: #09C46A;
     font-size: 20px;
-
 }
+
+.consult button:hover {
+    color: #09C46A;
+}
+
+.consult button:hover i {
+    color: #FDF9FC;
+}
+
 .social p {
     margin: 0;
 }
@@ -112,3 +224,6 @@ footer {
     font-size: 20px;
 }
 
+.social ul li a i:hover {
+    color: #FDF9FC;
+}
