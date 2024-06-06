@@ -27,9 +27,9 @@
     <main>
         <div class="menu">
             <div class="menu_fila_uno">
-                <a target="_blank" href=""><span>Pedidos</span></a>
-                <a target="_blank" href=""><span>Clientes</span></a>
-                <a target="_blank" href=""><span>Consultas</span></a>
+                <a target="_blank" href="atencion_pedido.jsp"><span>Pedidos</span></a>
+                <a target="_blank" href="clientes.jsp"><span>Clientes</span></a>
+                <a target="_blank" href="consulta_cliente"><span>Consultas</span></a>
             </div>
             <div class="menu_fila_dos">
                 <a target="_blank" href=""><span>Productos</span></a>

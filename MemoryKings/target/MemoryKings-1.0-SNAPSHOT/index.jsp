@@ -7,7 +7,9 @@
 <%
 
     Object userObject = session.getAttribute("user");
-
+    // aqui basicamente se comprueba quien inicio sesión: CLiente o Empleado
+    // posteriormente la cuenta de Admin irá en la tabla de Empleado
+    // y su privilegio se 
     if (userObject instanceof Mewing) {
         Mewing mewing = (Mewing) userObject;
         Cliente cliente = mewing.getCliente();
@@ -29,4 +31,5 @@
             <jsp:include page="login.jsp" />
         <%
     }
+
 %>

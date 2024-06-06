@@ -1,0 +1,122 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #2C2F35;
+}
+
+.logo img {
+    max-width: 200px;
+}
+
+main {
+    padding: 20px;
+}
+
+.titulo-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.titulo-container h1 {
+    margin: 0;
+    
+}
+
+.subrayado {
+    width: 50%;
+    height: 2px;
+    background-color: #2C2F35;
+    margin-top: 5px;
+}
+
+.busqueda-container {
+    margin-top: 20px;
+    position: relative;
+    display: flex;
+}
+
+.busqueda-container input {
+    padding: 10px;
+    width: 300px;
+    box-sizing: border-box;
+    border-radius: 5px 0 0 5px;
+    border: 1px solid #ddd;
+}
+
+#botonBusqueda {
+    background: #09C46A;
+    padding: 10px 15px;
+    border: 0;
+    border-radius: 0 5px 5px 0;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+#botonBusqueda:hover {
+    background-color: #515966;
+}
+
+.tabla-container {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+.estado {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #FDF9FC;
+}
+
+.atendido {
+    background-color: #09C46A;
+}
+
+.en-proceso {
+    background-color: gray;
+}
+
+button {
+    padding: 5px 10px;
+    font-size: 16px;
+    background-color: #2C2F35;
+    color: #FDF9FC;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+    transition: background-color 0.1s ease;
+}
+
+button:hover {
+    background-color: #515966;
+}
+
+footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.linea-inferior {
+    width: 50%;
+    height: 2px;
+    background-color: #2C2F35;
+}
