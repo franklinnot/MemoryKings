@@ -41,6 +41,10 @@ public class SvLogin extends HttpServlet {
 
         List<Cliente> listaClientes = new ArrayList<>();
 
+        // aqui debo traer a las cuentas de empleados y clientes y recorrer ambas. para
+        // cualquiera de los 2 casos, si la cuenta existe asignarla en el session
+        // en el index jsp verificar de que tipo de objeto son y en base a eso
+        // mandarle a cierta pagina usando  Object userObject e if userObject instanceof "Nombre de la clase"
         listaClientes = ctrl_logica.traerClientes();
         
         // si el usuario existe, guardaremos su info aqui
@@ -58,7 +62,8 @@ public class SvLogin extends HttpServlet {
         if (usuarioEncontrado) {
             System.out.println("Eureka! xd");
             HttpSession session = request.getSession();
-            session.setAttribute("user", user);  
+            Mewing mewing = new Mewing(user);
+            session.setAttribute("user", mewing);  
         } 
         
         response.sendRedirect("http://localhost:8080/MemoryKings/");

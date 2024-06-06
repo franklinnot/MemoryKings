@@ -42,9 +42,9 @@
             
             <div>
             <%
-                Mewing mewing = (Mewing) session.getAttribute("mewing");
+                Mewing mewing = (Mewing) session.getAttribute("user");
                 
-                if (mewing != null && mewing.getCliente().getDni() != null) {
+                if (mewing != null && mewing.getCliente() != null) {
                     Cliente cliente = mewing.getCliente();
             %>
                     <h2>Hola <%=cliente.getNombres()%>!</h2>
