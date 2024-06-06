@@ -1,6 +1,6 @@
 
 <%@page import="logica.Cliente"%>
-<%@page import="servlets.SvIndex"%>
+<%@page import="servlets.SvLogin"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -22,7 +22,7 @@
     <div class="container">
         <div class="form-content">
             <h1 id="title">Inicio</h1>
-            <form action="SvIndex" method="GET">
+            <form action="SvLogin" method="GET">
                 <div class="input-group">
                     <div class="input-fi">
                         <i class="fa-solid fa-user"></i>
@@ -48,7 +48,7 @@
                         <button id="btn-cerrar">regresar</button>
                         <h1>Registro</h1>
                     </div>
-                    <form action="SvIndex" method="POST">
+                    <form action="SvLogin" method="POST">
                         <div class="input-box">
                             <div class="input-field">
 

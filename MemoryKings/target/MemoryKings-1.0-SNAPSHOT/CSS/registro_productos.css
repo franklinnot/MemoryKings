@@ -1,0 +1,319 @@
+
+/*cabecera*/
+header{
+    background-color:#09C46A;
+    color: #FDF9FC;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+ /* justamos el logo y el btn menu para que no esten uno sobre el otro*/
+ .juntarlogo {
+    display: flex;
+    align-items: center;
+}
+/*editar label del div btnmenu*/
+.btnmenu label{
+    font-size:25px;
+    cursor:pointer;
+    margin-right: 20px;
+}
+/*editar logo*/
+.logo{
+    display:flex;
+}
+.logo img{
+    height: 50px;
+}
+
+/*cuerpo*/
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+
+@media (max-width: 700px){
+    header{
+        flex-direction: column;
+    }
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing :border-box;
+    font-family: sans-serif;
+}
+
+/*barra busqueda*/
+.container{
+    position:relative;
+}
+#Buscar{
+    width: 350px;
+    padding:10px;
+    padding-right: 35px;
+    border-radius:5px;
+    border:0;
+    outline:none;
+    font-size: 1rem;
+}
+
+/*boton de busqueda*/
+#botonBusqueda{
+    background: #453C39;
+    padding: 10px 15px;
+    position: absolute;
+    border: 0;
+    top: 0;
+    bottom:0;
+    right:0;
+    margin:auto;
+    border-radius: 0 5px 5px 0;
+    color:#ffffff;
+    cursor: pointer;
+}
+#botonBusqueda:hover{
+    background-color: #756f6d;
+}
+
+#btn-registrar {
+    margin-left: 40px
+}
+
+.acciones_productos {
+    padding: 5px;
+    display: flex;
+    justify-content: center; /* Esto distribuye uniformemente los elementos en el contenedor */
+    align-items: center;
+}
+/*edita el div en donde se guarda los botones y el div de productos*/
+.contenedor_general{
+    width: 1200px;
+    height: 72px;
+    margin: auto;
+}
+
+
+
+/*DIV QUE ALMACENA AL REGISTRO DE LOS PRODUCTOS:*/
+.div_contenedor{
+    background: #09C46A;
+    width:1120px;
+    height: 470px;
+    overflow:auto;/*crea una barra scroll al div*/
+    margin-left: auto;
+    margin-right: 25px;
+    padding-top:10px;/*margin right y to hce que dentro del div haya un margen para los divs que acumulan la info del producto*/
+    padding-left: 20px;
+
+}
+/*editar los botones CRUD*/
+button{
+    background-color: #453C39;
+    border: 10px;
+    padding:10px 20px;
+    
+    color:#FDF9FC;
+    font-size: 16px;
+    margin: 17px 17px;
+    cursor: pointer;
+    border-radius: 15px;
+}
+button:hover{
+    background-color: #756f6d;
+}
+article{
+    width: 90%;
+    min-width: 300px;
+    max-width:1300px;
+    height: 100px;/*crea un margen arriba y abajo*/
+    margin:30px ;
+
+    /*segunda etapa*/
+    display: grid;
+    grid-template-columns: 10% repeat(6, 1fr);/*revisar bien esta linea de codigo*/
+    place-items:center;
+
+    /*tercera etapa*/
+    font-size: 1rem;
+    color:#ffffff;
+    font-family:monospace;
+    font-weight: bold;
+    line-height: 1rem;
+    /*cuarta etapa*/
+    gap: 0.2rem;
+    
+    
+    
+}
+h4:hover, p:hover{
+    background-color: #756f6d;
+}
+
+p,h4{
+    background-color: #453C39;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 1.5rem ;
+    cursor: pointer;
+}
+
+h4{
+    text-align: left;
+}
+.eliminar_producto {
+    height: 40px;
+    margin-top: 7;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.espacio-separacion{
+    margin-left: 20px;
+}
+.cart button {
+    background-color: #453C39;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    outline: none;
+}
+
+
+/*modal*/
+
+.modal{
+
+
+    /*esto hara que se posicione correctamente en la pantalla*/
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    
+    /*editamos su alrededor del modal, como se vera lo demás*/
+    position:fixed;
+    top:0;
+    left:0;
+    background: rgba(0,0,0,0.5);
+    transition:all 500ms ease;
+    opacity: 0;
+    visibility: hidden;
+
+
+
+    
+}
+/*esto activara la ventana modal cuando le demos click al boton*/
+#btn-modal:checked~.modal{
+    opacity:1;
+    visibility: visible;
+}
+
+
+
+/*editamos todo lo que esta adentro del modal*/
+/*registro de productos*/
+.contenedor{
+    width: 800px;
+    height: 600px;
+    margin: auto;
+    background: #756f6d;
+    box-shadow:1px 7px 25px rgba(0,0,0,0.6);
+    transition: all 500ms ease;
+    position:relative;
+    transform:translateY(-30%);
+
+}
+#btn-modal:checked ~ .modal .contenedor {
+    transform: translateY(0%);
+}
+.contenedor header{
+    padding:10px;
+    color: #fff;
+}
+.contenedor label{
+    position:absolute;
+    top:10px;
+    right:10px;
+    color:#fff;
+    font-size:15px;
+    cursor:pointer;
+    
+}
+
+/*ocultamos el checkbox*/
+#btn-modal{
+    display: none;
+    
+}
+
+
+/*editamos el label para convertirlo a un boton*/
+.lbl-modal{
+    background: #453C39;
+    padding:10px 15px;
+    border-radius: 4px;
+    cursor:pointer;
+}
+
+
+.campo_producto{
+   
+ 
+    padding: 15px 20px;
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 5px; /* Borde redondeado */
+    background-color: #f0f0f0; /* Color de fondo */
+    margin-bottom: 10px; /* Espacio entre inputs */
+}
+select{
+    padding: 15px 20px;
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 5px; /* Borde redondeado */
+    background-color: #f0f0f0; /* Color de fondo */
+    
+}
+
+.btn {
+    background-color: #09C46A;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+   
+}
+
+.btn:hover {
+    background-color: #008c58;
+}
+.fila-input {
+    
+    margin-bottom: 10px; /* Espacio entre cada fila */
+    margin-right: 30px;
+    margin-left: 40px;
+}
+
+.fila-input input, .fila-input select {
+    flex: 1;
+    margin-right: 40px;
+}
+/*ajustamos el titulo "registrar" correctamente y le damos su espacio dentro del modal*/
+#cabecera_modal{
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 130px;
+}
+
+

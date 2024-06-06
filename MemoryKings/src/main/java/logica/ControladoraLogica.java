@@ -18,4 +18,8 @@ public class ControladoraLogica {
     public List<Cliente> traerClientes(){
         return ctrl_persistencia.traerClientes();
     }
+    
+    public List<Producto> traerProductos(){
+        return ctrl_persistencia.traerProductos();
+    }
 }

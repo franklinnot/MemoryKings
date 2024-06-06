@@ -1,6 +1,10 @@
+<%@page import="logica.ControladoraLogica"%>
+<%@page import="logica.Mewing"%>
 <%@page import="logica.Cliente"%>
-<%@page import="servlets.SvIndex"%>
+<%@page import="servlets.SvLogin"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% ControladoraLogica ctrl_logica = new ControladoraLogica(); %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,8 +42,10 @@
             
             <div>
             <%
-                Cliente cliente = (Cliente) session.getAttribute("datos_usuario");
-                if (cliente != null) {
+                Mewing mewing = (Mewing) session.getAttribute("mewing");
+                
+                if (mewing != null && mewing.getCliente().getDni() != null) {
+                    Cliente cliente = mewing.getCliente();
             %>
                     <h2>Hola <%=cliente.getNombres()%>!</h2>
                     <form action="SvSession" method="POST">

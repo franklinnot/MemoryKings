@@ -18,10 +18,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logica.Cliente;
 import logica.ControladoraLogica;
+import logica.Mewing;
 
 
-@WebServlet(name = "SvIndex", urlPatterns = {"/SvIndex"})
-public class SvIndex extends HttpServlet {
+@WebServlet(name = "SvLogin", urlPatterns = {"/SvLogin"})
+public class SvLogin extends HttpServlet {
 
     ControladoraLogica ctrl_logica = new ControladoraLogica();
     
@@ -43,23 +44,21 @@ public class SvIndex extends HttpServlet {
         listaClientes = ctrl_logica.traerClientes();
         
         // si el usuario existe, guardaremos su info aqui
-        Cliente datos_usuario = new Cliente(); 
+        Cliente user = new Cliente(); 
         
         boolean usuarioEncontrado = false;
         for(Cliente cliente : listaClientes) {
             if (cliente.getCorreo().equals(email) && BCrypt.checkpw(password, cliente.getPassword())) {
                 usuarioEncontrado = true;
-                datos_usuario = cliente;
+                user = cliente;
                 break;
             }
         }
         
         if (usuarioEncontrado) {
             System.out.println("Eureka! xd");
-                                
             HttpSession session = request.getSession();
-            session.setAttribute("datos_usuario", datos_usuario);
-            
+            session.setAttribute("user", user);  
         } 
         
         response.sendRedirect("http://localhost:8080/MemoryKings/");
@@ -86,7 +85,7 @@ public class SvIndex extends HttpServlet {
         try {
             date_birth = formatter.parse(txt_date);
         } catch (ParseException ex) {
-            Logger.getLogger(SvIndex.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SvLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
              
         String gender = request.getParameter("txt_gender");       
@@ -99,11 +98,10 @@ public class SvIndex extends HttpServlet {
         Cliente cliente = new Cliente(dni, name, lastname, email, password, phone_number, address, gender, date_birth);
         ctrl_logica.crearCliente(cliente);
         
-        Cliente datos_usuario = new Cliente();
-        datos_usuario = cliente;
-            
-        HttpSession session = request.getSession(false);
-        session.setAttribute("datos_usuario", datos_usuario);
+        Mewing user = new Mewing(cliente);
+        
+        HttpSession session = request.getSession();
+        session.setAttribute("user", user);
         
         // aqui, en vez de index, se debe colocar el nombre del jsp que cargara los productos
         response.sendRedirect("http://localhost:8080/MemoryKings/");

@@ -1,13 +1,14 @@
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\persistencia\ConsultaJpaController.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\logica\Distribuidor.java
+C:\GitHub\MemoryKings\MemoryKings\src\main\java\servlets\SvLogin.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\persistencia\ClienteJpaController.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\com\mycompany\memorykings\JakartaRestConfiguration.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\com\mycompany\memorykings\exceptions\IllegalOrphanException.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\persistencia\DistribuidorJpaController.java
-C:\GitHub\MemoryKings\MemoryKings\src\main\java\servlets\SvIndex.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\logica\Pedido.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\servlets\SvSession.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\logica\Consulta.java
+C:\GitHub\MemoryKings\MemoryKings\src\main\java\logica\Admin.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\logica\ImagenProducto.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\persistencia\ProductoJpaController.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\logica\ControladoraLogica.java
@@ -19,6 +20,8 @@ C:\GitHub\MemoryKings\MemoryKings\src\main\java\persistencia\PedidoJpaController
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\logica\DetallePedido.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\persistencia\exceptions\NonexistentEntityException.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\logica\Producto.java
+C:\GitHub\MemoryKings\MemoryKings\src\main\java\servlets\SvRegistroProductos.java
+C:\GitHub\MemoryKings\MemoryKings\src\main\java\logica\Mewing.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\persistencia\DetallePedidoJpaController.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\com\mycompany\memorykings\resources\JakartaEE8Resource.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\logica\Empleado.java

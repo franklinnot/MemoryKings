@@ -80,6 +80,14 @@ public class Cliente implements Serializable{
         this.listaConsulta = listaConsulta;
     }
 
+    public LinkedList<Pedido> getListaPedido() {
+        return listaPedido;
+    }
+
+    public void setListaPedido(LinkedList<Pedido> listaPedido) {
+        this.listaPedido = listaPedido;
+    }
+
     public String getTelefono() {
         return telefono;
     }

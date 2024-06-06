@@ -18,17 +18,15 @@ public class ImagenProducto implements Serializable {
     @ManyToOne
     private Producto producto;
 
-    @Basic
-    String descripcion;
 
     public ImagenProducto() {
     }
 
     public ImagenProducto(Producto producto, String descripcion) {
         this.producto = producto;
-        this.descripcion = descripcion;
     }
 
+    
     public int getIdImagenProducto() {
         return idImagenProducto;
     }
@@ -45,13 +43,6 @@ public class ImagenProducto implements Serializable {
         this.producto = producto;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
     
     
           

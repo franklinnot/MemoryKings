@@ -3,12 +3,14 @@ package persistencia;
 
 import java.util.List;
 import logica.Cliente;
+import logica.Producto;
 
 
 public class ControladoraPersistencia {
     
     
     ClienteJpaController clienteJpa = new ClienteJpaController();
+    ProductoJpaController productoJpa = new ProductoJpaController();
     
     // OPERACIONES CRUD para CLIENTE
     // Create
@@ -23,5 +25,9 @@ public class ControladoraPersistencia {
     
     // Update
     
+    
+    public List<Producto> traerProductos(){
+        return productoJpa.findProductoEntities();
+    }
     
 }
