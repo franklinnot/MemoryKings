@@ -1,8 +1,3 @@
-<%-- 
-    Document   : atencion_pedido
-    Created on : Jun 6, 2024, 8:24:26 AM
-    Author     : frank
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

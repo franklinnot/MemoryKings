@@ -1,3 +1,4 @@
+
 <%@page import="java.text.ParseException"%>
 <%@page import="org.mindrot.jbcrypt.BCrypt"%>
 <%@page import="logica.Mewing"%>
@@ -13,6 +14,9 @@
     if (userObject instanceof Mewing) {
         Mewing mewing = (Mewing) userObject;
         Cliente cliente = mewing.getCliente();
+        //esto debe ir en la parte de la instancia de Empleado
+        // y la verificacion de que cuenta es, debe ir en el jsp de menu_admin
+        // así, deshabilitamos productos, empleados, clientes
         if (cliente.getCorreo().equals("admin@gmail.com") && BCrypt.checkpw("123", cliente.getPassword())) {
             %>
                 <jsp:include page="menu_admin.jsp" />
