@@ -1,11 +1,6 @@
-<%-- 
-    Document   : consulta_cliente
-    Created on : Jun 6, 2024, 8:26:14 AM
-    Author     : frank
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -18,7 +13,7 @@
 <body>
     <div class="div_principal"> 
         <div class="logo_container">
-            <img id="loguito" src="Images/logo.png">
+            <img id="loguito" src="Image/logo.png">
         </div>
             <form > 
                 <div class="div_division1">

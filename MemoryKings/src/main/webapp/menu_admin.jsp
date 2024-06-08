@@ -2,6 +2,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -18,22 +19,23 @@
                 <img src="Image/logo.png" alt="">
             </div>
             <div class="encabezado__saludo">
-                <span>Hola <b>admin</b>!</span>
+                <span>Hola <b>admin</b>!</span> <!<!-- similar al cliente, aqui debe colocarse el nombre del empleado logueado -->
             </div>
         </div>
     </header>
-    <!-- queda pendiente alutilizar a la pagina principal para cualquier opcion seleccionada -->
-    <!-- otra opcion es dejarlo como target="_blank" -->
+
     <main>
         <div class="menu">
             <div class="menu_fila_uno">
-                <a target="_blank" href="atencion_pedido.jsp"><span>Pedidos</span></a>
+                <a target="_blank" href=""><span>Pedidos</span></a>
                 <a target="_blank" href="clientes.jsp"><span>Clientes</span></a>
-                <a target="_blank" href="consulta_cliente"><span>Consultas</span></a>
+                <a target="_blank" href=""><span>Consultas</span></a>
             </div>
             <div class="menu_fila_dos">
-                <a target="_blank" href=""><span>Productos</span></a>
-                <a target="_blank" id="cerrar_sesion" href=""><span>Cerrar sesión</span></a>
+                <a target="_blank" href="registro_productos.jsp"><span>Productos</span></a>
+                <form action="SvSession" method="POST">
+                    <button id="cerrar_sesion"><span>Cerrar sesión</span></button>
+                </form>
             </div>
         </div>
     </main>
@@ -43,4 +45,3 @@
     </footer>
 </body>
 </html>
-

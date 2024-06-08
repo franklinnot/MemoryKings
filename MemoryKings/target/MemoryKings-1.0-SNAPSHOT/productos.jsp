@@ -108,7 +108,7 @@
     
     <footer>
         <div class="consult">
-            <button><i class='bx bx-message-dots'></i> Consultas</button>
+            <a target="_blank" href="consulta_cliente.jsp"><span class='bx bx-message-dots'>Consultas</span></a>
         </div>
         <div class="social">
             <p>Síguenos en:</p>
