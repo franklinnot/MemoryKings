@@ -20,7 +20,7 @@ public class Categoria implements Serializable {
     private LinkedList<Producto> listaProducto;
     
     @Basic
-    String nombre, descripcion;  
+    String nombre;  
 
     public Categoria() {
     }
@@ -28,7 +28,6 @@ public class Categoria implements Serializable {
     public Categoria(LinkedList<Producto> listaProducto, String nombre, String descripcion) {
         this.listaProducto = listaProducto;
         this.nombre = nombre;
-        this.descripcion = descripcion;
     }
 
     public int getIdCategoria() {
@@ -53,14 +52,6 @@ public class Categoria implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
     
     

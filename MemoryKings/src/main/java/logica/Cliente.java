@@ -33,7 +33,13 @@ public class Cliente implements Serializable{
     Date fechaRegistro; // no necesario para el contructor
     
     public Cliente(){
-        
+        TimeZone zonaHorariaPeru = TimeZone.getTimeZone("America/Lima");        
+        // Crear un objeto Date para la fecha actual
+        Date fechaActual = new Date();   
+        // Obtener el desplazamiento de la zona horaria de Perú en milisegundos
+        int desplazamientoPeru = zonaHorariaPeru.getRawOffset();      
+        // Ajustar la fecha actual para la zona horaria de Perú
+        this.fechaRegistro = new Date(fechaActual.getTime() + desplazamientoPeru);
     }
     
 

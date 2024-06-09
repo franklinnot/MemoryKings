@@ -8,6 +8,87 @@ header{
     justify-content: space-between;
     align-items: center;
 }
+
+
+.noom{
+    display: block;
+}
+
+.jaja{
+    width: 1100px;
+    height: 100%;
+    display: flex;
+}
+
+
+.jaja tr{
+    width: auto;
+    display: flex;
+    background-color: white;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    }
+    
+.jaja td{
+    min-width:150px;
+    max-width:150px;
+    width: 150px;
+    height: 70px;
+    display: flex;
+    
+    justify-content: center;
+    align-content: center;
+    
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin: 0 30px 0 30px;
+}
+
+.productList{
+    width: 1100px;
+    height: 100%;
+    display: flex;
+    
+}
+
+
+.productList tr{
+    width: auto;
+    display: flex;
+    margin-bottom: 10px;
+    background-color: #453C39;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    }
+    
+.productList td{
+    min-width:150px;
+    max-width:150px;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    
+    justify-content: center;
+    align-content: center;
+    
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin: 0 30px 0 30px;
+}
+
+.productList img{
+    width: 180px;
+}
+
  /* justamos el logo y el btn menu para que no esten uno sobre el otro*/
  .juntarlogo {
     display: flex;
@@ -81,33 +162,35 @@ body {
     background-color: #756f6d;
 }
 
-#btn-registrar {
-    margin-left: 40px
-}
-
 .acciones_productos {
     padding: 5px;
     display: flex;
     justify-content: center; /* Esto distribuye uniformemente los elementos en el contenedor */
     align-items: center;
+    
+    
+    
 }
 /*edita el div en donde se guarda los botones y el div de productos*/
 .contenedor_general{
-    width: 1200px;
-    height: 72px;
     margin: auto;
+    
 }
-
+main{
+    display: flex;
+    justify-content: center;
+}
 
 
 /*DIV QUE ALMACENA AL REGISTRO DE LOS PRODUCTOS:*/
 .div_contenedor{
     background: #09C46A;
-    width:1120px;
-    height: 470px;
+    display: flex;
+    width:1550px;
+    height: 650px;
     overflow:auto;/*crea una barra scroll al div*/
-    margin-left: auto;
-    margin-right: 25px;
+    position: relative;
+    left: 0;
     padding-top:10px;/*margin right y to hce que dentro del div haya un margen para los divs que acumulan la info del producto*/
     padding-left: 20px;
 
@@ -168,11 +251,10 @@ h4{
     text-align: left;
 }
 .eliminar_producto {
+    width: 130px;
     height: 40px;
     margin-top: 7;
-    align-items: center;
-    justify-content: center;
-    display: flex;
+    border: 2px solid black;
 }
 
 .espacio-separacion{
@@ -224,15 +306,24 @@ h4{
 /*editamos todo lo que esta adentro del modal*/
 /*registro de productos*/
 .contenedor{
-    width: 800px;
-    height: 600px;
+    width: 700px;
+    height: 580px;
     margin: auto;
     background: #756f6d;
     box-shadow:1px 7px 25px rgba(0,0,0,0.6);
     transition: all 500ms ease;
     position:relative;
     transform:translateY(-30%);
+    justify-content: space-between; /* Asegura que haya espacio entre los elementos */
+    
 
+}
+.contenedor_inputs{
+    display: flex; /* Nuevo */
+    flex-direction: column; /* Nuevo */
+    justify-content: center; /* Nuevo */
+    align-items: center; /* Nuevo */
+   
 }
 #btn-modal:checked ~ .modal .contenedor {
     transform: translateY(0%);
@@ -241,7 +332,7 @@ h4{
     padding:10px;
     color: #fff;
 }
-.contenedor label{
+.btn-cerrar{
     position:absolute;
     top:10px;
     right:10px;
@@ -258,12 +349,16 @@ h4{
 }
 
 
-/*editamos el label para convertirlo a un boton*/
+/*editamos el label para convertirlo a un boton a "registrar productos"*/
 .lbl-modal{
     background: #453C39;
     padding:10px 15px;
     border-radius: 4px;
     cursor:pointer;
+}
+/*cambia el color cuando pasas el cursor en el boton registrar productos*/
+.lbl-modal:hover{
+    background: #756f6d;
 }
 
 
@@ -276,23 +371,24 @@ h4{
     background-color: #f0f0f0; /* Color de fondo */
     margin-bottom: 10px; /* Espacio entre inputs */
 }
-select{
-    padding: 15px 20px;
+select {
+    padding: 15px 66px;
     border: 1px solid #ccc; /* Borde */
     border-radius: 5px; /* Borde redondeado */
     background-color: #f0f0f0; /* Color de fondo */
-    
+    color: #756f6d;
+    text-align-last: left; /* Alinea el último elemento seleccionado a la izquierda */
 }
+
+
 
 .btn {
     background-color: #09C46A;
     color: #fff;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
     cursor: pointer;
-   
+    width: 400px;
 }
+
 
 .btn:hover {
     background-color: #008c58;
@@ -301,8 +397,9 @@ select{
     
     margin-bottom: 10px; /* Espacio entre cada fila */
     margin-right: 30px;
-    margin-left: 40px;
+    margin-left: 30px;
 }
+
 
 .fila-input input, .fila-input select {
     flex: 1;
@@ -314,6 +411,46 @@ select{
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */
     height: 130px;
+    color:#fff;
+}
+
+/* Estiliza el input de tipo file */
+#fileInput {
+    padding: 20px; /* Añade padding para agrandar el área clickable */
+    font-size: 16px; /* Aumenta el tamaño del texto */
+    width: calc(100%); /* Ajusta el ancho para que coincida con otros inputs */
+    
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+#subir_imagenes{
+    color: #fff;
+    font-size: 16px;
+}
+.input{
+    text-align: center; 
+}
+
+
+
+
+
+
+/*footer*/
+
+footer {
+    background-color: #453C39;
+    color: #FDF9FC;
+    padding: 40px;
+    width: 100%;
+    position: fixed; /* Fija el pie de página */
+    bottom: 0; /* Lo coloca en la parte inferior */
+    left: 0; /* Lo coloca en la esquina izquierda */
+    right: 0; /* Lo coloca en la esquina derecha */
+    
+}
+.consultas{
+    cursor:pointer;
+    font-size: 22px;
 }
 
 

@@ -40,6 +40,13 @@ public class Pedido implements Serializable {
     Date fechaPedido, fechaEnvio; // "fechaEnvio" no es necesario para el contructor
 
     public Pedido() {
+        TimeZone zonaHorariaPeru = TimeZone.getTimeZone("America/Lima");        
+        // Crear un objeto Date para la fecha actual
+        Date fechaActual = new Date();   
+        // Obtener el desplazamiento de la zona horaria de Perú en milisegundos
+        int desplazamientoPeru = zonaHorariaPeru.getRawOffset();      
+        // Ajustar la fecha actual para la zona horaria de Perú
+        this.fechaPedido = new Date(fechaActual.getTime() + desplazamientoPeru);
     }
 
     public Pedido(Cliente cliente, Empleado empleado, Distribuidor distribuidor, String metodoPago) {

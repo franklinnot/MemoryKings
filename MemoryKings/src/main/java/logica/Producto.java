@@ -32,12 +32,12 @@ public class Producto implements Serializable {
     @Basic
     String nombre, descripcion, marca;
     float precio;
-    @Temporal(TemporalType.TIMESTAMP)
-    Date fechaRegistro; // no necesario para el contructor
 
     public Producto() {
         
     }
+    
+    
 
     public int getIdProducto() {
         return idProducto;
@@ -111,13 +111,6 @@ public class Producto implements Serializable {
         this.precio = precio;
     }
 
-    public Date getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(Date fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-    }
     
     
     
