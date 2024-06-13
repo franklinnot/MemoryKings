@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import logica.Cliente;
 import logica.ControladoraLogica;
 import logica.Mewing;
+import logica.Producto;
 
 
 @WebServlet(name = "SvLogin", urlPatterns = {"/SvLogin"})
@@ -59,11 +61,17 @@ public class SvLogin extends HttpServlet {
             }
         }
         
-        if (usuarioEncontrado) {
+        if (usuarioEncontrado) { // esto solo para el cliente jeje obvi
             System.out.println("Eureka! xd");
             HttpSession session = request.getSession();
             Mewing mewing = new Mewing(user);
-            session.setAttribute("user", mewing);  
+            session.setAttribute("user", mewing);
+            
+            List<Producto> listaProductos = new ArrayList<>();
+            listaProductos = ctrl_logica.traerProductos();
+
+            session.setAttribute("listaProductos", listaProductos);
+            
         } 
         
         response.sendRedirect("http://localhost:8080/MemoryKings/");

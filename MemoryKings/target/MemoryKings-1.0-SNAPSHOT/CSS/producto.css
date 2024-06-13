@@ -140,12 +140,29 @@ input {
     border: 1px solid #9B9B9B;
     border-radius: 15px;
     text-align: center;
+    overflow: hidden; /* Añadido para ocultar las imágenes que se desplazan */
 }
 
-.product img {
-    min-width: 100%;
-    min-height: 180px;
+.product-images {
+    display: flex;
+    transition: transform .8s ease-in-out; /* Transición suave */
+    overflow: hidden;
+    position: relative;
+}
+
+.product-images img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    object-position: center;
     border-radius: 15px;
+    flex-shrink: 0; /* Impide que las imágenes se reduzcan */
+    display: block;
+    transition: transform 0.8s ease;
+}
+
+.product:hover .product-images img{
+    transform: translateX(-100%);
 }
 
 .product h3 {

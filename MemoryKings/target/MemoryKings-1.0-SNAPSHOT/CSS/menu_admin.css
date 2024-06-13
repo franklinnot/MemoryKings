@@ -1,6 +1,5 @@
 body{
     min-height: 100vh;
-    min-width: 100vh;
     display: grid;
     grid-template-rows: 8% auto 5%;
     row-gap: 25px;

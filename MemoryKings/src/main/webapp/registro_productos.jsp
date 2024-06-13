@@ -1,4 +1,6 @@
 
+<%@page import="java.util.Base64"%>
+<%@page import="logica.ImagenProducto"%>
 <%@page import="java.util.Collections"%>
 <%@page import="logica.Proveedor"%>
 <%@page import="logica.Categoria"%>
@@ -20,7 +22,7 @@
     <title>Registro de Productos</title>
     <link rel="stylesheet" href="CSS/normalize.css">
     <link rel="stylesheet" href="CSS/registro_productos.css">
-    <script src="JavaScript/buscar_productos"></script>
+    
     <!--permite ingresar logos de font awesome-->
     <script src="https://kit.fontawesome.com/b408879b64.js" crossorigin="anonymous"></script>
 </head>
@@ -91,8 +93,13 @@
                     <table class="productList" id="productList">
                         <%
                         List<Producto> listaProductos = new ArrayList<>();
-                        listaProductos = ctrl_logica.traerProductos();
+                        List<ImagenProducto> listaImagenes = new ArrayList<>();
+                        
+                        listaProductos = ctrl_logica.traerProductos();    
+                        listaImagenes = ctrl_logica.traerImagenProductos();
+                        
                         Collections.sort(listaProductos, (p1, p2) -> p1.getNombre().compareTo(p2.getNombre()));
+                        
                         if (listaProductos != null && !listaProductos.isEmpty()) {
                             for (Producto producto : listaProductos) {
                     %>
@@ -103,21 +110,27 @@
                             <td><%=producto.getPrecio()%></td>
                             <td><%=producto.getCategoria().getIdCategoria()%></td>
                             <td><%=producto.getProveedor().getIdProveedor()%></td>
-                            <td><img src="" alt=""></td>
+                            <td>
+                            <%
+                            // Buscar las imágenes correspondientes a este producto
+                            for (ImagenProducto imagen : listaImagenes) {
+                                if (imagen.getProducto().getIdProducto() == producto.getIdProducto()) {
+                                    byte[] imagenBytes = imagen.getImagen();
+                                    String base64Image = Base64.getEncoder().encodeToString(imagenBytes);
+                                    
+                            %>
+                            <img src="data:image/jpeg;base64,<%=base64Image%>" alt="Imagen del Producto" style="width:calc(100% - 10px);"/>
+                            <%
+                                break;
+                                }
+                            }
+                            %>
+                            </td>
                     </tr>                
                     <%
                             }
                         }
                     %>
-                        <tr data-code="123">
-                            <td>Laptop Inspiron 15</td>
-                            <td>DELL</td>
-                            <td>siss</td>
-                            <td>2800</td>
-                            <td>Computadoras</td>
-                            <td>Empresas DELL</td>
-                            <td><img src="Image/logo.png" alt=""></td>
-                        </tr>
                     </table>
                 </article>
             </div>
@@ -203,6 +216,6 @@
       
 
     </footer>
-    
+    <script src="JavaScript/buscar_productos.js"></script>
 </body>
 </html>

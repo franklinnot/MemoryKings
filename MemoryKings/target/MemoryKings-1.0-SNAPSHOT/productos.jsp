@@ -1,3 +1,8 @@
+<%@page import="java.util.Base64"%>
+<%@page import="logica.ImagenProducto"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="logica.Producto"%>
 <%@page import="logica.ControladoraLogica"%>
 <%@page import="logica.Mewing"%>
 <%@page import="logica.Cliente"%>
@@ -94,13 +99,50 @@
         <div class="product-wrapper">
             <div class="product-container">
                 
+                <%
+                
+                List<Producto> listaProductos = new ArrayList<>();
+                List<ImagenProducto> listaImagenes = new ArrayList<>();
+                listaProductos = (List<Producto>) session.getAttribute("listaProductos");
+                listaImagenes = ctrl_logica.traerImagenProductos();
+                for (Producto producto : listaProductos){
+
+                %>
+                
                 <div class="product">
-                    <img src="ruta" alt="Producto 1">
-                    <h3>Producto 1</h3>
-                    <p>Descripción breve del producto 1.</p>
+                    <div class="product-images">
+                        <%
+                        // Buscar las imágenes correspondientes a este producto
+                        for (ImagenProducto imagen : listaImagenes) {
+                            if (imagen.getProducto().getIdProducto() == producto.getIdProducto()) {
+                                byte[] imagenBytes = imagen.getImagen();
+                                String base64Image = Base64.getEncoder().encodeToString(imagenBytes);
+                        %>
+                        <img src="data:image/jpeg;base64,<%=base64Image%>" alt="Imagen del Producto";"/>
+                        <%
+                            }
+                        }
+                        %>
+                    </div>
+                    <h3><%=producto.getNombre()%> S/.<%=producto.getPrecio()%></h3>
+                    <%
+                    String descripcion = "";
+                    char[] caracteres = producto.getDescripcion().toCharArray();
+                    StringBuilder sb = new StringBuilder();
+
+                    for (int i = 0; i < caracteres.length && i < 20; i++) {
+                        sb.append(caracteres[i]);
+                    }
+
+                    descripcion = sb.toString();
+                    %>
+                    <p><%=descripcion%>...</p>
                     <button>Agregar al carrito</button>
                 </div>
-
+                
+                <%
+                }
+                %>
 
             </div>
         </div>
@@ -121,6 +163,7 @@
         </div>
     </footer>
     <script src="JavaScript/producto.js"></script>
+
 </body>
 </html>
 
