@@ -11,6 +11,7 @@
 <%@page import="java.util.List"%>
 <%@page import="logica.Mewing"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="servlets.SvRegistroProductos"%>
 <% ControladoraLogica ctrl_logica = new ControladoraLogica(); %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -20,8 +21,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Productos</title>
-    <link rel="stylesheet" href="CSS/normalize.css">
-    <link rel="stylesheet" href="CSS/registro_productos.css">
+    <link rel="stylesheet" href="../CSS/normalize.css">
+    <link rel="stylesheet" href="../CSS/registro_productos.css">
     
     <!--permite ingresar logos de font awesome-->
     <script src="https://kit.fontawesome.com/b408879b64.js" crossorigin="anonymous"></script>
@@ -40,7 +41,7 @@
     
             <!--AÑADIR LOGO-->
             <a href="#" class="logo">
-                <img src="Image/logo.png" alt="logo empresa">
+                <img src="../Image/logo.png" alt="logo empresa">
                 <h2 class="nombre_empresa"></h2>
             </a>
             
@@ -91,7 +92,7 @@
                     </table>
                     <!-- Datos del producto -->
                     <table class="productList" id="productList">
-                        <%
+                    <%
                         List<Producto> listaProductos = new ArrayList<>();
                         List<ImagenProducto> listaImagenes = new ArrayList<>();
                         
@@ -146,7 +147,7 @@
         <div class="contenedor">         
             <label for="btn-modal" class="btn-cerrar">X</label>
             <div id="cabecera_modal"><h1>Registro</h1></div>
-            <form action="SvRegistroProductos" method="POST" enctype="multipart/form-data">
+            <form action="../SvRegistroProductos" method="POST" enctype="multipart/form-data">
                 <div class="contenedor_inputs">
                     <div class="fila-input">
                         <input name="nombre" class="campo_producto" type="text" placeholder="Nombre" required>
@@ -182,10 +183,10 @@
                             <%
                                 List<Proveedor> listaProveedores = new ArrayList<>();
                                 listaProveedores = ctrl_logica.traerProveedores();
-                                Collections.sort(listaProveedores, (p1, p2) -> p1.getNombreComercial().compareTo(p2.getNombreComercial()));
+                                Collections.sort(listaProveedores, (p1, p2) -> p1.getRazonSocial().compareTo(p2.getRazonSocial()));
                                 for (Proveedor proveedor : listaProveedores){
                             %>
-                            <option value="<%=proveedor.getIdProveedor()%>"><%=proveedor.getNombreComercial()%></option>
+                            <option value="<%=proveedor.getIdProveedor()%>"><%=proveedor.getRazonSocial()%></option>
                             <%
                                 }
                             %>
@@ -216,6 +217,6 @@
       
 
     </footer>
-    <script src="JavaScript/buscar_productos.js"></script>
+    <script src="../JavaScript/buscar_productos.js"></script>
 </body>
 </html>

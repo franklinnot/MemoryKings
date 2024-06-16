@@ -53,7 +53,6 @@ function enviarRegistro(tipo) {
     });
 
     if (todosLlenos) {
-        alert(tipo + " registrado con éxito!");
         
         // Limpiar los campos
         campos.forEach(function(campo) {
@@ -67,6 +66,6 @@ function enviarRegistro(tipo) {
         // Cerrar el modal
         modal.style.display = "none";
     } else {
-        alert("Por favor, completa todos los campos.");
+        
     }
 }

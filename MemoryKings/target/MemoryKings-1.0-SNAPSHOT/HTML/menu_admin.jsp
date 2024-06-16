@@ -1,6 +1,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@page import="servlets.SvRegistroEmpleados"%>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -29,10 +29,10 @@
             
             <div class="menu_fila_uno">
                 <div>
-                    <a target="_blank" href="atencion_pedido.jsp"><span>Pedidos</span></a>
+                    <a target="_blank" href="HTML/atencion_pedido.jsp"><span>Pedidos</span></a>
                 </div>
                 <div>
-                    <a target="_blank" href="clientes.jsp"><span>Clientes</span></a>
+                    <a target="_blank" href="HTML/clientes.jsp"><span>Clientes</span></a>
                 </div>
                 <div>
                     <a target="_blank" href=""><span>Consultas</span></a>
@@ -41,9 +41,7 @@
             
             <div class="menu_fila_dos">
                 <div>
-                    <form action="">
-                        <button id="btnEmpleado" type="button"><span>Empleado</span></button>
-                    </form>
+                    <button id="btnEmpleado" type="button"><span>Empleado</span></button>
                 </div>
                 <div>
                     <form action="">
@@ -60,7 +58,7 @@
             
             <div class="menu_fila_tres">
                 <div>
-                    <a target="_blank" href="registro_productos.jsp"><span>Productos</span></a>
+                    <a target="_blank" href="HTML/registro_productos.jsp"><span>Productos</span></a>
                 </div>
                 <div>
                     <form action="SvSession" method="POST">
@@ -78,61 +76,65 @@
     
     <!-- Modal EMPLEADO -->
     <div id="modalEmpleado" class="modal">
+        
         <div class="wrapper">
             <span class="close">&times;</span>
             <h1>Empleado</h1>
+            <form action="SvRegistroEmpleados" method="POST">
             <div class="input-box">
-                <div class="input-field">
-                    <input type="number" id="dni" name="dni" placeholder="DNI">
-                    <i class="fas fa-id-card"></i>
-                </div>
-                <div class="input-field">
-                    <select name="cargo" id="cargo">
-                        <option value="" disabled selected>Seleccionar Cargo</option>
-                        <option value="atender_pedido">Atender Pedido</option>
-                        <option value="atender_consulta">Atender Consulta</option>
-                    </select>
-                    <i class="fas fa-briefcase"></i>
-                </div>
-                <div class="input-field">
-                    <input type="text" id="nombre" name="nombre" placeholder="Nombre">
-                    <i class="fas fa-user"></i>
-                </div>
-                <div class="input-field">
-                    <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos">
-                    <i class="fas fa-user"></i>
-                </div>
-                <div class="input-field">
-                    <input type="number" id="telefono" name="telefono" placeholder="Teléfono">
-                    <i class="fas fa-phone"></i>
-                </div>
-                <div class="input-field">
-                    <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Fecha de Nacimiento">
-                    <i class="fas fa-calendar-alt"></i>
-                </div>
-                <div class="input-field">
-                    <select name="genero" id="genero">
-                        <option value="" disabled selected>Seleccionar Género</option>
-                        <option value="f">Femenino (F)</option>
-                        <option value="m">Masculino (M)</option>
-                        <option value="otro">Otro</option>
-                    </select>
-                    <i class="fas fa-venus-mars"></i>
-                </div>
-                <div class="input-field">
-                    <input type="text" id="direccion" name="direccion" placeholder="Dirección">
-                    <i class="fas fa-map-marker-alt"></i>
-                </div>
-                <div class="input-field">
-                    <input type="email" id="correo" name="correo" placeholder="Correo Electrónico">
-                    <i class="fas fa-envelope"></i>
-                </div>
-                <div class="input-field">
-                    <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña">
-                    <i class="fas fa-lock"></i>
-                </div>
+                
+                    <div class="input-field">
+                        <input  name="empleado_dni" type="number" id="dni" placeholder="DNI">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <div class="input-field">
+                        <select name="empleado_cargo" id="cargo">
+                            <option value="0" disabled selected>Seleccionar Cargo</option>
+                            <option value="Atender Pedido">Atender Pedido</option>
+                            <option value="Atender Consulta">Atender Consulta</option>
+                        </select>
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="input-field">
+                        <input name="empleado_nombres" type="text" id="nombre" placeholder="Nombre">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="input-field">
+                        <input name="empleado_apellidos" type="text" id="apellidos" placeholder="Apellidos">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="input-field">
+                        <input name="empleado_telefono" type="number" id="telefono" placeholder="Teléfono">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="input-field">
+                        <input name="empleado_fecha_nacimiento" type="date" id="fecha_nacimiento" placeholder="Fecha de Nacimiento">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="input-field">
+                        <select name="empleado_genero" id="genero">
+                            <option value="0" disabled selected>Seleccionar Género</option>
+                            <option value="F">Femenino (F)</option>
+                            <option value="M">Masculino (M)</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                        <i class="fas fa-venus-mars"></i>
+                    </div>
+                    <div class="input-field">
+                        <input name="empleado_direccion" type="text" id="direccion" placeholder="Dirección">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="email" id="correo" name="empleado_correo" placeholder="Correo Electrónico">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" id="contrasena" name="empleado_password" placeholder="Contraseña">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <button type="submit" id="btnRegistrarEmpleado" class="btn">Registrar</button>         
             </div>
-            <button id="btnRegistrarEmpleado" class="btn" onclick="enviarRegistro('Empleado')">Registrar</button>
+            </form>
         </div>
     </div>
 

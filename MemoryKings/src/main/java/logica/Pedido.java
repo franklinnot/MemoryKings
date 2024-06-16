@@ -35,6 +35,7 @@ public class Pedido implements Serializable {
     
     @Basic
     String estadoPedido, metodoPago;
+    float costoTotal;
 
     @Temporal(TemporalType.TIMESTAMP)
     Date fechaPedido, fechaEnvio; // "fechaEnvio" no es necesario para el contructor
@@ -55,18 +56,7 @@ public class Pedido implements Serializable {
         this.distribuidor = distribuidor;
         this.estadoPedido = "Pendiente";
         
-        Random random = new Random();
-        List<String> metodos = new ArrayList<>();
-        metodos.add("Yape");
-        metodos.add("BCP Banca Movil");
-        metodos.add("BBVA Movil");
-        metodos.add("Interbank Banca Movil");
-        metodos.add("PagoEfectivo");
-        metodos.add("SafetyPay");
-        metodos.add("Plin");
-        metodos.add("Tunki");
-        int randomValue = random.nextInt(metodos.size());
-        this.metodoPago = metodos.get(randomValue);
+        this.metodoPago = metodoPago;
         
         TimeZone zonaHorariaPeru = TimeZone.getTimeZone("America/Lima");        
         // Crear un objeto Date para la fecha actual
@@ -78,6 +68,16 @@ public class Pedido implements Serializable {
               
     }
 
+    public float getCostoTotal() {
+        return costoTotal;
+    }
+
+    public void setCostoTotal(float costoTotal) {
+        this.costoTotal = costoTotal;
+    }
+
+    
+    
     public LinkedList<DetallePedido> getListaDetalle() {
         return listaDetalle;
     }

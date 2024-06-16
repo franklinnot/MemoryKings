@@ -1,17 +1,13 @@
-<%-- 
-    Document   : clientes
-    Created on : Jun 6, 2024, 9:01:52 AM
-    Author     : frank
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="CSS/clientes.css">
+    <link rel="stylesheet" href="../CSS/clientes.css">
     <!--permite ingresar logos de font awesome-->
     <script src="https://kit.fontawesome.com/b408879b64.js" crossorigin="anonymous"></script>
 </head>
@@ -29,7 +25,7 @@
     
             <!--AÑADIR LOGO-->
             <a href="#" class="logo">
-                <img src="Image/logo.png" alt="logo empresa">
+                <img src="../Image/logo.png" alt="logo empresa">
                 <h2 class="nombre_empresa"></h2>
             </a>
         </div>

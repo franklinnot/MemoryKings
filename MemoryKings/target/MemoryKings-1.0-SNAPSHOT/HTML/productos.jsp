@@ -45,8 +45,9 @@
             </div>
             <div class="espacio-separacion"></div>
             
-            <div>
+            <div class="datito">
             <%
+                // validar con un try catch cuando lista de productos sea null
                 Mewing mewing = (Mewing) session.getAttribute("user");
                 
                 if (mewing != null && mewing.getCliente() != null) {
@@ -67,7 +68,9 @@
             </div>
             
             <div class="cart">
-                <button><i class='bx bxs-cart'></i></button>
+                <form action="SvCarritoCompras" method="POST">
+                    <button type="submit" ><i class='bx bxs-cart'></i></button>
+                </form>
             </div>
         </div>
       
@@ -78,7 +81,7 @@
                 <li><a href="#">Adaptadores</a></li>
                 <li><a href="#">Auriculares</a></li>
                 <li><a href="#">Cables</a></li>
-                <li><a href="#">Micrófonos</a></li>
+                <li><a href="#">Micrófonos</a></li>w
                 <li><a href="#">Cámaras</a></li>
                 <li><a href="#">Celulares</a></li>
                 <li><a href="#">Discos Duro</a></li>
@@ -130,14 +133,17 @@
                     char[] caracteres = producto.getDescripcion().toCharArray();
                     StringBuilder sb = new StringBuilder();
 
-                    for (int i = 0; i < caracteres.length && i < 20; i++) {
+                    for (int i = 0; i < caracteres.length && i < 30; i++) {
                         sb.append(caracteres[i]);
                     }
 
                     descripcion = sb.toString();
                     %>
                     <p><%=descripcion%>...</p>
-                    <button>Agregar al carrito</button>
+                    <form action="SvCarritoCompras" method="GET">
+                        <input type="hidden" name="idProducto" value="<%=producto.getIdProducto()%>">
+                        <button type="submit" >Agregar al carrito</button>
+                    </form>
                 </div>
                 
                 <%

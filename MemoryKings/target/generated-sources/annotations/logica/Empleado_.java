@@ -8,7 +8,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import logica.Consulta;
 import logica.Pedido;
 
-@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2024-06-13T01:57:12")
+@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2024-06-15T22:33:16")
 @StaticMetamodel(Empleado.class)
 public class Empleado_ { 
 
@@ -16,16 +16,11 @@ public class Empleado_ {
     public static volatile SingularAttribute<Empleado, String> apellidos;
     public static volatile SingularAttribute<Empleado, Date> fechaNacimiento;
     public static volatile SingularAttribute<Empleado, Date> fechaRegistro;
-    public static volatile SingularAttribute<Empleado, Double> salario;
-    public static volatile SingularAttribute<Empleado, Date> vencimientoContrato;
     public static volatile SingularAttribute<Empleado, String> direccion;
-    public static volatile SingularAttribute<Empleado, String> estadoCuenta;
     public static volatile SingularAttribute<Empleado, String> nombres;
     public static volatile SingularAttribute<Empleado, String> password;
     public static volatile SingularAttribute<Empleado, Integer> idEmpleado;
-    public static volatile SingularAttribute<Empleado, Date> fechaContrato;
     public static volatile ListAttribute<Empleado, Pedido> listaPedido;
-    public static volatile SingularAttribute<Empleado, String> nivelPrivilegio;
     public static volatile SingularAttribute<Empleado, String> correo;
     public static volatile SingularAttribute<Empleado, String> genero;
     public static volatile SingularAttribute<Empleado, String> cargo;

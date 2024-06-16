@@ -1,8 +1,10 @@
 
 package logica;
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.TimeZone;
 import org.mindrot.jbcrypt.BCrypt;
 import javax.persistence.Basic;
@@ -25,22 +27,27 @@ public class Empleado implements Serializable {
     @OneToMany(mappedBy="empleado")
     private LinkedList<Pedido> listaPedido;
     @Basic
-    double salario;
-    String dni, nivelPrivilegio, nombres, apellidos, correo, direccion, genero, password, cargo, telefono; // Importante
-    String estadoCuenta; // no necesario para el contructor
+    String dni, nombres, apellidos, correo, direccion, genero, password, cargo, telefono; // Importante
     @Temporal(TemporalType.DATE)
-    Date fechaNacimiento, fechaContrato, vencimientoContrato;
+    Date fechaNacimiento;
     @Temporal(TemporalType.TIMESTAMP)
     Date fechaRegistro; // no necesario para el contructor
 
     public Empleado() {
+        
+        TimeZone zonaHorariaPeru = TimeZone.getTimeZone("America/Lima");        
+        // Crear un objeto Date para la fecha actual
+        Date fechaActual = new Date();   
+        // Obtener el desplazamiento de la zona horaria de Perú en milisegundos
+        int desplazamientoPeru = zonaHorariaPeru.getRawOffset();      
+        // Ajustar la fecha actual para la zona horaria de Perú
+        this.fechaRegistro = new Date(fechaActual.getTime() + desplazamientoPeru);
+        
     }
 
-    public Empleado(String telefono, double salario, String dni, String nivelPrivilegio, String nombres, String apellidos, String correo, String direccion, String genero, String password, String cargo, Date fechaNacimiento, Date fechaContrato, Date vencimientoContrato) {
+    public Empleado(String telefono, String dni, String nombres, String apellidos, String correo, String direccion, String genero, String password, String cargo, Date fechaNacimiento) {
         this.telefono = telefono;
-        this.salario = salario;
         this.dni = dni;
-        this.nivelPrivilegio = nivelPrivilegio;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.correo = correo;
@@ -49,8 +56,7 @@ public class Empleado implements Serializable {
         this.password = BCrypt.hashpw(password, BCrypt.gensalt());
         this.cargo = cargo;
         this.fechaNacimiento = fechaNacimiento;
-        this.fechaContrato = fechaContrato;
-        this.vencimientoContrato = vencimientoContrato;
+
         
         
         TimeZone zonaHorariaPeru = TimeZone.getTimeZone("America/Lima");        
@@ -88,14 +94,6 @@ public class Empleado implements Serializable {
         this.telefono = telefono;
     }
 
-    public double getSalario() {
-        return salario;
-    }
-
-    public void setSalario(double salario) {
-        this.salario = salario;
-    }
-
     public String getDni() {
         return dni;
     }
@@ -104,13 +102,6 @@ public class Empleado implements Serializable {
         this.dni = dni;
     }
 
-    public String getNivelPrivilegio() {
-        return nivelPrivilegio;
-    }
-
-    public void setNivelPrivilegio(String nivelPrivilegio) {
-        this.nivelPrivilegio = nivelPrivilegio;
-    }
 
     public String getNombres() {
         return nombres;
@@ -157,7 +148,7 @@ public class Empleado implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());;
     }
 
     public String getCargo() {
@@ -168,36 +159,12 @@ public class Empleado implements Serializable {
         this.cargo = cargo;
     }
 
-    public String getEstadoCuenta() {
-        return estadoCuenta;
-    }
-
-    public void setEstadoCuenta(String estadoCuenta) {
-        this.estadoCuenta = estadoCuenta;
-    }
-
     public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public Date getFechaContrato() {
-        return fechaContrato;
-    }
-
-    public void setFechaContrato(Date fechaContrato) {
-        this.fechaContrato = fechaContrato;
-    }
-
-    public Date getVencimientoContrato() {
-        return vencimientoContrato;
-    }
-
-    public void setVencimientoContrato(Date vencimientoContrato) {
-        this.vencimientoContrato = vencimientoContrato;
     }
 
     public Date getFechaRegistro() {
@@ -208,7 +175,25 @@ public class Empleado implements Serializable {
         this.fechaRegistro = fechaRegistro;
     }
     
-    
+    public static Empleado obtenerEmpleado(List<Empleado> listaEmpleados, int idEmpleado) {
+        int izquierda = 0;
+        int derecha = listaEmpleados.size() - 1;
+        listaEmpleados.sort(Comparator.comparingInt(emp -> emp.getIdEmpleado()));
+        while (izquierda <= derecha) {
+            int medio = izquierda + (derecha - izquierda) / 2;
+            Empleado empleado = listaEmpleados.get(medio);
+
+            if (empleado.getIdEmpleado() == idEmpleado) {
+                return empleado;
+            } else if (empleado.getIdEmpleado() < idEmpleado) {
+                izquierda = medio + 1;
+            } else {
+                derecha = medio - 1;
+            }
+        }
+
+        return null;
+    }
     
     
 }

@@ -87,7 +87,7 @@ form p a {
 }*/
 
 .btn-field {
-    width: 100%;
+    min-width: 100%;
     display: flex;
     justify-content:space-between;
     margin-top: 50px;
@@ -96,6 +96,7 @@ form p a {
 .btn-field button {
     flex-basis: 48%;
     font-size: 16px;
+    min-width: 100%;
     background-color: #09C46A;
     color: #FDF9FC;
     height: 50px;
@@ -109,8 +110,13 @@ form p a {
     color: #515966; 
 }
 
+
+#signUpDiv, #signUp{
+    margin-top: 20px
+}
+
 .input-group {
-    height: 250px;
+    height: 125px;
 }
 
 .btn-field button.disable {

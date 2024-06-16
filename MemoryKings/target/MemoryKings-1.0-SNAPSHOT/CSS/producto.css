@@ -46,6 +46,16 @@ header {
     }
 }
 
+
+.datito{
+    margin: 0 30px 0 30px;
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
 .menu-btn,
 .cart button {
     background-color: transparent;

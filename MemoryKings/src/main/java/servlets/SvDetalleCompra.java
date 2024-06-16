@@ -8,12 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-
-@WebServlet(name = "SvSession", urlPatterns = {"/SvSession"})
-public class SvSession extends HttpServlet {
-
+@WebServlet(name = "SvDetalleCompra", urlPatterns = {"/SvDetalleCompra"})
+public class SvDetalleCompra extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -30,17 +27,13 @@ public class SvSession extends HttpServlet {
         
     }
 
-
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
         
-        HttpSession session = request.getSession(); 
-        if (session != null) {
-            session.invalidate(); // Invalidar la sesión
-        }
-        response.sendRedirect(request.getContextPath() + "/"); // Redirigir a la página principal o de inicio de sesión
+        
         
     }
 

@@ -1,6 +1,8 @@
 
 package logica;
 import java.io.Serializable;
+import java.util.Comparator;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -56,7 +58,25 @@ public class ImagenProducto implements Serializable {
         this.imagen = imagen;
     }
 
-    
+    public static ImagenProducto obtenerImagen(List<ImagenProducto> listaImagenes, int idProducto) {
+        int izquierda = 0;
+        int derecha = listaImagenes.size() - 1;
+        listaImagenes.sort(Comparator.comparingInt(imagen -> imagen.getProducto().getIdProducto()));
+        while (izquierda <= derecha) {
+            int medio = izquierda + (derecha - izquierda) / 2;
+            ImagenProducto imagen = listaImagenes.get(medio);
+
+            if (imagen.getProducto().getIdProducto() == idProducto) {
+                return imagen;
+            } else if (imagen.getProducto().getIdProducto() < idProducto) {
+                izquierda = medio + 1;
+            } else {
+                derecha = medio - 1;
+            }
+        }
+
+        return null;
+    }  
     
           
 }

@@ -1,8 +1,10 @@
 
 package logica;
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.TimeZone;
 import org.mindrot.jbcrypt.BCrypt;
 import javax.persistence.Basic;
@@ -190,5 +192,24 @@ public class Cliente implements Serializable{
         this.fechaRegistro = fechaRegistro;
     }
     
+    public static Cliente obtenerCliente(List<Cliente> listaClientes, int idCliente) {
+        int izquierda = 0;
+        int derecha = listaClientes.size() - 1;
+        listaClientes.sort(Comparator.comparingInt(clt -> clt.getIdCliente()));
+        while (izquierda <= derecha) {
+            int medio = izquierda + (derecha - izquierda) / 2;
+            Cliente cliente = listaClientes.get(medio);
+
+            if (cliente.getIdCliente() == idCliente) {
+                return cliente;
+            } else if (cliente.getIdCliente() < idCliente) {
+                izquierda = medio + 1;
+            } else {
+                derecha = medio - 1;
+            }
+        }
+
+        return null;
+    }
    
 }

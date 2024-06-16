@@ -1,8 +1,10 @@
 
 package logica;
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -111,6 +113,26 @@ public class Producto implements Serializable {
         this.precio = precio;
     }
 
+    
+    public static Producto obtenerProducto(List<Producto> listaProductos, int idProducto) {
+        int izquierda = 0;
+        int derecha = listaProductos.size() - 1;
+        listaProductos.sort(Comparator.comparingInt(prd -> prd.getIdProducto()));
+        while (izquierda <= derecha) {
+            int medio = izquierda + (derecha - izquierda) / 2;
+            Producto producto = listaProductos.get(medio);
+
+            if (producto.getIdProducto() == idProducto) {
+                return producto;
+            } else if (producto.getIdProducto() < idProducto) {
+                izquierda = medio + 1;
+            } else {
+                derecha = medio - 1;
+            }
+        }
+
+        return null;
+    }
     
     
     

@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logica.Cliente;
 import logica.ControladoraLogica;
+import logica.Empleado;
 import logica.Mewing;
 import logica.Producto;
 
@@ -42,12 +43,10 @@ public class SvLogin extends HttpServlet {
         String password = request.getParameter("txt_password");
 
         List<Cliente> listaClientes = new ArrayList<>();
-
-        // aqui debo traer a las cuentas de empleados y clientes y recorrer ambas. para
-        // cualquiera de los 2 casos, si la cuenta existe asignarla en el session
-        // en el index jsp verificar de que tipo de objeto son y en base a eso
-        // mandarle a cierta pagina usando  Object userObject e if userObject instanceof "Nombre de la clase"
+        List<Empleado> listaEmpleados = new ArrayList<>();
+        
         listaClientes = ctrl_logica.traerClientes();
+        listaEmpleados = ctrl_logica.traerEmpleados();
         
         // si el usuario existe, guardaremos su info aqui
         Cliente user = new Cliente(); 
@@ -61,6 +60,18 @@ public class SvLogin extends HttpServlet {
             }
         }
         
+        // si el usuario existe, guardaremos su info aqui
+        Empleado empleado = new Empleado(); 
+        
+        boolean empleadoEncontrado = false;
+        for(Empleado emp : listaEmpleados) {
+            if (emp.getCorreo().equals(email) && BCrypt.checkpw(password, emp.getPassword())) {
+                empleadoEncontrado = true;
+                empleado = emp;
+                break;
+            }
+        }
+        
         if (usuarioEncontrado) { // esto solo para el cliente jeje obvi
             System.out.println("Eureka! xd");
             HttpSession session = request.getSession();
@@ -69,10 +80,17 @@ public class SvLogin extends HttpServlet {
             
             List<Producto> listaProductos = new ArrayList<>();
             listaProductos = ctrl_logica.traerProductos();
-
-            session.setAttribute("listaProductos", listaProductos);
             
-        } 
+            session.setAttribute("listaProductos", listaProductos);           
+            String section = "productos";
+            session.setAttribute("section", section);
+        }
+        else if (empleadoEncontrado){
+            System.out.println("yupi yupiii! xd");
+            HttpSession session = request.getSession();
+            session.setAttribute("user", empleado);
+            
+        }
         
         response.sendRedirect("http://localhost:8080/MemoryKings/");
         
@@ -86,6 +104,9 @@ public class SvLogin extends HttpServlet {
         
         // Recibimos los datos tras hacer la solicitud POST
         // y las validamos antes de pasarlos a la logica   
+        
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         
         String dni = request.getParameter("txt_dni");          
         String name = request.getParameter("txt_name");       
@@ -114,7 +135,15 @@ public class SvLogin extends HttpServlet {
         Mewing user = new Mewing(cliente);
         
         HttpSession session = request.getSession();
+        
+        List<Producto> listaProductos = new ArrayList<>();
+        listaProductos = ctrl_logica.traerProductos();
+
+        session.setAttribute("listaProductos", listaProductos);
+        
         session.setAttribute("user", user);
+        String section = "productos";
+        session.setAttribute("section", section);
         
         // aqui, en vez de index, se debe colocar el nombre del jsp que cargara los productos
         response.sendRedirect("http://localhost:8080/MemoryKings/");

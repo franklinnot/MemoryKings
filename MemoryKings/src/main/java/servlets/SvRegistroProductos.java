@@ -117,7 +117,7 @@ public class SvRegistroProductos extends HttpServlet {
         }
         
         
-        response.sendRedirect("registro_productos.jsp");
+        response.sendRedirect("http://localhost:8080/MemoryKings/HTML/registro_productos.jsp");
     }
 
 

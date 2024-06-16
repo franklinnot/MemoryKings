@@ -22,7 +22,8 @@
     <div class="container">
         <div class="form-content">
             <h1 id="title">Inicio</h1>
-            <form action="SvLogin" method="GET">
+            <div>
+                <form action="SvLogin" method="GET">
                 <div class="input-group">
                     <div class="input-fi">
                         <i class="fa-solid fa-user"></i>
@@ -36,10 +37,14 @@
                 </div>
 
                 <div class="btn-field">
-                    <button name="btn_login" id="signIp" type="buttom">Ingresar</button>
-                    <button id="signUp" type="buttom" class="disable">Registrarme</button>
+                    <button name="btn_login" id="signIp" type="submit">Ingresar</button>
+                    
                 </div>
             </form>
+                <div class="btn-field" id="signUpDiv">
+                    <button id="signUp" type="buttom" class="disable">Registrarme</button>
+                </div>
+            </div>
 
             <dialog id="modal" modal>
                 <script src="JavaScript/validation.js"></script>
@@ -106,7 +111,7 @@
                                 <i class='bx bxs-lock-alt'></i>
                             </div>
                         </div>
-                        <button id="btn-registrar" type="buttom" class="btn"> Registrarse </button>
+                        <button id="btn-registrar" type="submit" class="btn"> Registrarse </button>
                     </form>
                 </div>
                 

@@ -20,6 +20,7 @@ logica\Proveedor.class
 persistencia\ControladoraPersistencia.class
 com\mycompany\memorykings\JakartaRestConfiguration.class
 persistencia\exceptions\IllegalOrphanException.class
+servlets\SvRegistroEmpleados.class
 logica\Pedido.class
 persistencia\DetallePedidoJpaController.class
 com\mycompany\memorykings\resources\JakartaEE8Resource.class
@@ -43,3 +44,4 @@ com\mycompany\memorykings\exceptions\IllegalOrphanException.class
 logica\Cliente.class
 persistencia\exceptions\NonexistentEntityException.class
 logica\Pedido_.class
+servlets\SvCarritoCompras.class
