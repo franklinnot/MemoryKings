@@ -66,12 +66,13 @@ public class SvPedidos extends HttpServlet {
         nuevo_pedido.setCostoTotal(mewing.costoTotal());
         
         ctrl_logica.crearPedido(nuevo_pedido);
-        //Pedido asignar_pedido = 
+        System.out.println("El id del nuevo pedido es " + nuevo_pedido.getIdPedido() + " con la fecha " + nuevo_pedido.getFechaPedido());
         
         List<DetallePedido> listaDetalles = mewing.getListaDetalles();
-        //for (DetallePedido dtl : listaDetalles){
-        //    
-        //}
+        for (DetallePedido dtl : listaDetalles){
+            dtl.setPedido(nuevo_pedido);
+            ctrl_logica.crearDetallePedido(dtl);
+        }
         
         listaDetalles.clear();
         mewing.setListaDetalles(listaDetalles);

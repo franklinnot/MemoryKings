@@ -252,7 +252,7 @@ public class Empleado implements Serializable {
         }
 
         if (emp != null) {
-            System.out.println("El empleado elegido fue " + emp.getNombres());
+            System.out.println("El empleado elegido fue " + emp.getNombres() + "con el id " + emp.getIdEmpleado());
         }
 
         return emp;

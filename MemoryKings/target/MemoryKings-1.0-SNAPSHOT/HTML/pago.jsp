@@ -39,7 +39,7 @@
         carrito = (Mewing) session.getAttribute("user");
         Cliente cliente = carrito.getCliente();
         %>
-        <form action="SvPedidos" method="POST">
+        <form id="formPago" action="SvPedidos" method="POST">
             <div class="contenedor">
                 <div class="detalle-pedido">
                     <div class="parte parte-detalle">
@@ -136,11 +136,36 @@
                                 <option value="Depósito">Efectivo</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn_pagar">Pagar</button>
+                        <button id="btnPagar" type="submit" class="btn_pagar">Pagar</button>
                     </div>
                 </div>            
             </div>
         </form>
-    </main>   
+    </main>  
+                    
+    <script>
+        // Evento cuando se envía el formulario
+        document.getElementById('formPago').addEventListener('submit', function(event) {
+            // Obtener nombres y apellidos
+            let nombres = "<%=cliente.getNombres()%>";
+            let apellidos = "<%=cliente.getApellidos()%>";
+
+            // Dividir nombres y apellidos en arrays de palabras
+            let palabrasNombres = nombres.split(' ');
+            let palabrasApellidos = apellidos.split(' ');
+
+            // Obtener el nombre completo
+            let nombreCompleto = palabrasNombres.join(' ') + ' ' + palabrasApellidos.join(' ');
+
+            // Construir la URL completa
+            let url = "https://web.whatsapp.com/send/?phone=%2B51941225240&text=Hola+Franklin%21.+Me+llamo+" + encodeURIComponent(nombreCompleto) + "+y+mi+DNI+es+" + <%=cliente.getDni()%> + ".+Deseo+confirmar+el+pago+de+S%2F." + <%=carrito.costoTotal()%> + "+de+mi+pedido.&type=phone_number&app_absent=0";
+
+            // Abrir la URL en una nueva pestaña
+            window.open(url, '_blank');
+
+            // Puedes agregar aquí cualquier otra lógica que necesites antes de enviar el formulario
+        });
+    </script>
+           
 </body>
 </html>
