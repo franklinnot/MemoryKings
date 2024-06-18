@@ -134,6 +134,30 @@ public class Producto implements Serializable {
         return null;
     }
     
-    
+    public static List<Producto> eliminarProducto(List<Producto> listaProductos, int idProducto) {
+        
+        listaProductos.sort(Comparator.comparingInt(Producto::getIdProducto));
+
+        int izquierda = 0;
+        int derecha = listaProductos.size() - 1;
+
+        while (izquierda <= derecha) {
+            int medio = izquierda + (derecha - izquierda) / 2;
+            Producto producto = listaProductos.get(medio);
+
+            if (producto.getIdProducto() == idProducto) {
+                // Producto encontrado, eliminar de la lista
+                listaProductos.remove(medio);
+                return listaProductos;
+            } else if (producto.getIdProducto() < idProducto) {
+                izquierda = medio + 1;
+            } else {
+                derecha = medio - 1;
+            }
+        }
+
+        // Si no se encuentra el producto, retornar la lista sin cambios
+        return listaProductos;
+    }
     
 }

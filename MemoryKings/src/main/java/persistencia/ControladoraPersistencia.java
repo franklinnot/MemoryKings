@@ -47,6 +47,10 @@ public class ControladoraPersistencia {
         return clienteJpa.findClienteEntities();
     }
     
+    public Cliente encontrarCliente(int idCliente){
+        return clienteJpa.findCliente(idCliente);
+    }
+    
     // Consulta
     public void crearConsulta(Consulta consulta){
         consultaJpa.create(consulta);
@@ -64,6 +68,7 @@ public class ControladoraPersistencia {
     public List<DetallePedido> traerDetallePedidos(){
         return detallePedidoJpa.findDetallePedidoEntities();
     }
+    
     
     // Distribuidor
     public void crearDistribuidor(Distribuidor distribuidor){
@@ -83,6 +88,10 @@ public class ControladoraPersistencia {
         return empleadoJpa.findEmpleadoEntities();
     }
     
+    public Empleado encontrarEmpleado(int idEmpleado){
+        return empleadoJpa.findEmpleado(idEmpleado);
+    }
+    
     // Imagen Producto
     public void crearImagenProducto(ImagenProducto imagenProducto){
         imagenProductoJpa.create(imagenProducto);
@@ -99,6 +108,14 @@ public class ControladoraPersistencia {
     
     public List<Pedido> traerPedidos(){
         return pedidoJpa.findPedidoEntities();
+    }
+    
+    public void editarPedido(Pedido pedido) throws Exception{
+        pedidoJpa.edit(pedido);
+    }
+    
+    public Pedido encontrarPedido(int idPedido){
+        return pedidoJpa.findPedido(idPedido);
     }
     
     // Producto

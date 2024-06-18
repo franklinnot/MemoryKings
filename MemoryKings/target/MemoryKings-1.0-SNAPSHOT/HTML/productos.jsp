@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="CSS/producto.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-    <title>Productos</title>
+    <title>Productos | MemoryKings</title>
 </head>
 <body>
     <header>
@@ -155,9 +155,15 @@
     </main>
     
     <footer>
-        <div class="consult">
-            <a target="_blank" href="consulta_cliente.jsp"><span class='bx bx-message-dots'>Consultas</span></a>
-        </div>
+        <form action="SvConsultas" method="GET">
+            <%
+            Cliente cliente = mewing.getCliente();
+            %>
+            <div class="consult">
+                <input type="hidden" name="idCliente" value="<%=cliente.getIdCliente()%>">
+                <button type="submit"><i class='bx bx-message-dots'></i> Consultas</button>
+            </div>
+        </form>
         <div class="social">
             <p>Síguenos en:</p>
             <ul>

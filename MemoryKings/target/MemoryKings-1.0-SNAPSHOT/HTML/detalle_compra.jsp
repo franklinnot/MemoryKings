@@ -1,4 +1,5 @@
 
+<%@page import="logica.DetallePedido"%>
 <%@page import="java.util.Base64"%>
 <%@page import="logica.ControladoraLogica"%>
 <%@page import="logica.ImagenProducto"%>
@@ -13,7 +14,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Detalle de Compra | MemoryKings</title>
     <link rel="stylesheet" href="CSS/normalize.css">
     <link rel="stylesheet" href="CSS/detalle_compra.css">
 </head>
@@ -31,39 +32,45 @@
                         float monto_total = 0;
                         float sub_total = 0;
                         float igv = 0;
-                        if (mewing != null && mewing.getCliente() != null && !mewing.getListaProducto().isEmpty()){
+                        if (mewing != null && mewing.getCliente() != null && !mewing.getListaDetalles().isEmpty()){
                         
-                            List<Producto> listaProductos = new ArrayList<>();
-                            listaProductos = mewing.getListaProducto();
+                            List<DetallePedido> listaDetalles = new ArrayList<>();
+                            listaDetalles = mewing.getListaDetalles();
                             List<ImagenProducto> listaImagenes = new ArrayList<>();
                             listaImagenes = ctrl_logica.traerImagenProductos();
-                            for (Producto producto : listaProductos){
+                            for (DetallePedido detalle : listaDetalles){
                     %>
                                 <div class="producto">
                                     <%
                                         ImagenProducto imagen = new ImagenProducto();
-                                        imagen = ImagenProducto.obtenerImagen(listaImagenes, producto.getIdProducto());
+                                        imagen = ImagenProducto.obtenerImagen(listaImagenes, detalle.getProducto().getIdProducto());
                                         byte[] imagenBytes = imagen.getImagen();
                                         String base64Image = Base64.getEncoder().encodeToString(imagenBytes);
                                     %>
                                     <img class="imagen_p" src="data:image/jpeg;base64,<%=base64Image%>" alt="Imagen del Producto";">
                                     <div class="descripcion_p">
                                         <p class="a1">Nombre:</p>
-                                        <p class="nombre_p"><%=producto.getNombre()%></p>
+                                        <p class="nombre_p"><%=detalle.getProducto().getNombre()%></p>
                                         <p class="a2">Precio:</p>
-                                        <p class="precio_p">S/.<%=producto.getPrecio()%></p>
+                                        <p class="precio_p">S/.<%=detalle.getProducto().getPrecio()%></p>
+                                        <p class="a2">Cantidad:</p>
+                                        <p class="precio_p"><%=detalle.getCantidad()%></p>
                                     </div>
                                     <form action="SvDetalleCompra" action="GET">
-                                        <input type="hidden" name="idProducto" value="<%=producto.getIdProducto()%>">
+                                        <input type="hidden" name="idProducto" value="<%=detalle.getProducto().getIdProducto()%>">
                                         <button class="btn_borrar" type="submit"><img src="Image/icon_basura.png" alt=""></button>
                                     </form>
                                 </div>
                     <%
-                                monto_total += producto.getPrecio();
                             }
                         }
-                        igv = (float) (monto_total * 0.18);
+                        monto_total = mewing.costoTotal();
+                        igv = (float) (monto_total * 0.18); // Math.round(valorOriginal * 10.0f) / 10.0f;
                         sub_total = monto_total - igv;
+
+                        igv = Math.round(igv * 10.0f) / 10.0f;
+                        sub_total = Math.round(sub_total * 10.0f) / 10.0f;
+                        monto_total = Math.round(monto_total * 10.0f) / 10.0f;
                     %>
                     
                 </div>
@@ -72,13 +79,18 @@
         <div class="grid_resumen">
             <div class="resumen"><p>Resumen</p></div>
             <div class="subtotal_resumen"><p class="p_subtotal">SubTotal:</p></div>
-            <div class="precio_subtotal"><p>$0.00</p></div>
+            <div class="precio_subtotal"><p>S/. <%=sub_total%></p></div>
             <div class="subtotal_resumen"><p class="p_subtotal">IGV(18%):</p></div>
-            <div class="precio_subtotal"><p>$0.00</p></div>
+            <div class="precio_subtotal"><p>S/. <%=igv%></p></div>
             <div class="total_resumen"><p class="p_total">Total:</p></div>
-            <div class="precio_total"><p>$0.00</p></div>
-            <button class="btn_continuar">Continuar</button>
-            <button class="btn_seguir">Seguir comprando</button>
+            <div class="precio_total"><p>S/. <%=monto_total%></p></div>
+            <form action="SvDetalleCompra" method="POST">
+                <button class="btn_continuar">Ir a pagar</button>
+            </form>
+            <form action="SvSession" method="GET" style="display: flex; justify-content: center; justify-items: center;">
+                <input type="hidden" name="cancelarProceso" value="productos">
+                <button type="submit" class="btn_seguir">Seguir comprando</button>
+            </form>
             
         </div>
     </div>

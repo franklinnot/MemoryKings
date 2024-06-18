@@ -9,7 +9,7 @@ C:\GitHub\MemoryKings\MemoryKings\src\main\java\persistencia\DistribuidorJpaCont
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\logica\Pedido.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\servlets\SvSession.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\logica\Consulta.java
-C:\GitHub\MemoryKings\MemoryKings\src\main\java\logica\Admin.java
+C:\GitHub\MemoryKings\MemoryKings\src\main\java\servlets\SvPedidos.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\logica\ImagenProducto.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\persistencia\ProductoJpaController.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\logica\ControladoraLogica.java
@@ -23,6 +23,8 @@ C:\GitHub\MemoryKings\MemoryKings\src\main\java\logica\DetallePedido.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\persistencia\exceptions\NonexistentEntityException.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\logica\Producto.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\servlets\SvRegistroProductos.java
+C:\GitHub\MemoryKings\MemoryKings\src\main\java\servlets\SvDetalleCompra.java
+C:\GitHub\MemoryKings\MemoryKings\src\main\java\servlets\SvConsultas.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\logica\Mewing.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\persistencia\DetallePedidoJpaController.java
 C:\GitHub\MemoryKings\MemoryKings\src\main\java\com\mycompany\memorykings\resources\JakartaEE8Resource.java

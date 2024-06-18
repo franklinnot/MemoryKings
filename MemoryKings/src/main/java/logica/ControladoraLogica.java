@@ -29,6 +29,10 @@ public class ControladoraLogica {
         return ctrl_persistencia.traerClientes();
     }
     
+    public Cliente encontrarCliente(int idCliente){
+        return ctrl_persistencia.encontrarCliente(idCliente);
+    }
+    
     // Consulta
     public void crearConsulta(Consulta consulta){
         ctrl_persistencia.crearConsulta(consulta);
@@ -65,6 +69,10 @@ public class ControladoraLogica {
         return ctrl_persistencia.traerEmpleados();
     }
     
+    public Empleado encontrarEmpleado(int idEmpleado){
+        return ctrl_persistencia.encontrarEmpleado(idEmpleado);
+    }
+    
     // ImagenProducto
     public void crearImagenProducto(ImagenProducto imagenProducto){
         ctrl_persistencia.crearImagenProducto(imagenProducto);
@@ -81,6 +89,14 @@ public class ControladoraLogica {
     
     public List<Pedido> traerPedidos(){
         return ctrl_persistencia.traerPedidos();
+    }
+    
+    public void editarPedido(Pedido pedido) throws Exception{
+        ctrl_persistencia.editarPedido(pedido);
+    }
+    
+    public Pedido encontrarPedido(int idPedido){
+        return ctrl_persistencia.encontrarPedido(idPedido);
     }
     
     // Producto

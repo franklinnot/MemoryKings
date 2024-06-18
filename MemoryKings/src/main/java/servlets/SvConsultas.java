@@ -3,17 +3,22 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import logica.Cliente;
+import logica.Consulta;
+import logica.ControladoraLogica;
 
 
-@WebServlet(name = "SvSession", urlPatterns = {"/SvSession"})
-public class SvSession extends HttpServlet {
-
+@WebServlet(name = "SvConsultas", urlPatterns = {"/SvConsultas"})
+public class SvConsultas extends HttpServlet {
+    
+    ControladoraLogica ctrl_logica = new ControladoraLogica();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -25,14 +30,17 @@ public class SvSession extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        String section = request.getParameter("cancelarProceso");
         
-        HttpSession session = request.getSession();
-        session.setAttribute("section", section);
+        int idCliente = Integer.parseInt(request.getParameter("idCliente"));
+        Cliente cliente = ctrl_logica.encontrarCliente(idCliente);
         
-        response.sendRedirect("http://localhost:8080/MemoryKings/");
+        if (cliente != null){
+            List<Consulta> listaConsultas = new ArrayList<>();
+            listaConsultas = ctrl_logica.traerConsultas();
+        }
     }
 
 
@@ -40,14 +48,6 @@ public class SvSession extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession(false); // Obtener la sesión sin crear una nueva
-        if (session != null) {
-            session.invalidate(); // Invalidar la sesión
-        }
-        response.sendRedirect(request.getContextPath() + "/"); // Redirigir a la página principal o de inicio de sesión
-        
     }
 
 

@@ -38,7 +38,8 @@ public class SvLogin extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-                
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String email = request.getParameter("txt_email");
         String password = request.getParameter("txt_password");
 

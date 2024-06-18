@@ -1,6 +1,8 @@
 
 package logica;
 import java.io.Serializable;
+import java.util.Comparator;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -64,6 +66,13 @@ public class DetallePedido implements Serializable {
         this.cantidad = cantidad;
     }
     
-    
+    public static DetallePedido obtenerDetalle(List<DetallePedido> listaDetalles, int idProducto) {
+        for (DetallePedido dtl : listaDetalles){
+            if (dtl.getProducto().getIdProducto() == idProducto){
+                return dtl;
+            }
+        }
+        return null;
+    }
     
 }

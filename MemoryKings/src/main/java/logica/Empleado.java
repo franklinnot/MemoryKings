@@ -1,6 +1,7 @@
 
 package logica;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.LinkedList;
@@ -70,6 +71,16 @@ public class Empleado implements Serializable {
         
     }
 
+    public LinkedList<Pedido> getListaPedido() {
+        return listaPedido;
+    }
+
+    public void setListaPedido(LinkedList<Pedido> listaPedido) {
+        this.listaPedido = listaPedido;
+    }
+
+    
+    
     public int getIdEmpleado() {
         return idEmpleado;
     }
@@ -195,5 +206,57 @@ public class Empleado implements Serializable {
         return null;
     }
     
+    public static Empleado elegirEmpleado(String cargo) {
+        ControladoraLogica ctrl_logica = new ControladoraLogica();
+
+        List<Empleado> listaEmpleados = ctrl_logica.traerEmpleados();
+        List<Pedido> listaPedidos = ctrl_logica.traerPedidos();
+
+        List<Empleado> empleados_aptos = new ArrayList<>();
+
+        // Filtrar empleados por el cargo buscado
+        for (Empleado empleado : listaEmpleados) {
+            if (empleado != null && cargo.equals(empleado.getCargo())) {
+                System.out.println("El empleado con el id " + empleado.getIdEmpleado() + " es apto");
+                empleados_aptos.add(empleado);
+            }
+        }
+
+        // Si no hay pedidos, elegir cualquier empleado apto
+        if (listaPedidos == null || listaPedidos.isEmpty()) {
+            if (!empleados_aptos.isEmpty()) {
+                Empleado emp = empleados_aptos.get(0); // Elegir el primer empleado apto
+                System.out.println("El empleado elegido fue " + emp.getNombres());
+                return emp;
+            } else {
+                return null; // No hay empleados aptos
+            }
+        }
+
+        // Buscar empleado con menos pedidos pendientes
+        Empleado emp = null;
+        int cantidad_anterior = Integer.MAX_VALUE; // Inicializar con un valor alto
+
+        for (Empleado empleado : empleados_aptos) {
+            int cantidad_pedidos = 0;
+            for (Pedido pedido : listaPedidos) {
+                if (pedido.getEmpleado() != null && empleado.getIdEmpleado() == pedido.getEmpleado().getIdEmpleado() && "Procesando pedido".equals(pedido.getEstadoPedido())) {
+                    cantidad_pedidos++;
+                }
+            }
+
+            if (cantidad_pedidos < cantidad_anterior) {
+                cantidad_anterior = cantidad_pedidos;
+                emp = empleado;
+            }
+        }
+
+        if (emp != null) {
+            System.out.println("El empleado elegido fue " + emp.getNombres());
+        }
+
+        return emp;
+    }
+
     
 }

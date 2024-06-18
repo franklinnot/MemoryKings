@@ -41,7 +41,8 @@ public class SvRegistroEmpleados extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         
-
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         
     }
     
@@ -50,6 +51,9 @@ public class SvRegistroEmpleados extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         
         String dni = request.getParameter("empleado_dni");      
         String cargo = request.getParameter("empleado_cargo"); 

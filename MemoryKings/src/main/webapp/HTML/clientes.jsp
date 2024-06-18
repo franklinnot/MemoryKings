@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../CSS/clientes.css">
     <!--permite ingresar logos de font awesome-->
     <script src="https://kit.fontawesome.com/b408879b64.js" crossorigin="anonymous"></script>
+    <title>Lista de Clientes</title>
 </head>
 <body>
     <header>

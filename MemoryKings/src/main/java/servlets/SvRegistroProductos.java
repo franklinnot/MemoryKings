@@ -39,6 +39,10 @@ public class SvRegistroProductos extends HttpServlet {
         processRequest(request, response);
         // este metodo get puede servir para buscar algun producto en especifico, por ahora
         // no tiene utilidad
+        
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        
         List<Producto> listaProductos = new ArrayList<>();
         listaProductos = ctrl_logica.traerProductos();
         

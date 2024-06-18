@@ -1,14 +1,15 @@
 
 package logica;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 
 public class Mewing {
     
     Cliente cliente = new Cliente();
-    List<Producto> listaProducto = new ArrayList<>();
     List<Consulta> listaConsulta = new ArrayList<>(); // este quizas no lo use, pero lo dejo como guiño guiño
+    List<DetallePedido> listaDetalles = new ArrayList<>();
 
     public Mewing() {
         
@@ -16,17 +17,83 @@ public class Mewing {
     
     public Mewing(Cliente cliente) {
         this.cliente = cliente;
-        this.listaProducto = new ArrayList<>();
+        this.listaDetalles = new ArrayList<>();
         this.listaConsulta = new ArrayList<>();
     }
 
     public void addProducto(Producto producto){
-        this.listaProducto.add(producto);
+        List<DetallePedido> listaDetalles = new ArrayList<>();
+        listaDetalles = this.listaDetalles; 
+        
+        DetallePedido dtl = new DetallePedido();
+        
+        dtl = DetallePedido.obtenerDetalle(listaDetalles, producto.getIdProducto());
+        if (listaDetalles.isEmpty() || dtl == null){ // si el carrito esta vacio o no encuentra coincidencias
+            DetallePedido nuevo_detalle = new DetallePedido();
+            nuevo_detalle.setCantidad(1);
+            nuevo_detalle.setProducto(producto);
+            listaDetalles.add(nuevo_detalle);
+            System.out.println("Se agregó un nuevo producto al carrito");        
+        }
+        else{
+            for (DetallePedido detalle : listaDetalles){
+                if (detalle.getProducto().getIdProducto() == producto.getIdProducto()){
+                    detalle.cantidad += 1;
+                    System.out.println("Se agregó producto ya existente al carrito");
+                    break;
+                }
+            }
+        }
+        System.out.println("El producto: " + producto.getNombre() + " se agregó al carrito.");
+        
+        this.setListaDetalles(listaDetalles);
+        
     }
     
     public void removeProducto(Producto del_product){ 
-        listaProducto.removeIf(product -> product.equals(del_product));
+        List<DetallePedido> listaDetalles = new ArrayList<>();
+        listaDetalles = this.listaDetalles;
+        
+        if (!listaDetalles.isEmpty()){
+            for (DetallePedido dtl : listaDetalles){
+                if(dtl.getProducto().getIdProducto() == del_product.getIdProducto()){
+                    if (dtl.cantidad <= 1){
+                        listaDetalles.remove(dtl);
+                    }
+                    else{
+                        dtl.cantidad -= 1;
+                    }
+                    break;
+                }
+        }
+        }
+        this.listaDetalles = listaDetalles;
     }
+    
+    
+    
+    public int cantidadProductos(){
+        List<DetallePedido> listaDetalles = new ArrayList<>();
+        listaDetalles = this.listaDetalles;
+        
+        int cantidad = 0;
+        for (DetallePedido detalle : listaDetalles){
+            cantidad += detalle.getCantidad();
+        }
+        return cantidad;
+    }
+    
+    public float costoTotal(){
+        List<DetallePedido> listaDetalles = new ArrayList<>();
+        listaDetalles = this.listaDetalles;
+        
+        float cantidad = 0;
+        for (DetallePedido detalle : listaDetalles){
+            cantidad += detalle.getCantidad() * detalle.getProducto().getPrecio();
+        }
+        return cantidad;
+    }
+    
     
     public Cliente getCliente() {
         return cliente;
@@ -36,13 +103,15 @@ public class Mewing {
         this.cliente = cliente;
     }
 
-    public List<Producto> getListaProducto() {
-        return listaProducto;
+    public List<DetallePedido> getListaDetalles() {
+        return listaDetalles;
     }
 
-    public void setListaProducto(List<Producto> listaProducto) {
-        this.listaProducto = listaProducto;
+    public void setListaDetalles(List<DetallePedido> listaDetalles) {
+        this.listaDetalles = listaDetalles;
     }
+    
+    
     
 }
 

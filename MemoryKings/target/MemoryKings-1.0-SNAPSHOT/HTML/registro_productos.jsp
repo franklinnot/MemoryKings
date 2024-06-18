@@ -23,7 +23,7 @@
     <title>Registro de Productos</title>
     <link rel="stylesheet" href="../CSS/normalize.css">
     <link rel="stylesheet" href="../CSS/registro_productos.css">
-    
+    <title>Registro de Productos</title>
     <!--permite ingresar logos de font awesome-->
     <script src="https://kit.fontawesome.com/b408879b64.js" crossorigin="anonymous"></script>
 </head>

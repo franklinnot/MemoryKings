@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.util.Random;
+import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,7 +35,7 @@ public class Pedido implements Serializable {
     private LinkedList<DetallePedido> listaDetalle;
     
     @Basic
-    String estadoPedido, metodoPago;
+    String estadoPedido, metodoPago, direccion, telefono;
     float costoTotal;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -74,6 +75,22 @@ public class Pedido implements Serializable {
 
     public void setCostoTotal(float costoTotal) {
         this.costoTotal = costoTotal;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     

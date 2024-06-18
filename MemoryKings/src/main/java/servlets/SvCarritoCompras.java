@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logica.ControladoraLogica;
+import logica.DetallePedido;
 import logica.Mewing;
 import logica.Producto;
 
@@ -31,22 +32,24 @@ public class SvCarritoCompras extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+        // metodo para cuando el cliente agrega un producto a su carrito
         
         String id = request.getParameter("idProducto");
         
         List<Producto> listaProductos = new ArrayList<>();
         listaProductos = ctrl_logica.traerProductos();
         
-        for (Producto producto : listaProductos){
-            if(producto.getIdProducto() == Integer.parseInt(id) ){
-                Mewing carrito = new Mewing();
-                HttpSession session = request.getSession();
-                carrito = (Mewing) session.getAttribute("user");
-                carrito.addProducto(producto);
-                session.setAttribute("user", carrito);
-                break;
-            }
-        }
+        Producto producto = Producto.obtenerProducto(listaProductos, Integer.parseInt(id));
+        
+        HttpSession session = request.getSession();
+        Mewing carrito = new Mewing();
+        carrito = (Mewing) session.getAttribute("user");
+        
+        carrito.addProducto(producto);
+        session.setAttribute("user", carrito);
         
         response.sendRedirect("http://localhost:8080/MemoryKings/");
         
@@ -57,12 +60,27 @@ public class SvCarritoCompras extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        
+        // esto se activa cuando el usuario da click en el boton de carrito
         
         HttpSession session = request.getSession();
-        String section = "carrito";
-        session.setAttribute("section", section);
         
-        // si usara el forward, podria usar request pero a la url le da amsieda
+        Mewing carrito = (Mewing) session.getAttribute("user");
+        
+        List<DetallePedido> listaDetalles = new ArrayList<>();
+        listaDetalles = carrito.getListaDetalles();
+        
+        if(listaDetalles.isEmpty()){
+            String section = "productos";
+            session.setAttribute("section", section);
+        }
+        else{
+            String section = "carrito";
+            session.setAttribute("section", section);
+        }
+        
         response.sendRedirect("http://localhost:8080/MemoryKings/");
         
     }
