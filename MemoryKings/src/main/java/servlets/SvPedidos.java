@@ -35,6 +35,31 @@ public class SvPedidos extends HttpServlet {
         
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
+        
+        HttpSession session = request.getSession();
+        Empleado empleado = (Empleado) session.getAttribute("user");
+        
+        List<Pedido> listaPedidos = ctrl_logica.traerPedidos();
+        List<Pedido> lista = new ArrayList<>();
+        
+        for (Pedido pd : listaPedidos){
+            if(pd.getEmpleado().getIdEmpleado() == empleado.getIdEmpleado()){
+                lista.add(pd);
+            }
+            else if (empleado.getCargo().equals("Administrador")){
+                lista.add(pd);
+            }
+        }
+        
+        listaPedidos.clear();
+        listaPedidos = lista;
+        
+        String section = "pedidos";
+        session.setAttribute("section", section);
+        session.setAttribute("listaPedidos", listaPedidos);
+        
+        response.sendRedirect("http://localhost:8080/MemoryKings/");
+        
     }
 
     

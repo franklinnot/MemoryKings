@@ -21,13 +21,18 @@ public class Mewing {
         this.listaConsulta = new ArrayList<>();
     }
 
+    
+    // este metodo se llama solo cuando se agrega un nuevo producto al carrito
     public void addProducto(Producto producto){
         List<DetallePedido> listaDetalles = new ArrayList<>();
+        // la lista de detalles del carrito de esta instancia
         listaDetalles = this.listaDetalles; 
         
         DetallePedido dtl = new DetallePedido();
         
+        // aqui obtenemos al detalle que almacena ese producto
         dtl = DetallePedido.obtenerDetalle(listaDetalles, producto.getIdProducto());
+        // si ese producto no fue antes agregado o si aun no ha agregado nada, entonces creamos un nuevo detalle y lo agregamos
         if (listaDetalles.isEmpty() || dtl == null){ // si el carrito esta vacio o no encuentra coincidencias
             DetallePedido nuevo_detalle = new DetallePedido();
             nuevo_detalle.setCantidad(1);
@@ -35,6 +40,8 @@ public class Mewing {
             listaDetalles.add(nuevo_detalle);
             System.out.println("Se agregó un nuevo producto al carrito");        
         }
+        // si ese producto ya esta en el carrito, entonces solo modificamos la cantidad de ese detalle que hace referencia a 
+        // ese producto
         else{
             for (DetallePedido detalle : listaDetalles){
                 if (detalle.getProducto().getIdProducto() == producto.getIdProducto()){
@@ -44,12 +51,15 @@ public class Mewing {
                 }
             }
         }
-        System.out.println("El producto: " + producto.getNombre() + " se agregó al carrito.");
+        // esto solo se hace por comprobar que todo haya salido correctamente e imprimir la accion
+        System.out.println("El producto: " + producto.getNombre() + " se agregó al carrito."); 
         
+        // actualizamos la lista de detalles de esta instancia
         this.setListaDetalles(listaDetalles);
         
     }
     
+    // este metodo se llama solo cuando se elimina un producto del carrito
     public void removeProducto(Producto del_product){ 
         List<DetallePedido> listaDetalles = new ArrayList<>();
         listaDetalles = this.listaDetalles;

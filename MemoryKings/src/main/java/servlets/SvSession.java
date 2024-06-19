@@ -27,6 +27,10 @@ public class SvSession extends HttpServlet {
         processRequest(request, response);
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
+        
+        // esto se activa unicamente cuando se quiera "cancelar" algun proceso
+        // pero no cerrar sesion
+        
         String section = request.getParameter("cancelarProceso");
         
         HttpSession session = request.getSession();
@@ -42,6 +46,9 @@ public class SvSession extends HttpServlet {
         processRequest(request, response);
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
+        
+        // esto se activa cuando se quiere cerrar sesión
+        
         HttpSession session = request.getSession(false); // Obtener la sesión sin crear una nueva
         if (session != null) {
             session.invalidate(); // Invalidar la sesión

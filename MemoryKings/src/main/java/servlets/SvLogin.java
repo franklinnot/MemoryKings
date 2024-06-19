@@ -40,6 +40,9 @@ public class SvLogin extends HttpServlet {
         processRequest(request, response);
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
+        
+        HttpSession session = request.getSession();
+        
         String email = request.getParameter("txt_email");
         String password = request.getParameter("txt_password");
 
@@ -74,9 +77,10 @@ public class SvLogin extends HttpServlet {
         }
         
         if (usuarioEncontrado) { // esto solo para el cliente jeje obvi
+            
             System.out.println("Eureka! xd");
-            HttpSession session = request.getSession();
             Mewing mewing = new Mewing(user);
+            
             session.setAttribute("user", mewing);
             
             List<Producto> listaProductos = new ArrayList<>();
@@ -84,13 +88,15 @@ public class SvLogin extends HttpServlet {
             
             session.setAttribute("listaProductos", listaProductos);           
             String section = "productos";
+            
             session.setAttribute("section", section);
         }
         else if (empleadoEncontrado){
             System.out.println("yupi yupiii! xd");
-            HttpSession session = request.getSession();
-            session.setAttribute("user", empleado);
+            String section = "menu";
+            session.setAttribute("section", section);
             
+            session.setAttribute("user", empleado);         
         }
         
         response.sendRedirect("http://localhost:8080/MemoryKings/");

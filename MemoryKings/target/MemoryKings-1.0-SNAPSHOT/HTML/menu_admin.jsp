@@ -1,7 +1,14 @@
 
+<%@page import="logica.Empleado"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="servlets.SvRegistroEmpleados"%>
-
+<%@page import="logica.ControladoraLogica"%>
+<% ControladoraLogica ctrl_logica = new ControladoraLogica(); %>
+<%
+    Empleado empleado = (Empleado) session.getAttribute("user");
+    String nombre = empleado.getNombres();
+    String cargo = empleado.getCargo();
+%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -19,7 +26,7 @@
                 <img src="Image/logo.png" alt="">
             </div>
             <div class="encabezado__saludo">
-                <span>Hola <b>admin</b>!</span> <!<!-- similar al cliente, aqui debe colocarse el nombre del empleado logueado -->
+                <span>Hola <b><%=nombre%></b>!</span> <!<!-- similar al cliente, aqui debe colocarse el nombre del empleado logueado -->
             </div>
         </div>
     </header>
@@ -29,7 +36,21 @@
             
             <div class="menu_fila_uno">
                 <div>
-                    <a target="_blank" href="HTML/atencion_pedido.jsp"><span>Pedidos</span></a>
+                    <%
+                        if (cargo.equals("Atender Pedido") || cargo.equals("Administrador")){
+                    %>
+                            <form action="SvPedidos" method="GET">
+                    <%
+                        }
+                    %>
+                                <button type="submit" id="" type="button"><span>Pedidos</span></button>
+                    <%
+                        if (cargo.equals("Atender Pedido") || cargo.equals("Administrador")){
+                    %>
+                            </form>
+                    <%
+                        }
+                    %>
                 </div>
                 <div>
                     <a target="_blank" href="HTML/clientes.jsp"><span>Clientes</span></a>

@@ -93,8 +93,6 @@ public class Pedido implements Serializable {
         this.telefono = telefono;
     }
 
-    
-    
     public LinkedList<DetallePedido> getListaDetalle() {
         return listaDetalle;
     }

@@ -42,10 +42,12 @@ public class SvCarritoCompras extends HttpServlet {
         List<Producto> listaProductos = new ArrayList<>();
         listaProductos = ctrl_logica.traerProductos();
         
+        // buscamos que producto agregó
         Producto producto = Producto.obtenerProducto(listaProductos, Integer.parseInt(id));
         
         HttpSession session = request.getSession();
         Mewing carrito = new Mewing();
+        // lo agregamos al carrito
         carrito = (Mewing) session.getAttribute("user");
         
         carrito.addProducto(producto);

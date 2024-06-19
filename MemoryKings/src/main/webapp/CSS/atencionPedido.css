@@ -21,11 +21,11 @@ main {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    color: #2C2F35;
 }
 
 .titulo-container h1 {
     margin: 0;
-    
 }
 
 .subrayado {
@@ -43,10 +43,15 @@ main {
 
 .busqueda-container input {
     padding: 10px;
-    width: 300px;
+    width: 350px;
     box-sizing: border-box;
     border-radius: 5px 0 0 5px;
     border: 1px solid #ddd;
+}
+
+.busqueda-container input:focus {
+    outline: none;
+    box-shadow: none;
 }
 
 #botonBusqueda {
@@ -102,7 +107,6 @@ button {
     border-radius: 5px;
     border: 0;
     cursor: pointer;
-    transition: background-color 0.1s ease;
 }
 
 button:hover {
@@ -119,4 +123,97 @@ footer {
     width: 50%;
     height: 2px;
     background-color: #2C2F35;
+}
+
+/* Estilos para el modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-line {
+    width: 100%;
+    height: 2px;
+    background-color: #2C2F35;
+    margin: 10px 0;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.cliente-info,
+.producto-info {
+    margin-bottom: 20px;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.producto-info table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+.producto-info th,
+.producto-info td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.modal-footer {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.enviar-btn {
+    padding: 10px 20px;
+    background-color: #09C46A;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.enviar-btn:hover {
+    background-color: #515966;
 }

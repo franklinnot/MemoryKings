@@ -1,6 +1,7 @@
 
 package logica;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import javax.persistence.Basic;
@@ -66,6 +67,8 @@ public class DetallePedido implements Serializable {
         this.cantidad = cantidad;
     }
     
+    // este metodo se usa para ver los detalles del pedido a la hora de agregar o eliminar productos
+    // teniendo en cuenta que cada detalle se refiere a un producto en especifico
     public static DetallePedido obtenerDetalle(List<DetallePedido> listaDetalles, int idProducto) {
         for (DetallePedido dtl : listaDetalles){
             if (dtl.getProducto().getIdProducto() == idProducto){
@@ -73,6 +76,19 @@ public class DetallePedido implements Serializable {
             }
         }
         return null;
+    }
+    
+    // este metodo es util para conseguir todos los detalels de un  pedido
+    public static List<DetallePedido> obtenerDetalle(int idProducto) {
+        ControladoraLogica ctrl_logica = new ControladoraLogica();
+        List<DetallePedido> listaDetalles = ctrl_logica.traerDetallePedidos();
+        List<DetallePedido> detallePedido = new ArrayList<>();
+        for (DetallePedido dtl : listaDetalles){
+            if (dtl.getProducto().getIdProducto() == idProducto){
+                detallePedido.add(dtl);
+            }
+        }
+        return detallePedido;
     }
     
 }

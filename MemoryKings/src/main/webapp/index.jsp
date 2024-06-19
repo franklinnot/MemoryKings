@@ -38,9 +38,29 @@
 
 
     } else if (userObject instanceof Empleado) {
+
+        String section = (String) session.getAttribute("section");
+
+        if (section.equals("menu")){
         %>
-            <jsp:include page="HTML/menu_admin.jsp" />
+            <jsp:include page="HTML/menu_admin.jsp"/>
         <%
+        }
+        else if (section.equals("pedidos")){
+        %>
+            <jsp:include page="HTML/atencion_pedido.jsp"/>
+        <%
+        }
+        else if(section.equals("carrito")){
+        %>
+            <jsp:include page="HTML/detalle_compra.jsp"/>
+        <%    
+        }
+        else if (section.equals("pago")){
+        %>
+        <jsp:include page="HTML/pago.jsp"/>
+        <%
+        } 
             
     } else {
         %>

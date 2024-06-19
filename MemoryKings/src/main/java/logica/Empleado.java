@@ -186,6 +186,8 @@ public class Empleado implements Serializable {
         this.fechaRegistro = fechaRegistro;
     }
     
+    
+    // 
     public static Empleado obtenerEmpleado(List<Empleado> listaEmpleados, int idEmpleado) {
         int izquierda = 0;
         int derecha = listaEmpleados.size() - 1;

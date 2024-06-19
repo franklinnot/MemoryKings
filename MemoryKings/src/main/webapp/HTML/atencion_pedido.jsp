@@ -1,22 +1,40 @@
 
+<%@page import="java.util.TimeZone"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="logica.Empleado"%>
+<%@page import="logica.Cliente"%>
+<%@page import="logica.Pedido"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="logica.ControladoraLogica"%>
+<% ControladoraLogica ctrl_logica = new ControladoraLogica(); %>
+<%
+    TimeZone zonaHorariaPeru = TimeZone.getTimeZone("America/Lima");         
+    int desplazamientoPeru = zonaHorariaPeru.getRawOffset();      
+    List<Pedido> listaPedidos = (List<Pedido>) session.getAttribute("listaPedidos");
+    listaPedidos.sort((p1, p2) -> p2.getFechaPedido().compareTo(p1.getFechaPedido()));
+    SimpleDateFormat sdfFecha = new SimpleDateFormat("EEEE dd 'de' MMMM 'a las' hh:mm a", new java.util.Locale("es", "ES"));
+    sdfFecha.setTimeZone(zonaHorariaPeru);
+%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atención de Pedidos</title>
-    <link rel="stylesheet" href="../CSS/normalize.css">
-    <link rel="stylesheet" href="../CSS/style.css">
-    <link rel="stylesheet" href="../CSS/atencionPedido.css">
+    <link rel="stylesheet" href="CSS/normalize.css">
+    <link rel="stylesheet" href="CSS/atencionPedido.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>Atención de Pedidos</title>
 </head>
 <body>
     <header>
-        <a href="#" class="logo">
-            <img src="../Image/logo.png" alt="logo empresa">
+        <a href="" class="logo">
+            <img src="Image/logo.png" alt="logo empresa">
         </a>
+        <form action="SvMenu" method="GET" style="position: absolute; left: 1%; top: 30px;">
+            <button type="submit"><span>Página principal</span></button>
+        </form>
     </header>
     <main>
         <div class="titulo-container">
@@ -41,24 +59,25 @@
                     </tr>
                 </thead>
                 <tbody>
+                    
+                    <%        
+                        for (Pedido pd : listaPedidos){
+                            Cliente cl = pd.getCliente();
+                            Date dt = pd.getFechaPedido();
+                            Date fechaPedido = new Date(dt.getTime() - desplazamientoPeru);
+                    %>              
                     <tr>
-                        <td>001</td>
-                        <td>49017935</td>
-                        <td>Jhoncito BC</td>
-                        <td>01/06/2024</td>
-                        <td>Al costado de su vecino</td>
-                        <td><span class="estado atendido">Atendido</span></td>
-                        <td><button>Atender</button></td>
+                        <td>000<%=pd.getIdPedido()%></td>
+                        <td><%=cl.getDni()%></td>
+                        <td><%=cl.getNombres()%> <%=cl.getApellidos()%></td>
+                        <td><%=sdfFecha.format(fechaPedido)%></td>
+                        <td><%=pd.getDireccion()%></td>
+                        <td><span class="estado atendido"><%=pd.getEstadoPedido()%></span></td>
+                        <td><button class="atender-btn" onclick="openModal('001')">Atender</button></td>
                     </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>70549588</td>
-                        <td>Ana Belen SB</td>
-                        <td>05/06/2024</td>
-                        <td>Mi casa</td>
-                        <td><span class="estado en-proceso">En Proceso</span></td>
-                        <td><button>Atender</button></td>
-                    </tr>
+                    <%
+                        }
+                    %>
                 </tbody>
             </table>
         </div>
@@ -66,6 +85,74 @@
     <footer>
         <div class="linea-inferior"></div>
     </footer>
+
+    <!-- Modal -->
+    <div id="detalleModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Detalle del Pedido - <span id="modal-nro-pedido"></span></h2>
+            <div class="modal-line"></div>
+            <h3>Datos del Cliente</h3>
+            <div class="modal-line"></div>
+            <div class="modal-body">
+                <div class="cliente-info">
+                    <div class="info-item">
+                        <p><strong>DNI:</strong></p>
+                        <p id="modal-dni"></p>
+                    </div>
+                    <div class="info-item">
+                        <p><strong>Nombres Completos:</strong></p>
+                        <p id="modal-nombre"></p>
+                    </div>
+                    <div class="info-item">
+                        <p><strong>Número de Teléfono:</strong></p>
+                        <p id="modal-telefono"></p>
+                    </div>
+                    <div class="info-item">
+                        <p><strong>Fecha del Pedido:</strong></p>
+                        <p id="modal-fecha"></p>
+                    </div>
+                    <div class="info-item">
+                        <p><strong>Correo Electrónico:</strong></p>
+                        <p id="modal-correo"></p>
+                    </div>
+                    <div class="info-item">
+                        <p><strong>Dirección:</strong></p>
+                        <p id="modal-direccion"></p>
+                    </div>
+                </div>
+                <div class="modal-line"></div>
+                <h3>Productos</h3>
+                <div class="modal-line"></div>
+                <div class="producto-info">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modal-productos"></tbody>
+                    </table>
+                    <p><strong>Total:</strong> <span id="modal-total"></span></p>
+                </div>
+                <div class="modal-line"></div>
+                <h3>Distribuidor/Repartidor</h3>
+                <div class="modal-line"></div>
+                <select id="modal-repartidor">
+                    <option value="repartidor1">Repartidor 1</option>
+                    <option value="repartidor2">Repartidor 2</option>
+                    <option value="repartidor3">Repartidor 3</option>
+                </select>
+                <div class="modal-footer">
+                    <button class="enviar-btn" onclick="enviarPedido()">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="JavaScript/atencionPedido.js"></script>
 </body>
 </html>
+
 
