@@ -60,6 +60,10 @@ public class ControladoraLogica {
         return ctrl_persistencia.traerDistribuidores();
     }
     
+    public Distribuidor encontrarDistribuidor(int idDistribuidor){
+        return ctrl_persistencia.encontrarDistribuidor(idDistribuidor);
+    }
+    
     // Empleado
     public void crearEmpleado(Empleado empleado){
         ctrl_persistencia.crearEmpleado(empleado);
@@ -98,6 +102,8 @@ public class ControladoraLogica {
     public Pedido encontrarPedido(int idPedido){
         return ctrl_persistencia.encontrarPedido(idPedido);
     }
+    
+    
     
     // Producto
     public void crearProducto(Producto producto){

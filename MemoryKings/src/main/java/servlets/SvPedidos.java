@@ -36,6 +36,8 @@ public class SvPedidos extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         
+        // devolver los pedidos segun el empleado
+        
         HttpSession session = request.getSession();
         Empleado empleado = (Empleado) session.getAttribute("user");
         
@@ -70,6 +72,8 @@ public class SvPedidos extends HttpServlet {
         
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
+        
+        // realizar pedidos
         
         HttpSession session = request.getSession();
         Mewing mewing = (Mewing) session.getAttribute("user");

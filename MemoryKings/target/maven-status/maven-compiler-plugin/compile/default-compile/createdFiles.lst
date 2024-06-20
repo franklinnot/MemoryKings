@@ -6,6 +6,8 @@ com\mycompany\memorykings\exceptions\NonexistentEntityException.class
 logica\Distribuidor.class
 logica\Producto_.class
 persistencia\ConsultaJpaController.class
+servlets\SvEmpresas.class
+servlets\SvMenu.class
 persistencia\exceptions\PreexistingEntityException.class
 logica\Proveedor.class
 persistencia\exceptions\IllegalOrphanException.class
@@ -39,6 +41,7 @@ persistencia\ControladoraPersistencia.class
 com\mycompany\memorykings\JakartaRestConfiguration.class
 servlets\SvRegistroEmpleados.class
 servlets\SvDetalleCompra.class
+servlets\SvEnvios.class
 logica\ControladoraLogica.class
 logica\Empleado.class
 logica\ImagenProducto_.class

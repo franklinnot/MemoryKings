@@ -65,15 +65,10 @@
                     <button id="btnEmpleado" type="button"><span>Empleado</span></button>
                 </div>
                 <div>
-                    <form action="">
-                        <button id="btnProveedor" type="button"><span>Proveedor</span></button>
-                    </form>
+                    <button id="btnProveedor" type="button"><span>Proveedor</span></button>
                 </div>
                 <div>
-                    <form action="">
-                        <button id="btnDistribuidor" type="button"><span>Distribuidor</span></button>
-
-                    </form>
+                    <button id="btnDistribuidor" type="button"><span>Distribuidor</span></button>
                 </div>
             </div>
             
@@ -96,8 +91,7 @@
     </footer>
     
     <!-- Modal EMPLEADO -->
-    <div id="modalEmpleado" class="modal">
-        
+    <div id="modalEmpleado" class="modal">      
         <div class="wrapper">
             <span class="close">&times;</span>
             <h1>Empleado</h1>
@@ -132,28 +126,28 @@
                             <input name="empleado_fecha_nacimiento" type="date" id="fecha_nacimiento" placeholder="Fecha de Nacimiento" required>
                             <i class="fas fa-calendar-alt"></i>
                         </div>
-                        <div class="input-field">
-                            <select name="empleado_genero" id="genero" required>
-                                <option value="" disabled selected>Seleccionar Género</option>
-                                <option value="F">Femenino (F)</option>
-                                <option value="M">Masculino (M)</option>
-                                <option value="Otro">Otro</option>
-                            </select>
-                            <i class="fas fa-venus-mars"></i>
-                        </div>
-                        <div class="input-field">
-                            <input name="empleado_direccion" type="text" id="direccion" placeholder="Dirección" required>
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="input-field">
-                            <input type="email" id="correo" name="empleado_correo" placeholder="Correo Electrónico" required>
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="input-field">
-                            <input type="password" id="contrasena" name="empleado_password" placeholder="Contraseña" required>
-                            <i class="fas fa-lock"></i>
-                        </div>
-                        <button type="submit" id="btnRegistrarEmpleado" class="btn">Registrar</button>         
+                       <div class="input-field">
+                           <select name="empleado_genero" id="genero" required>
+                               <option value="" disabled selected>Seleccionar Género</option>
+                               <option value="F">Femenino (F)</option>
+                               <option value="M">Masculino (M)</option>
+                               <option value="Otro">Otro</option>
+                           </select>
+                           <i class="fas fa-venus-mars"></i>
+                       </div>
+                       <div class="input-field">
+                           <input name="empleado_direccion" type="text" id="direccion" placeholder="Dirección" required>
+                           <i class="fas fa-map-marker-alt"></i>
+                       </div>
+                       <div class="input-field">
+                           <input type="email" id="correo" name="empleado_correo" placeholder="Correo Electrónico" required>
+                           <i class="fas fa-envelope"></i>
+                       </div>
+                       <div class="input-field">
+                           <input type="password" id="contrasena" name="empleado_password" placeholder="Contraseña" required>
+                           <i class="fas fa-lock"></i>
+                       </div>
+                       <button type="submit" id="btnRegistrarEmpleado" class="btn">Registrar</button>         
                 </div>
             </form>
         </div>
@@ -161,80 +155,85 @@
 
     <!-- Modal Proveedor -->
     <div id="modalProveedor" class="modal">
-        <div class="wrapper">
-            <span class="close">&times;</span>
-            <h1>Proveedor</h1>
-            <div class="input-box">
-                <div class="input-field">
-                    <input type="number" id="ruc" name="ruc" placeholder="RUC">
-                    <i class="fas fa-id-card"></i>
-                </div>
-                <div class="input-field">
-                    <input type="text" id="nombre_comercial" name="nombre_comercial" placeholder="Nombre Comercial">
-                    <i class="fas fa-store"></i>
-                </div>
-                
-                <div class="input-field">
-                    <input type="number" id="telefono" name="telefono" placeholder="Teléfono">
-                    <i class="fas fa-phone-alt"></i>
+            <div class="wrapper">
+                <span class="close">&times;</span>
+                <h1>Proveedor</h1>
+            <form action="SvEmpresas" method="POST">
+                <input type="hidden" name="tipo" value="proveedor">
+                <div class="input-box">
+                    <div class="input-field">
+                        <input type="number" id="ruc" name="ruc" placeholder="RUC" required>
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" id="nombre_comercial" name="nombre_comercial" placeholder="Nombre Comercial" required>
+                        <i class="fas fa-store"></i>
+                    </div>
 
+                    <div class="input-field">
+                        <input type="number" id="telefono" name="telefono" placeholder="Teléfono" required>
+                        <i class="fas fa-phone-alt"></i>
+
+                    </div>
+                    <div class="input-field">
+                        <input type="text" id="razon_social" name="razon_social" placeholder="Razon Social" required>
+                        <i class="fas fa-building"></i>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="text" id="direccion" name="direccion" placeholder="Dirección" required>
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="email" id="correo" name="correo" placeholder="Correo Electrónico" required>
+                        <i class="fas fa-envelope"></i>
+                    </div>
                 </div>
-                <div class="input-field">
-                    <input type="text" id="razon_social" name="razon_social" placeholder="Razon Social">
-                    <i class="fas fa-building"></i>
-                </div>
-                
-                <div class="input-field">
-                    <input type="text" id="direccion" name="direccion" placeholder="Dirección">
-                    <i class="fas fa-map-marked-alt"></i>
-                </div>
-                <div class="input-field">
-                    <input type="email" id="correo" name="correo" placeholder="Correo Electrónico">
-                    <i class="fas fa-envelope"></i>
-                </div>
+                <button type="submit" id="btnRegistrarProveedor" class="btn" onclick="enviarRegistro('Proveedor')">Registrar</button>
+            </form>
             </div>
-            <button id="btnRegistrarProveedor" class="btn" onclick="enviarRegistro('Proveedor')">Registrar</button>
-            
-        </div>
+   
     </div>
 
     <!-- Modal Distribuidor -->
     <div id="modalDistribuidor" class="modal">
-        <div class="wrapper">
-            <span class="close">&times;</span>
-            <h1>Distribuidor</h1>
-            <div class="input-box">
-                <div class="input-field">
-                    <input type="number" id="ruc" name="ruc" placeholder="RUC">
-                    <i class="fas fa-id-card"></i>
-                </div>
-                <div class="input-field">
-                    <input type="text" id="nombre_comercial" name="nombre_comercial" placeholder="Nombre Comercial">
-                    <i class="fas fa-store"></i>
-                </div>
-                
-                <div class="input-field">
-                    <input type="number" id="telefono" name="telefono" placeholder="Teléfono">
-                    <i class="fas fa-phone-alt"></i>
+        <form action="SvEmpresas" method="POST">
+            <input type="hidden" name="tipo" value="distribuidor">
+            <div class="wrapper">
+                <span class="close">&times;</span>
+                <h1>Distribuidor</h1>
+                <div class="input-box">
+                    <div class="input-field">
+                        <input type="number" id="ruc" name="ruc" placeholder="RUC" required>
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" id="nombre_comercial" name="nombre_comercial" placeholder="Nombre Comercial" required>
+                        <i class="fas fa-store"></i>
+                    </div>
 
+                    <div class="input-field">
+                        <input type="number" id="telefono" name="telefono" placeholder="Teléfono" required>
+                        <i class="fas fa-phone-alt"></i>
+
+                    </div>
+                    <div class="input-field">
+                        <input type="text" id="razon_social" name="razon_social" placeholder="Razon Social" required>
+                        <i class="fas fa-building"></i>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="text" id="direccion" name="direccion" placeholder="Dirección" required>
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="email" id="correo" name="correo" placeholder="Correo Electrónico" required>
+                        <i class="fas fa-envelope"></i>
+                    </div>
                 </div>
-                <div class="input-field">
-                    <input type="text" id="razon_social" name="razon_social" placeholder="Razon Social">
-                    <i class="fas fa-building"></i>
-                </div>
-                
-                <div class="input-field">
-                    <input type="text" id="direccion" name="direccion" placeholder="Dirección">
-                    <i class="fas fa-map-marked-alt"></i>
-                </div>
-                <div class="input-field">
-                    <input type="email" id="correo" name="correo" placeholder="Correo Electrónico">
-                    <i class="fas fa-envelope"></i>
-                </div>
+                <button type="submit" id="btnRegistrarDistribuidor" class="btn" onclick="enviarRegistro('Distribuidor')">Registrar</button>
             </div>
-            <button id="btnRegistrarDistribuidor" class="btn" onclick="enviarRegistro('Distribuidor')">Registrar</button>
-            
-        </div>
+        </form>
     </div>
     <script src="JavaScript/modal.js"></script>
     

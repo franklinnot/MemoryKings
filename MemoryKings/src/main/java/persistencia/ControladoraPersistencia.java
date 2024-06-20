@@ -13,8 +13,6 @@ import logica.Pedido;
 import logica.Producto;
 import logica.Proveedor;
 
-
-
 public class ControladoraPersistencia {
     
     CategoriaJpaController categoriaJpa = new CategoriaJpaController();
@@ -79,6 +77,10 @@ public class ControladoraPersistencia {
         return distribuidorJpa.findDistribuidorEntities();
     }
     
+    public Distribuidor encontrarDistribuidor(int idDistribuidor){
+        return distribuidorJpa.findDistribuidor(idDistribuidor);
+    }
+    
     // Empleado
     public void crearEmpleado(Empleado empleado){
         empleadoJpa.create(empleado);
@@ -117,6 +119,7 @@ public class ControladoraPersistencia {
     public Pedido encontrarPedido(int idPedido){
         return pedidoJpa.findPedido(idPedido);
     }
+    
     
     // Producto
     public void crearProducto(Producto producto){

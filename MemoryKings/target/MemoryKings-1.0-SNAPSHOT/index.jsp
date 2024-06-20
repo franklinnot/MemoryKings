@@ -60,7 +60,12 @@
         %>
         <jsp:include page="HTML/pago.jsp"/>
         <%
-        } 
+        }
+        else if(section.equals("envio")){
+        %>
+            <jsp:include page="HTML/enviar_pedido.jsp"/>
+        <%    
+        }
             
     } else {
         %>

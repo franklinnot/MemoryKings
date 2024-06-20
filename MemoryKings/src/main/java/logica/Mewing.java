@@ -104,6 +104,14 @@ public class Mewing {
         return cantidad;
     }
     
+    public static float costoTotal(List<DetallePedido> listaDetalles){     
+        float cantidad = 0;
+        for (DetallePedido detalle : listaDetalles){
+            cantidad += detalle.getCantidad() * detalle.getProducto().getPrecio();
+        }
+        return cantidad;
+    } 
+    
     
     public Cliente getCliente() {
         return cliente;

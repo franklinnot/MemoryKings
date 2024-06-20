@@ -51,21 +51,4 @@ function enviarRegistro(tipo) {
             todosLlenos = false;
         }
     });
-
-    if (todosLlenos) {
-        
-        // Limpiar los campos
-        campos.forEach(function(campo) {
-            if (campo.tagName === "SELECT") {
-                campo.selectedIndex = 0;
-            } else {
-                campo.value = "";
-            }
-        });
-
-        // Cerrar el modal
-        modal.style.display = "none";
-    } else {
-        
-    }
 }

@@ -79,15 +79,21 @@ public class DetallePedido implements Serializable {
     }
     
     // este metodo es util para conseguir todos los detalels de un  pedido
-    public static List<DetallePedido> obtenerDetalle(int idProducto) {
+    public static List<DetallePedido> obtenerDetalle(int idPedido) {
         ControladoraLogica ctrl_logica = new ControladoraLogica();
         List<DetallePedido> listaDetalles = ctrl_logica.traerDetallePedidos();
         List<DetallePedido> detallePedido = new ArrayList<>();
+        
         for (DetallePedido dtl : listaDetalles){
-            if (dtl.getProducto().getIdProducto() == idProducto){
+            if (dtl.getPedido().getIdPedido() == idPedido){
                 detallePedido.add(dtl);
             }
         }
+        
+        for (DetallePedido pd : detallePedido){
+            System.out.println("El detalle " + pd.idDetallePedido + " fue añadido");
+        }
+        
         return detallePedido;
     }
     

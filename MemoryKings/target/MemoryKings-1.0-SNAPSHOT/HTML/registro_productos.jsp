@@ -178,7 +178,7 @@
                             %>
                             
                         </select>
-                        <select name="proveedor" required>
+                        <select name="proveedor" required style="max-width: 240px;">
                             <option value="0" disabled selected>Proveedor</option>
                             <%
                                 List<Proveedor> listaProveedores = new ArrayList<>();

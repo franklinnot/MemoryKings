@@ -3,22 +3,15 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import logica.Cliente;
-import logica.Consulta;
-import logica.ControladoraLogica;
+import javax.servlet.http.HttpSession;
 
-
-@WebServlet(name = "SvConsultas", urlPatterns = {"/SvConsultas"})
-public class SvConsultas extends HttpServlet {
-    
-    ControladoraLogica ctrl_logica = new ControladoraLogica();
+@WebServlet(name = "SvMenu", urlPatterns = {"/SvMenu"})
+public class SvMenu extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -30,13 +23,10 @@ public class SvConsultas extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        
-        int idCliente = Integer.parseInt(request.getParameter("idCliente"));
-        Cliente cliente = ctrl_logica.encontrarCliente(idCliente);
-        List<Consulta> listaConsultas = new ArrayList<>();
-        listaConsultas = ctrl_logica.traerConsultas();
+        HttpSession session = request.getSession();
+        String section = "menu";
+        session.setAttribute("section", section);
+        response.sendRedirect("http://localhost:8080/MemoryKings/");
         
     }
 
@@ -45,6 +35,8 @@ public class SvConsultas extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+        
     }
 
 
