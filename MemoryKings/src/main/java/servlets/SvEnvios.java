@@ -71,6 +71,7 @@ public class SvEnvios extends HttpServlet {
         int desplazamientoPeru = zonaHorariaPeru.getRawOffset(); 
         
         HttpSession session = request.getSession();
+        Empleado emplo = (Empleado) session.getAttribute("user");
         
         int id = Integer.parseInt(request.getParameter("idPedido")); // id de pedido
         Pedido pd = ctrl_logica.encontrarPedido(id); // buscamos el pedido que se esta atendiendo
@@ -81,7 +82,11 @@ public class SvEnvios extends HttpServlet {
         pd.setFechaEnvio(new Date(fechaActual.getTime() + desplazamientoPeru));
         pd.setEstadoPedido("Enviado");
         pd.setDistribuidor(ds);
-
+        
+        if(emplo.getCargo().equals("Administrador")){
+            pd.setEmpleado(emplo);
+        }
+        
         try {
             ctrl_logica.editarPedido(pd);
         } catch (Exception ex) {

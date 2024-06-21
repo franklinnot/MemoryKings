@@ -30,6 +30,11 @@
             <jsp:include page="HTML/detalle_compra.jsp"/>
         <%    
         }
+        else if(section.equals("consultas")){
+        %>
+            <jsp:include page="HTML/consulta_cliente.jsp"/>
+        <%    
+        }
         else if (section.equals("pago")){
         %>
         <jsp:include page="HTML/pago.jsp"/>

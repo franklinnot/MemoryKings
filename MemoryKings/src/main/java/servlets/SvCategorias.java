@@ -11,14 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import logica.Cliente;
-import logica.Consulta;
 import logica.ControladoraLogica;
+import logica.Producto;
 
+@WebServlet(name = "SvCategorias", urlPatterns = {"/SvCategorias"})
+public class SvCategorias extends HttpServlet {
 
-@WebServlet(name = "SvConsultas", urlPatterns = {"/SvConsultas"})
-public class SvConsultas extends HttpServlet {
-    
     ControladoraLogica ctrl_logica = new ControladoraLogica();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -26,16 +24,36 @@ public class SvConsultas extends HttpServlet {
 
     }
 
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
         
         request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");   
         
-        // esto sirve para traer las consultas hechas por el cliente
         HttpSession session = request.getSession();
+        List<Producto> lista = ctrl_logica.traerProductos();
+        List<Producto> listaProductos = new ArrayList<>();
+        int id = Integer.parseInt(request.getParameter("idCategoria"));
+        
+        boolean exist = false;
+        if (id != 0){
+            for (Producto pd : lista){
+                if (pd.getCategoria().getIdCategoria() == id){
+                    listaProductos.add(pd);
+                    exist = true;
+                }
+            }
+        }
+        
+        if(!exist){
+            listaProductos = lista;
+        }
+        
+        session.setAttribute("listaProductos",listaProductos);
+        response.sendRedirect("http://localhost:8080/MemoryKings/");
         
     }
 
@@ -46,7 +64,7 @@ public class SvConsultas extends HttpServlet {
         processRequest(request, response);
         
         request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");        
+        response.setCharacterEncoding("UTF-8");      
         
     }
 

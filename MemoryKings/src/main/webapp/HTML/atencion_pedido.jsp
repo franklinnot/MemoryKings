@@ -14,9 +14,11 @@
     int desplazamientoPeru = zonaHorariaPeru.getRawOffset();      
     SimpleDateFormat sdfFecha = new SimpleDateFormat("EEEE dd 'de' MMMM 'a las' hh:mm a", new java.util.Locale("es", "ES"));
     sdfFecha.setTimeZone(zonaHorariaPeru);
-    
+    Empleado empleado = (Empleado) session.getAttribute("user");
     List<Pedido> listaPedidos = (List<Pedido>) session.getAttribute("listaPedidos");
     listaPedidos.sort((p1, p2) -> p2.getFechaPedido().compareTo(p1.getFechaPedido()));
+
+    
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -80,7 +82,7 @@
                                       <%=pd.getEstadoPedido()%></span></td>
                             <td>
                                 <%
-                                if (!pd.getEstadoPedido().equals("Enviado")){
+                                if (!pd.getEstadoPedido().equals("Enviado") ){ // && !empleado.getCargo().equals("Administrador")
                                 %>
                                 <form action="SvEnvios" method="GET">
                                     <input type="hidden" name="idPedido" value="<%=pd.getIdPedido()%>">

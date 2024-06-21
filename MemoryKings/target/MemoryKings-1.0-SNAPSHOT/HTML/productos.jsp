@@ -1,3 +1,4 @@
+<%@page import="logica.Categoria"%>
 <%@page import="java.util.Base64"%>
 <%@page import="logica.ImagenProducto"%>
 <%@page import="java.util.ArrayList"%>
@@ -40,8 +41,19 @@
         <div class="juntarlogo">
             <!--CREAR BARRA DE BUSQUEDA-->
             <div class="container">
-                <input type="text" placeholder="Buscar...">
-                <button id="botonBusqueda"><i class='bx bx-search'></i></button>
+                <form>
+                    <input type="text" id="productInput" name="productInput" placeholder="Buscar..." autocomplete="off">
+                    <input type="hidden" id="productCode" name="productCode">
+                    <div id="suggestions" class="suggestions"></div>
+                    <button type="submit" id="botonBusqueda"><i class='bx bx-search'></i></button>
+                </form>
+                <form style="
+                position: absolute;
+                right: -25px;
+                top: 0;
+            ">
+                    <button style="height: 40px;width: 20px;border-radius: 5px;">X</button>
+                </form>
             </div>
             <div class="espacio-separacion"></div>
             
@@ -55,7 +67,7 @@
             %>
                     <h2>Hola <%=cliente.getNombres()%>!</h2>
                     <form action="SvSession" method="POST">
-                        <button name="btn_close_session" type="submit">Cerrar sesión</button>
+                        <button id="salir" name="btn_close_session" type="submit">Cerrar sesión</button>
                     </form>
             <% 
                 } else { 
@@ -77,21 +89,25 @@
         <!-- MENÚ DESPLEGABLE -->
         <nav class="dropdown-menu">
             <ul>
-                <li><a href="#">Accesorios</a></li>
-                <li><a href="#">Adaptadores</a></li>
-                <li><a href="#">Auriculares</a></li>
-                <li><a href="#">Cables</a></li>
-                <li><a href="#">Micrófonos</a></li>w
-                <li><a href="#">Cámaras</a></li>
-                <li><a href="#">Celulares</a></li>
-                <li><a href="#">Discos Duro</a></li>
-                <li><a href="#">Impresoras</a></li>
-                <li><a href="#">Laptops</a></li>
-                <li><a href="#">Memorias</a></li>
-                <li><a href="#">Monitores</a></li>
-                <li><a href="#">Mouse</a></li>
-                <li><a href="#">Parlantes</a></li>
-                <li><a href="#">Placas madres</a></li>
+                        <li>
+                            <form action="SvCategorias" method="GET">
+                                <input type="hidden" name="idCategoria" value="0">
+                                <button>Todos</button>
+                            </form>
+                        </li>
+                <%
+                    List<Categoria> listaCategorias = ctrl_logica.traerCategorias();
+                    for (Categoria ct : listaCategorias){
+                %>
+                        <li>
+                            <form action="SvCategorias" method="GET">
+                                <input type="hidden" name="idCategoria" value="<%=ct.getIdCategoria()%>">
+                                <button><%=ct.getNombre()%></button>
+                            </form>
+                        </li>
+                <%
+                    }
+                %>
             </ul>
         </nav>
     </header>
@@ -132,14 +148,24 @@
                     String descripcion = "";
                     char[] caracteres = producto.getDescripcion().toCharArray();
                     StringBuilder sb = new StringBuilder();
-
-                    for (int i = 0; i < caracteres.length && i < 25; i++) {
+                    int n = 0;
+                    for (int i = 0; i < caracteres.length && i < 100; i++) {
                         sb.append(caracteres[i]);
+                        n++;
                     }
 
-                    descripcion = sb.toString();
+                    if(n <= 100){
+                        %>
+                        <p><%=producto.getDescripcion()%></p>
+                        <%
+                    }
+                    else{
                     %>
-                    <p><%=descripcion%>...</p>
+                        <p><%=descripcion%>...</p>
+                    <%
+                        }
+                    %>
+                    
                     <form action="SvCarritoCompras" method="GET">
                         <input type="hidden" name="idProducto" value="<%=producto.getIdProducto()%>">
                         <button type="submit" >Agregar al carrito</button>
@@ -175,7 +201,50 @@
         </div>
     </footer>
     <script src="JavaScript/producto.js"></script>
+    <script>
+        <% 
+            List<Producto> ls = ctrl_logica.traerProductos();
+            int size = ls.size();
+            int c = 0;
+        %>
+        const products = {
+            <% for (Producto p : ls) { %>
+                "<%= p.getNombre() %>": "<%= p.getIdProducto() %>"<%= c++ < size - 1 ? "," : "" %>
+            <% } %>
+        };
 
+        const productInput = document.getElementById('productInput');
+        const productCode = document.getElementById('productCode');
+        const suggestionsBox = document.getElementById('suggestions');
+
+        productInput.addEventListener('input', function() {
+            const input = productInput.value.toLowerCase();
+            suggestionsBox.innerHTML = '';
+            if (input) {
+                const suggestions = Object.keys(products).filter(product => product.toLowerCase().includes(input));
+                suggestions.forEach(product => {
+                    const suggestionItem = document.createElement('div');
+                    suggestionItem.textContent = product;
+                    suggestionItem.addEventListener('click', function() {
+                        productInput.value = product;
+                        productCode.value = products[product];
+                        suggestionsBox.innerHTML = '';
+                        suggestionsBox.style.display = 'none';
+                    });
+                    suggestionsBox.appendChild(suggestionItem);
+                });
+                suggestionsBox.style.display = 'block';
+            } else {
+                suggestionsBox.style.display = 'none';
+            }
+        });
+
+        document.addEventListener('click', function(event) {
+            if (!suggestionsBox.contains(event.target) && event.target !== productInput) {
+                suggestionsBox.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
 
