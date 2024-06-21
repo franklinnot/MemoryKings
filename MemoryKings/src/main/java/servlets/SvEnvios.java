@@ -40,6 +40,8 @@ public class SvEnvios extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         
+        // obtener detalles de un pedido
+        
         int id = Integer.parseInt(request.getParameter("idPedido"));
         
         List<DetallePedido> listaDetalles = DetallePedido.obtenerDetalle(id); // recibo los detalles del pedido
@@ -60,6 +62,8 @@ public class SvEnvios extends HttpServlet {
         
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
+        
+        // realizar la atencion de un pedido, asignado fecha de envio y distribuidor
         
         // codigo para asignar correctamente la hora el envio
         TimeZone zonaHorariaPeru = TimeZone.getTimeZone("America/Lima");        
@@ -105,7 +109,7 @@ public class SvEnvios extends HttpServlet {
                 listaPedidos.add(pe);
             }
         }
-        
+        session.removeAttribute("listaDetalles");
         session.setAttribute("listaPedidos", listaPedidos);
         response.sendRedirect("http://localhost:8080/MemoryKings/");
     }

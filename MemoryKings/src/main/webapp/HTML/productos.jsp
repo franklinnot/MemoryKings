@@ -133,7 +133,7 @@
                     char[] caracteres = producto.getDescripcion().toCharArray();
                     StringBuilder sb = new StringBuilder();
 
-                    for (int i = 0; i < caracteres.length && i < 30; i++) {
+                    for (int i = 0; i < caracteres.length && i < 25; i++) {
                         sb.append(caracteres[i]);
                     }
 

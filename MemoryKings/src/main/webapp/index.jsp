@@ -13,7 +13,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% ControladoraLogica ctrl_logica = new ControladoraLogica(); %>
 <%
-    
+
     Object userObject = session.getAttribute("user");
 
     if (userObject instanceof Mewing) {

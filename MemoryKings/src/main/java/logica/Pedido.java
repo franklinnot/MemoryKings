@@ -68,7 +68,7 @@ public class Pedido implements Serializable {
         this.fechaPedido = new Date(fechaActual.getTime() + desplazamientoPeru);
               
     }
-
+    
     public float getCostoTotal() {
         return costoTotal;
     }

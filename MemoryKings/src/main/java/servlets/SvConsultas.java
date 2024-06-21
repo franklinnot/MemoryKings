@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import logica.Cliente;
 import logica.Consulta;
 import logica.ControladoraLogica;
@@ -33,10 +34,8 @@ public class SvConsultas extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         
-        int idCliente = Integer.parseInt(request.getParameter("idCliente"));
-        Cliente cliente = ctrl_logica.encontrarCliente(idCliente);
-        List<Consulta> listaConsultas = new ArrayList<>();
-        listaConsultas = ctrl_logica.traerConsultas();
+        // esto sirve para traer las consultas hechas por el cliente
+        HttpSession session = request.getSession();
         
     }
 

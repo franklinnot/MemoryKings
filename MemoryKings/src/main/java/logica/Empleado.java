@@ -246,8 +246,8 @@ public class Empleado implements Serializable {
                     cantidad_pedidos++;
                 }
             }
-
-            if (cantidad_pedidos < cantidad_anterior) {
+            System.out.println("El empleado " + empleado.getNombres() + " tiene " + cantidad_pedidos + " pedidos en total");
+            if (cantidad_pedidos <= cantidad_anterior) {
                 cantidad_anterior = cantidad_pedidos;
                 emp = empleado;
             }

@@ -1,3 +1,8 @@
+* {
+  box-sizing: border-box;
+  font-size:medium;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
@@ -5,129 +10,196 @@ body {
   align-items: center;
   min-width: 100vw;
   min-height: 100vh;
-  font-size: 10px;
   margin: 0;
+  background-color: #f4f4f4; /* Fondo ligero para mejor contraste */
 }
+
 .div_principal { 
-  width: 800px;
-  height: 470px;
-  border-style: solid;
+  width: 70%;
+  height: auto;
+  border: 1px solid #ccc;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: rgb(49, 49, 49);
   border-radius: 15px;
-  border-width: 1px;
   box-shadow: 4px 4px 10px rgb(0, 0, 0);
-  padding-top: 20px; /* Añade un poco de espacio en la parte superior */
+  padding-top: 20px;
 }
+
 .logo_container {
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-bottom: 2px; /* Espacio entre la imagen y el formulario */
+  margin: 20px;
 }
 
 #loguito {
-  width: 100px; /* Ajusta este valor según lo necesites */
-  height: auto; /* Mantener proporciones */
+  width: 150px;
 }
+
 .div_division1 {
   display: flex;
   justify-content: space-between;
   width: 100%;
   padding: 10px;
-  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
 }
+
 .div_inputs,
 .div_combobox {
-  border-style: solid;
-  background-color: rgb(255, 255, 255);
+  background-color: #fff;
+  border: 1px solid #ccc;
   border-radius: 15px;
   box-shadow: 4px 4px 10px rgb(0, 0, 0);
   padding: 10px;
-  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
-  height: 100px;
   margin: 0 10px;
 }
+
 .div_inputs {
-  width: 350px; /* Ajusta el ancho de los divs hijos */
-  height: 130px;
+  width: 48%;
   display: flex;
   flex-direction: column;
-  gap: 1px; 
+  gap: 5px; 
 }
-.div_combobox{
-  width: 350px; /* Ajusta el ancho de los divs hijos */
-  height: 130px;
+
+.div_combobox {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  display: flex;
-  flex-direction: column;
 }
-input {
-  width:100px;
-  margin: 5px 0; 
-  border-radius: 10px;
-  padding: 0 5px;
-  border-style:none;
-}
+
+input,
 #cbtiposervicio {
   width: 100%;
   padding: 5px;
   border-radius: 5px;
-  background-color: rgb(75, 74, 74);
-  color:aliceblue;
+  border: 1px solid #ccc;
+  margin-top: 5px;
 }
+
+#cbtiposervicio {
+  background-color: rgb(75, 74, 74);
+  color: aliceblue;
+}
+
 .div_textarea {
-  border-style: solid;
-  border-width: 1px;
-  width: 720px;
-  height: 150px;
-  background-color: rgb(255, 255, 255);
+  background-color: #fff;
+  border: 1px solid #ccc;
   border-radius: 15px;
   box-shadow: 4px 4px 10px rgb(0, 0, 0);
   padding: 10px;
-  margin: 20px 0 0 20px; 
-  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Centrar horizontalmente */
-  justify-content: center;
+  margin-top: 20px;
+  width: 96%;
 }
+
 #descripcion {
-  max-width: 600px;
-  min-width: 600px;
-  max-height: 100px;
-  min-height: 100px;
-  background-color: rgb(255, 255, 255);
+  width: 100%;
+  height: 100px;
   border-radius: 15px;
-  padding: 5px 5px;
+  padding: 10px;
+  border: 1px solid #ccc;
 }
+
 #lbldescripcion {
-  margin-bottom: 5px; /* Reducir el espacio entre la etiqueta y el textarea */
-  align-self: flex-start; /* Alinea la etiqueta a la izquierda */
+  margin-bottom: 5px;
+  align-self: flex-start;
 }
+
 .div_botones {
   display: flex;
-  justify-content: center; /* Distribuir espacio entre los botones */
+  justify-content: center;
   width: 100%;
   margin-top: 30px;
 }
-#btregresar {
-  background-color: rgb(79, 199, 159);
-  width: 100px;
-  height: 45px;
-}
+
+#btregresar,
 #btenviar {
   width: 120px;
   height: 45px;
-}
-button{
   border-radius: 10px;
   box-shadow: 4px 4px 10px rgb(0, 0, 0);
-  border-width: 1px;
-  font-size: 8px;
+  border: 1px solid #ccc;
   padding: 5px;
-  margin: 0 30px;
+  margin: 0 15px;
+}
+
+#btregresar {
+  background-color:  #ccc;
+}
+
+#btenviar {
+  background-color: #11ca7d;
+  color: #000000;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+#consultas-container {
+  width: 100%;
+  padding: 20px;
+}
+
+.consulta {
+  border: 1px solid #ddd;
+  border-left: 5px solid #11ca7d;
+  padding: 10px;
+  margin: 20px 0;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+.consulta h2 {
+  color: #333;
+}
+
+.consulta h3 {
+  color: #666;
+  margin-top: 5px;
+}
+
+.consulta p {
+  color: #333;
+  margin-top: 10px;
+}
+
+.consulta, .fecha,
+.consulta .estado {
+  position: relative;
+  color: #999;
+  float: right;
+  margin-left: 10px;
+}
+
+
+.consulta{
+  min-width:100%;
+}
+
+.fecha{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.consulta .estado {
+  color: #11ca7d;
+}
+
+.boton-seguimiento {
+  background-color: #11ca7d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.boton-seguimiento:hover {
+  background-color: #11ca7d;
 }
