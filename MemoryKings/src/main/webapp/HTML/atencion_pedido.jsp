@@ -16,9 +16,7 @@
     sdfFecha.setTimeZone(zonaHorariaPeru);
     Empleado empleado = (Empleado) session.getAttribute("user");
     List<Pedido> listaPedidos = (List<Pedido>) session.getAttribute("listaPedidos");
-    listaPedidos.sort((p1, p2) -> p2.getFechaPedido().compareTo(p1.getFechaPedido()));
-
-    
+    listaPedidos.sort((p1, p2) -> p2.getFechaPedido().compareTo(p1.getFechaPedido())); 
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -35,7 +33,8 @@
         <a href="" class="logo">
             <img src="Image/logo.png" alt="logo empresa">
         </a>
-        <form action="SvMenu" method="GET" style="position: absolute; left: 1%; top: 30px;">
+        <form action="SvSession" method="GET" style="position: absolute; left: 1%; top: 30px;">
+            <input type="hidden" name="cancelarProceso" value="menu">
             <button type="submit"><span>Página principal</span></button>
         </form>
     </header>

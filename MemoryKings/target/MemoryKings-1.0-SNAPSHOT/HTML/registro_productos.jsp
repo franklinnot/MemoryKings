@@ -1,4 +1,5 @@
 
+<%@page import="logica.Empleado"%>
 <%@page import="java.util.Base64"%>
 <%@page import="logica.ImagenProducto"%>
 <%@page import="java.util.Collections"%>
@@ -14,7 +15,11 @@
 <%@page import="servlets.SvRegistroProductos"%>
 <% ControladoraLogica ctrl_logica = new ControladoraLogica(); %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%
+    Empleado empleado = (Empleado) session.getAttribute("user");
+    boolean admin = false;
+    if (empleado.getCargo().equals("Administrador")) { admin = true; } 
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,7 +62,7 @@
             <div class="espacio-separacion"></div>
             <div class="cart">
                 <!--este lbl actua como un boton y se usara para abrir el modal donde se almacena registros-->
-                <label for="btn-modal" class="lbl-modal">Registrar Productos</label>
+                <% if(admin){%> <label for="btn-modal" class="lbl-modal">Registrar Productos</label> <%}%>
             </div>
         </div>
 
@@ -109,8 +114,8 @@
                             <td><%=producto.getMarca()%></td>
                             <td><%=producto.getDescripcion()%></td>
                             <td><%=producto.getPrecio()%></td>
-                            <td><%=producto.getCategoria().getIdCategoria()%></td>
-                            <td><%=producto.getProveedor().getIdProveedor()%></td>
+                            <td><%=producto.getCategoria().getNombre()%></td>
+                            <td><%=producto.getProveedor().getNombreComercial()%></td>
                             <td>
                             <%
                             // Buscar las imágenes correspondientes a este producto

@@ -58,6 +58,14 @@ public class ControladoraPersistencia {
         return consultaJpa.findConsultaEntities();
     }
     
+    public Consulta encontrarConsulta(int idConsulta){
+        return consultaJpa.findConsulta(idConsulta);
+    }
+    
+    public void editarConsulta(Consulta consulta) throws Exception{
+        consultaJpa.edit(consulta);
+    }
+    
     // Detalle Pedido
     public void crearDetallePedido(DetallePedido detallePedido){
         detallePedidoJpa.create(detallePedido);
@@ -102,6 +110,7 @@ public class ControladoraPersistencia {
     public List<ImagenProducto> traerImagenProductos(){
         return imagenProductoJpa.findImagenProductoEntities();
     }
+   
     
     // Pedido
     public void crearPedido(Pedido pedido){

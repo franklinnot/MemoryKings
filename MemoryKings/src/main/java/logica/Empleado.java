@@ -212,11 +212,10 @@ public class Empleado implements Serializable {
         ControladoraLogica ctrl_logica = new ControladoraLogica();
 
         List<Empleado> listaEmpleados = ctrl_logica.traerEmpleados();
-        List<Pedido> listaPedidos = ctrl_logica.traerPedidos();
 
         List<Empleado> empleados_aptos = new ArrayList<>();
 
-        // Filtrar empleados por el cargo buscado
+        // filtro a los empleados por el cargo que quiero buscar
         for (Empleado empleado : listaEmpleados) {
             if (empleado != null && cargo.equals(empleado.getCargo())) {
                 System.out.println("El empleado con el id " + empleado.getIdEmpleado() + " es apto");
@@ -224,32 +223,72 @@ public class Empleado implements Serializable {
             }
         }
 
-        // Si no hay pedidos, elegir cualquier empleado apto
-        if (listaPedidos == null || listaPedidos.isEmpty()) {
-            if (!empleados_aptos.isEmpty()) {
-                Empleado emp = empleados_aptos.get(0); // Elegir el primer empleado apto
-                System.out.println("El empleado elegido fue " + emp.getNombres());
-                return emp;
-            } else {
-                return null; // No hay empleados aptos
-            }
-        }
+        Empleado emp = null; // este sera el objeto que devolvere
+        
+        // si se busca a empleados que atienden pedidos
+        if(cargo.equals("Atender Pedido")){
+            List<Pedido> listaPedidos = ctrl_logica.traerPedidos();
 
-        // Buscar empleado con menos pedidos pendientes
-        Empleado emp = null;
-        int cantidad_anterior = Integer.MAX_VALUE; // Inicializar con un valor alto
-
-        for (Empleado empleado : empleados_aptos) {
-            int cantidad_pedidos = 0;
-            for (Pedido pedido : listaPedidos) {
-                if (pedido.getEmpleado() != null && empleado.getIdEmpleado() == pedido.getEmpleado().getIdEmpleado() && "Procesando pedido".equals(pedido.getEstadoPedido())) {
-                    cantidad_pedidos++;
+            // si la lista de pedidos esta vacia, escogemos al primer empleado apto de la lista
+            if (listaPedidos == null || listaPedidos.isEmpty()) {
+                if (!empleados_aptos.isEmpty()) {
+                    Empleado emple = empleados_aptos.get(0);
+                    System.out.println("El empleado elegido fue " + emple.getNombres());
+                    return emple;
+                } else {
+                    return null; // No hay empleados aptos
                 }
             }
-            System.out.println("El empleado " + empleado.getNombres() + " tiene " + cantidad_pedidos + " pedidos en total");
-            if (cantidad_pedidos <= cantidad_anterior) {
-                cantidad_anterior = cantidad_pedidos;
-                emp = empleado;
+
+            // si lo anterior no se cmple, buscamos al empleado con el menor numero de pedidos
+            // pendientes para asignarle un nuevo pedido y balancear los pedidos entre todos los empleados
+            int cantidad_anterior = Integer.MAX_VALUE; // Inicializar con un valor alto
+
+            for (Empleado empleado : empleados_aptos) {
+                int cantidad_pedidos = 0;
+                for (Pedido pedido : listaPedidos) {
+                    if (pedido.getEmpleado() != null && empleado.getIdEmpleado() == pedido.getEmpleado().getIdEmpleado() && "Procesando pedido".equals(pedido.getEstadoPedido())) {
+                        cantidad_pedidos++;
+                    }
+                }
+                System.out.println("El empleado " + empleado.getNombres() + " tiene " + cantidad_pedidos + " pedidos en total");
+                if (cantidad_pedidos <= cantidad_anterior) {
+                    cantidad_anterior = cantidad_pedidos;
+                    emp = empleado;
+                }
+            }
+        }
+        // si se desea obtener a un empleado que atienda una consulta
+        else if (cargo.equals("Atender Consulta")){
+            List<Consulta> listaConsultas = ctrl_logica.traerConsultas();
+
+            // si la lista de consultas esta vacia, escogemos al primer empleado apto de la lista
+            if (listaConsultas == null || listaConsultas.isEmpty()) {
+                if (!empleados_aptos.isEmpty()) {
+                    Empleado emple = empleados_aptos.get(0);
+                    System.out.println("El empleado elegido fue " + emple.getNombres());
+                    return emple;
+                } else {
+                    return null; // No hay empleados aptos
+                }
+            }
+
+            // si lo anterior no se cmple, buscamos al empleado con el menor numero de CONSULTAS
+            // pendientes para asignarle una nueva consulta y balancear las consultas entre todos los empleados
+            int cantidad_anterior = Integer.MAX_VALUE; // Inicializar con un valor alto
+
+            for (Empleado empleado : empleados_aptos) {
+                int cantidad_consultas = 0;
+                for (Consulta consulta : listaConsultas) {
+                    if (consulta.getEmpleado() != null && empleado.getIdEmpleado() == consulta.getEmpleado().getIdEmpleado() && "Procesando consulta".equals(consulta.getEstadoConsulta())) {
+                        cantidad_consultas++;
+                    }
+                }
+                System.out.println("El empleado " + empleado.getNombres() + " tiene " + cantidad_consultas + " consultas en total");
+                if (cantidad_consultas <= cantidad_anterior) {
+                    cantidad_anterior = cantidad_consultas;
+                    emp = empleado;
+                }
             }
         }
 

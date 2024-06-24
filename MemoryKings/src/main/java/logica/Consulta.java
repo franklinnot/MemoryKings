@@ -23,11 +23,14 @@ public class Consulta implements Serializable {
     @ManyToOne
     private Empleado empleado;
     @Basic
-    String tipoConsulta, descripcion, estadoConsulta;
+    String tipoConsulta, descripcion, estadoConsulta, respuesta;
     @Temporal(TemporalType.TIMESTAMP)
     Date fechaRegistro, fechaRespuesta; // "fechaRespuesta" no necesario para el contructor
 
     public Consulta() {
+        
+        this.estadoConsulta = "Procesando consulta";
+        
         TimeZone zonaHorariaPeru = TimeZone.getTimeZone("America/Lima");        
         // Crear un objeto Date para la fecha actual
         Date fechaActual = new Date();   
@@ -43,7 +46,7 @@ public class Consulta implements Serializable {
         this.tipoConsulta = tipoConsulta;
         this.descripcion = descripcion;
         
-        this.estadoConsulta = "Pendiente";
+        this.estadoConsulta = "Procesando consulta";
         
         TimeZone zonaHorariaPeru = TimeZone.getTimeZone("America/Lima");        
         // Crear un objeto Date para la fecha actual
@@ -62,6 +65,14 @@ public class Consulta implements Serializable {
         this.idConsulta = idConsulta;
     }
 
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
+    }
+    
     public Cliente getCliente() {
         return cliente;
     }
@@ -94,7 +105,7 @@ public class Consulta implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public String isEstadoConsulta() {
+    public String getEstadoConsulta() {
         return estadoConsulta;
     }
 

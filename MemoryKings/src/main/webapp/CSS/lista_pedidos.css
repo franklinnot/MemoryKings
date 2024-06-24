@@ -1,0 +1,220 @@
+
+/* Lista_Pedidos.css */
+
+body {
+    display: grid;
+    grid-template-columns: 0.5fr 2.5fr;
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    min-width: 100vw;
+    min-height: 100vh;
+    
+}
+
+.sidebar {
+    
+    font-weight: bold;
+    background-color: #2C2F35;
+    color: #fff;
+    height: 100%;
+    padding: 20px 10px;
+}
+
+.sidebar header {
+    font-size: 24px;
+    text-align: left;
+    margin-bottom: 20px;
+    padding-left: 10px
+}
+
+.sidebar a,button{
+    display: block;
+    padding: 10px;
+    color: #ccc;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: color 0.3s;
+}
+
+.sidebar a:hover {
+    color: #fff;
+}
+
+.main {
+    padding: 20px;
+}
+
+.elements {
+    display: grid;
+    grid-template-columns: 0.2fr auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+     "titulo titulo"
+     "a1 n°_p"
+    ;
+    column-gap: 40px;
+    row-gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-left: 50px;
+}
+.form_e{
+    display: grid;
+    grid-template-columns: 0.1fr 0.5fr 0.5fr;
+    grid-area: a1;
+    column-gap: 40px;
+
+}
+.titulo {
+    grid-area: titulo;
+    font-weight: bold;
+    padding-top: 20px;
+    font-size: 24px;
+}
+.cantidad_productos{
+    grid-area: n°_p;
+    font-weight: bold;
+}
+.elements input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.btn_buscar{
+    background-color: #09c369;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.btn_buscar:hover{
+    background-color: #099953;
+}
+.btn_limpiar {
+    background-color: #c33b09;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn_limpiar:hover {
+    background-color: #b7ca0e;
+}
+
+.list_products {
+    display: grid;
+    /*grid-template-columns: 100%;
+    grid-template-rows: auto;
+    align-items: center;
+    align-content: start;
+    position: relative;
+    grid-row: 100%;*/
+    padding: 40px;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    
+}
+
+.producto {
+    display: grid;
+    grid-template-columns: 300px auto;
+    grid-template-rows: 70px 200px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    grid-template-areas: 
+     "fecha_p fecha_p"
+     "img descripcion"
+    ;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+.fecha_pedido{
+    grid-area: fecha_p;
+    position: relative;
+    padding-left: 40px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #2C2F35;
+
+}
+.imagen_p{
+    grid-area: img;
+    width: 90%;
+    height: 90%;
+    position: relative;
+    object-fit: contain;
+    margin-right: 20px;
+    margin-left: 30px;
+    margin-top: 25px;
+    padding-bottom: 10px;
+    bottom: 10px;
+}
+
+.descripcion_p {
+    display: block;
+    position: relative;
+    bottom: 10px;
+    width: 70%;
+    left: 5%;
+    grid-area: descripcion;
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.descripcion_p p {
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 600px) {
+    body {
+        grid-template-columns: 100%;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: 100%;
+    }
+
+    .main {
+        margin-left: 0;
+    }
+    
+    .fecha_pedido{  
+        padding-top: 15px;   
+    }
+    .form_e{
+        grid-template-columns: 100%;
+        row-gap: 15px;
+    }
+    .producto {
+        grid-template-columns: 100%;
+        grid-template-rows: auto;
+        grid-template-areas: 
+         "fecha_p"
+         "img"
+         "descripcion";
+        
+    }
+    .elements{
+        padding: 30px;
+        column-gap: 60px;
+        padding-left: 60px;
+    }
+    
+    .imagen_p {
+        width: 100%;
+        height: 50%;
+    }
+
+    .descripcion_p {
+        width: 90%;
+    }
+}

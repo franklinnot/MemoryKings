@@ -13,194 +13,195 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/normalize.css">
-    <link rel="stylesheet" href="CSS/producto.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="CSS/normalize.css">
+        <link rel="stylesheet" href="CSS/producto.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-    <title>Productos | MemoryKings</title>
-</head>
-<body>
-    <header>
-        <div class="juntarlogo">
-            <!--BOTON MENU-->
-            <div class="btnmenu">
-                <button class="menu-btn"><i class='bx bx-menu'></i></button>
+        <title>Productos | MemoryKings</title>
+    </head>
+    <body>
+        <header>
+            <div class="juntarlogo">
+                <!--BOTON MENU-->
+                <div class="btnmenu">
+                    <button class="menu-btn"><i class='bx bx-menu'></i></button>
+                </div>
+                <div class="espacio-separacion"></div>
+                <!--AÑADIR LOGO-->
+                <a href="#" class="logo">
+                    <img src="Image/logo.png" alt="logo empresa">
+                    <h2 class="nombre_empresa"></h2>
+                </a>
             </div>
-            <div class="espacio-separacion"></div>
-            <!--AÑADIR LOGO-->
-            <a href="#" class="logo">
-                <img src="Image/logo.png" alt="logo empresa">
-                <h2 class="nombre_empresa"></h2>
-            </a>
-        </div>
-        
-        
-        <div class="juntarlogo">
-            <!--CREAR BARRA DE BUSQUEDA-->
-            <div class="container">
-                <form>
-                    <input type="text" id="productInput" name="productInput" placeholder="Buscar..." autocomplete="off">
-                    <input type="hidden" id="productCode" name="productCode">
-                    <div id="suggestions" class="suggestions"></div>
-                    <button type="submit" id="botonBusqueda"><i class='bx bx-search'></i></button>
+
+
+            <div class="juntarlogo">
+                <!--CREAR BARRA DE BUSQUEDA-->
+                <form action="SvListaPedidos" method="GET" style="display: flex;padding-right: 40px;left: 30%;min-width: 220px;min-height: 25px;">
+                    <button style="border: none;border-radius: 5px;width: -webkit-fill-available;min-height: 35px;background-color: gold;"><span>Lista de pedidos</span></button>
                 </form>
-                <form style="
-                position: absolute;
-                right: -25px;
-                top: 0;
-            ">
-                    <button style="height: 40px;width: 20px;border-radius: 5px;">X</button>
-                </form>
-            </div>
-            <div class="espacio-separacion"></div>
-            
-            <div class="datito">
-            <%
-                // validar con un try catch cuando lista de productos sea null
-                Mewing mewing = (Mewing) session.getAttribute("user");
-                
-                if (mewing != null && mewing.getCliente() != null) {
-                    Cliente cliente = mewing.getCliente();
-            %>
+                <div class="container">
+                    <form action="SvBusquedaProductos" method="GET">
+                        <input type="text" id="productInput" name="productInput" placeholder="Buscar..." autocomplete="off">
+                        <input type="hidden" id="productCode" name="productCode">
+                        <div id="suggestions" class="suggestions"></div>
+                        <button type="submit" id="botonBusqueda"><i class='bx bx-search'></i></button>
+                    </form>
+                    <form action="SvBusquedaProductos" method="GET" style="
+                          position: absolute;
+                          right: -25px;
+                          top: 0;
+                          ">
+                        <input type="hidden" id="productCode" name="productCode" value="0">
+                        <button style="height: 38px;width: 20px;border-radius: 5px; border: none;">X</button>
+                    </form>
+                </div>
+                <div class="espacio-separacion"></div>
+
+                <div class="datito">
+                    <%
+                        // validar con un try catch cuando lista de productos sea null
+                        Mewing mewing = (Mewing) session.getAttribute("user");
+
+                        if (mewing != null && mewing.getCliente() != null) {
+                            Cliente cliente = mewing.getCliente();
+                    %>
                     <h2>Hola <%=cliente.getNombres()%>!</h2>
                     <form action="SvSession" method="POST">
                         <button id="salir" name="btn_close_session" type="submit">Cerrar sesión</button>
                     </form>
-            <% 
-                } else { 
-            %>
-                    <h2><a style="text-decoration: none; color: white;" href="<%=request.getContextPath()%>/">Inicia sesión</a></h2>
-            <% 
-                } 
-            %>
-
-            </div>
-            
-            <div class="cart">
-                <form action="SvCarritoCompras" method="POST">
-                    <button type="submit" ><i class='bx bxs-cart'></i></button>
-                </form>
-            </div>
-        </div>
-      
-        <!-- MENÚ DESPLEGABLE -->
-        <nav class="dropdown-menu">
-            <ul>
-                        <li>
-                            <form action="SvCategorias" method="GET">
-                                <input type="hidden" name="idCategoria" value="0">
-                                <button>Todos</button>
-                            </form>
-                        </li>
-                <%
-                    List<Categoria> listaCategorias = ctrl_logica.traerCategorias();
-                    for (Categoria ct : listaCategorias){
-                %>
-                        <li>
-                            <form action="SvCategorias" method="GET">
-                                <input type="hidden" name="idCategoria" value="<%=ct.getIdCategoria()%>">
-                                <button><%=ct.getNombre()%></button>
-                            </form>
-                        </li>
-                <%
-                    }
-                %>
-            </ul>
-        </nav>
-    </header>
-
-
-    <main>
-        <!-- contenido principal página -->
-        <div class="product-wrapper">
-            <div class="product-container">
-                
-                <%
-                
-                List<Producto> listaProductos = new ArrayList<>();
-                List<ImagenProducto> listaImagenes = new ArrayList<>();
-                listaProductos = (List<Producto>) session.getAttribute("listaProductos");
-                listaImagenes = ctrl_logica.traerImagenProductos();
-                for (Producto producto : listaProductos){
-
-                %>
-                
-                <div class="product">
-                    <div class="product-images">
-                        <%
-                        // Buscar las imágenes correspondientes a este producto
-                        for (ImagenProducto imagen : listaImagenes) {
-                            if (imagen.getProducto().getIdProducto() == producto.getIdProducto()) {
-                                byte[] imagenBytes = imagen.getImagen();
-                                String base64Image = Base64.getEncoder().encodeToString(imagenBytes);
-                        %>
-                        <img src="data:image/jpeg;base64,<%=base64Image%>" alt="Imagen del Producto";"/>
-                        <%
-                            }
-                        }
-                        %>
-                    </div>
-                    <h3><%=producto.getNombre()%> S/.<%=producto.getPrecio()%></h3>
                     <%
-                    String descripcion = "";
-                    char[] caracteres = producto.getDescripcion().toCharArray();
-                    StringBuilder sb = new StringBuilder();
-                    int n = 0;
-                    for (int i = 0; i < caracteres.length && i < 100; i++) {
-                        sb.append(caracteres[i]);
-                        n++;
-                    }
+                    } else {
+                    %>
+                    <h2><a style="text-decoration: none; color: white;" href="<%=request.getContextPath()%>/">Inicia sesión</a></h2>
+                    <%
+                        }
+                    %>
 
-                    if(n <= 100){
+                </div>
+
+                <div class="cart">
+                    <form action="SvCarritoCompras" method="POST">
+                        <button type="submit" ><i class='bx bxs-cart'></i></button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- MENÚ DESPLEGABLE -->
+            <nav class="dropdown-menu">
+                <ul>
+                    <li>
+                        <form action="SvCategorias" method="GET">
+                            <input type="hidden" name="idCategoria" value="0">
+                            <button>Todos</button>
+                        </form>
+                    </li>
+                    <%
+                        List<Categoria> listaCategorias = ctrl_logica.traerCategorias();
+                        for (Categoria ct : listaCategorias) {
+                    %>
+                    <li>
+                        <form action="SvCategorias" method="GET">
+                            <input type="hidden" name="idCategoria" value="<%=ct.getIdCategoria()%>">
+                            <button><%=ct.getNombre()%></button>
+                        </form>
+                    </li>
+                    <%
+                        }
+                    %>
+                </ul>
+            </nav>
+        </header>
+
+
+        <main>
+            <!-- contenido principal página -->
+            <div class="product-wrapper">
+                <div class="product-container">
+
+                    <%
+                        List<Producto> listaProductos = new ArrayList<>();
+                        List<ImagenProducto> listaImagenes = new ArrayList<>();
+                        listaProductos = (List<Producto>) session.getAttribute("listaProductos");
+                        listaImagenes = ctrl_logica.traerImagenProductos();
+                        for (Producto producto : listaProductos) {
+
+                    %>
+
+                    <div class="product">
+                        <div class="product-images">
+                            <%                            // Buscar las imágenes correspondientes a este producto
+                                for (ImagenProducto imagen : listaImagenes) {
+                                    if (imagen.getProducto().getIdProducto() == producto.getIdProducto()) {
+                                        byte[] imagenBytes = imagen.getImagen();
+                                        String base64Image = Base64.getEncoder().encodeToString(imagenBytes);
+                            %>
+                            <img src="data:image/jpeg;base64,<%=base64Image%>" alt="Imagen del Producto";"/>
+                            <%
+                                    }
+                                }
+                            %>
+                        </div>
+                        <h3><%=producto.getNombre()%> S/.<%=producto.getPrecio()%></h3>
+                        <%
+                            String descripcion = "";
+                            char[] caracteres = producto.getDescripcion().toCharArray();
+                            StringBuilder sb = new StringBuilder();
+                            int n = 0;
+                            for (int i = 0; i < caracteres.length && i < 100; i++) {
+                                sb.append(caracteres[i]);
+                                n++;
+                            }
+
+                            if (n <= 100) {
                         %>
                         <p><%=producto.getDescripcion()%></p>
                         <%
-                    }
-                    else{
-                    %>
+                        } else {
+                        %>
                         <p><%=descripcion%>...</p>
+                        <%
+                            }
+                        %>
+
+                        <form action="SvCarritoCompras" method="GET">
+                            <input type="hidden" name="idProducto" value="<%=producto.getIdProducto()%>">
+                            <button type="submit" >Agregar al carrito</button>
+                        </form>
+                    </div>
+
                     <%
                         }
                     %>
-                    
-                    <form action="SvCarritoCompras" method="GET">
-                        <input type="hidden" name="idProducto" value="<%=producto.getIdProducto()%>">
-                        <button type="submit" >Agregar al carrito</button>
-                    </form>
-                </div>
-                
-                <%
-                }
-                %>
 
+                </div>
             </div>
-        </div>
-    </main>
-    
-    <footer>
-        <form action="SvConsultas" method="GET">
-            <%
-            Cliente cliente = mewing.getCliente();
-            %>
-            <div class="consult">
-                <input type="hidden" name="idCliente" value="<%=cliente.getIdCliente()%>">
-                <button type="submit"><i class='bx bx-message-dots'></i> Consultas</button>
+        </main>
+
+        <footer>
+            <form action="SvConsultas" method="GET">
+                <%
+                    Cliente cliente = mewing.getCliente();
+                %>
+                <div class="consult">
+                    <input type="hidden" name="idCliente" value="<%=cliente.getIdCliente()%>">
+                    <button type="submit"><i class='bx bx-message-dots'></i> Consultas</button>
+                </div>
+            </form>
+            <div class="social">
+                <p>Síguenos en:</p>
+                <ul>
+                    <li><a href="#"><i class='bx bxl-facebook-circle'></i></a></li>
+                    <li><a href="#"><i class='bx bxl-instagram-alt'></i></a></li>
+                    <li><a href="#"><i class='bx bxl-tiktok'></i></a></li>
+                    <li><a href="#"><i class='bx bxl-youtube'></i></a></li>
+                </ul>
             </div>
-        </form>
-        <div class="social">
-            <p>Síguenos en:</p>
-            <ul>
-                <li><a href="#"><i class='bx bxl-facebook-circle'></i></a></li>
-                <li><a href="#"><i class='bx bxl-instagram-alt'></i></a></li>
-                <li><a href="#"><i class='bx bxl-tiktok'></i></a></li>
-                <li><a href="#"><i class='bx bxl-youtube'></i></a></li>
-            </ul>
-        </div>
-    </footer>
-    <script src="JavaScript/producto.js"></script>
+        </footer>
+        <script src="JavaScript/producto.js"></script>
     <script>
         <% 
             List<Producto> ls = ctrl_logica.traerProductos();

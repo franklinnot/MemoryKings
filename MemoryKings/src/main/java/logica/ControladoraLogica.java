@@ -42,6 +42,14 @@ public class ControladoraLogica {
         return ctrl_persistencia.traerConsultas();
     }
     
+    public Consulta encontrarConsulta(int idConsulta){
+        return ctrl_persistencia.encontrarConsulta(idConsulta);
+    }
+    
+    public void editarConsulta(Consulta consulta) throws Exception{
+        ctrl_persistencia.editarConsulta(consulta);
+    }
+    
     // DetallePedido
     public void crearDetallePedido(DetallePedido detallePedido){
         ctrl_persistencia.crearDetallePedido(detallePedido);

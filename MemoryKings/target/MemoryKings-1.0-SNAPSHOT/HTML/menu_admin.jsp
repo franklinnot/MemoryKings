@@ -8,6 +8,8 @@
     Empleado empleado = (Empleado) session.getAttribute("user");
     String nombre = empleado.getNombres();
     String cargo = empleado.getCargo();
+    boolean admin = true;
+    if (!cargo.equals("Administrador")) { admin = false; }
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -56,19 +58,33 @@
                     <a target="_blank" href="HTML/clientes.jsp"><span>Clientes</span></a>
                 </div>
                 <div>
-                    <a target="_blank" href=""><span>Consultas</span></a>
+                    <%
+                        if (cargo.equals("Atender Consulta") || cargo.equals("Administrador")){
+                    %>
+                            <form action="SvAtenderConsulta" method="GET">
+                    <%
+                        }
+                    %>
+                                <button type="submit" id="" type="button"><span>Consultas</span></button>
+                    <%
+                        if (cargo.equals("Atender Consulta") || cargo.equals("Administrador")){
+                    %>
+                            </form>
+                    <%
+                        }
+                    %>
                 </div>
             </div>
             
             <div class="menu_fila_dos">
                 <div>
-                    <button id="btnEmpleado" type="button"><span>Empleado</span></button>
+                    <button <% if(!admin){%> disabled <%}%> id="btnEmpleado" type="button"><span>Empleado</span></button>
                 </div>
                 <div>
-                    <button id="btnProveedor" type="button"><span>Proveedor</span></button>
+                    <button <% if(!admin){%> disabled <%}%> id="btnProveedor" type="button"><span>Proveedor</span></button>
                 </div>
                 <div>
-                    <button id="btnDistribuidor" type="button"><span>Distribuidor</span></button>
+                    <button <% if(!admin){%> disabled <%}%> id="btnDistribuidor" type="button"><span>Distribuidor</span></button>
                 </div>
             </div>
             

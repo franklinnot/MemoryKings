@@ -30,9 +30,19 @@
             <jsp:include page="HTML/detalle_compra.jsp"/>
         <%    
         }
+        else if(section.equals("lista_pedidos")){
+        %>
+            <jsp:include page="HTML/lista_pedidos.jsp"/>
+        <%    
+        }
         else if(section.equals("consultas")){
         %>
             <jsp:include page="HTML/consulta_cliente.jsp"/>
+        <%    
+        }
+        else if(section.equals("seguimiento")){
+        %>
+            <jsp:include page="HTML/seguimiento_consulta.jsp"/>
         <%    
         }
         else if (section.equals("pago")){
@@ -56,9 +66,24 @@
             <jsp:include page="HTML/atencion_pedido.jsp"/>
         <%
         }
+        else if (section.equals("consultas")){
+        %>
+            <jsp:include page="HTML/atencion_consulta.jsp"/>
+        <%
+        }
+        else if (section.equals("responder_consulta")){
+        %>
+            <jsp:include page="HTML/respuesta_consulta.jsp"/>
+        <%
+        }
         else if(section.equals("carrito")){
         %>
             <jsp:include page="HTML/detalle_compra.jsp"/>
+        <%    
+        }
+        else if(section.equals("clientes")){
+        %>
+            <jsp:include page="HTML/clientes.jsp"/>
         <%    
         }
         else if (section.equals("pago")){

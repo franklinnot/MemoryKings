@@ -42,6 +42,9 @@ public class Pedido implements Serializable {
     Date fechaPedido, fechaEnvio; // "fechaEnvio" no es necesario para el contructor
 
     public Pedido() {
+        
+        this.estadoPedido = "Procesando pedido";
+        
         TimeZone zonaHorariaPeru = TimeZone.getTimeZone("America/Lima");        
         // Crear un objeto Date para la fecha actual
         Date fechaActual = new Date();   
@@ -55,7 +58,7 @@ public class Pedido implements Serializable {
         this.cliente = cliente;
         this.empleado = empleado;
         this.distribuidor = distribuidor;
-        this.estadoPedido = "Pendiente";
+        this.estadoPedido = "Procesando pedido";
         
         this.metodoPago = metodoPago;
         

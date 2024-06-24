@@ -78,5 +78,18 @@ public class ImagenProducto implements Serializable {
         return null;
     }  
     
+    public static ImagenProducto obtenerImagen(int idProducto) {
+        
+        ControladoraLogica ctrl_logica = new ControladoraLogica();
+        List<ImagenProducto> imagenes = ctrl_logica.traerImagenProductos();
+        
+        for(ImagenProducto img : imagenes){
+            if(img.getProducto().getIdProducto() == idProducto){
+                return img;
+            }
+        }
+        
+        return null;
+    }  
           
 }
