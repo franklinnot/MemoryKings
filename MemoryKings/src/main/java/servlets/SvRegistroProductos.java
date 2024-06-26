@@ -68,6 +68,14 @@ public class SvRegistroProductos extends HttpServlet {
         float precio = Float.parseFloat(request.getParameter("precio"));
         String categoria = request.getParameter("categoria");
         String proveedor = request.getParameter("proveedor");    
+        String ct_opcional = request.getParameter("categoria_opcional");
+        
+        if(ct_opcional != null && !ct_opcional.isEmpty()){
+            Categoria  ct = new Categoria();
+            ct.setNombre(ct_opcional);
+            ctrl_logica.crearCategoria(ct);
+            categoria = Integer.toString(ct.getIdCategoria());
+        }
         
         nuevo_producto.setNombre(nombre);
         nuevo_producto.setDescripcion(descripcion);

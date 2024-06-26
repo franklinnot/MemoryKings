@@ -166,7 +166,7 @@
                         
                         <!-- dentro del atributo value, ira el id de la categoria y proveedor respectivamente-->
                         <!-- al momento de validar su seleccion, comprobar que sean distintos de 0 -->
-                        <select name="categoria" required>
+                        <select name="categoria">
                             <option value="0" disabled selected>Categoría</option>
                             
                             <%
@@ -209,9 +209,7 @@
                     <!--boton de registrar-->
                     <button id="btn-registrar" type="submit" class="btn">Registrar</button>
                 
-                </div>
-                
-                
+                </div>      
             </form>
         </div>
     </div>
