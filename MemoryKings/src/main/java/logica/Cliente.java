@@ -1,49 +1,75 @@
 
 package logica;
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.TimeZone;
+import org.mindrot.jbcrypt.BCrypt;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 public class Cliente implements Serializable{
     
-    
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     int idCliente;
-    long telefono;
-    @Basic
-    int dni;  
-    String nombres, apellidos, correo, direccion, genero, password; // Importante
+    @OneToMany(mappedBy="cliente")
+    private LinkedList<Consulta> listaConsulta;
+    @OneToMany(mappedBy="cliente")
+    private LinkedList<Pedido> listaPedido;
+    @Basic 
+    String telefono, dni, nombres, apellidos, correo, direccion, genero, password; // Importante
     String metodoPagoPref, estadoCuenta; // no necesario para el contructor
-    
     @Temporal(TemporalType.DATE)
     Date fechaNacimiento;
-    
     @Temporal(TemporalType.TIMESTAMP)
     Date fechaRegistro; // no necesario para el contructor
     
     public Cliente(){
-        
+        TimeZone zonaHorariaPeru = TimeZone.getTimeZone("America/Lima");        
+        // Crear un objeto Date para la fecha actual
+        Date fechaActual = new Date();   
+        // Obtener el desplazamiento de la zona horaria de Perú en milisegundos
+        int desplazamientoPeru = zonaHorariaPeru.getRawOffset();      
+        // Ajustar la fecha actual para la zona horaria de Perú
+        this.fechaRegistro = new Date(fechaActual.getTime() + desplazamientoPeru);
     }
+    
 
     // dni , nombres, apellidos, correo, password, telefono, direccion, genero, fechaNacimiento 
-    public Cliente(int dni, String nombres, String apellidos, String correo ,String password, long telefono, String direccion, String genero, Date fechaNacimiento) {
-        this.dni = dni;
+    public Cliente(String dni, String nombres, String apellidos, String correo, String password, String telefono, String direccion, String genero, Date fechaNacimiento) {
+        // BCrypt.hashpw(contrasenaPlana, BCrypt.gensalt());
         this.telefono = telefono;
+        this.dni = dni;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.correo = correo;
         this.direccion = direccion;
         this.genero = genero;
-        this.password = password;
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
         this.fechaNacimiento = fechaNacimiento;
+        
+        
+        TimeZone zonaHorariaPeru = TimeZone.getTimeZone("America/Lima");        
+        // Crear un objeto Date para la fecha actual
+        Date fechaActual = new Date();   
+        // Obtener el desplazamiento de la zona horaria de Perú en milisegundos
+        int desplazamientoPeru = zonaHorariaPeru.getRawOffset();      
+        // Ajustar la fecha actual para la zona horaria de Perú
+        this.fechaRegistro = new Date(fechaActual.getTime() + desplazamientoPeru);
+        
+        
+        this.metodoPagoPref = "Indefinido";
+        this.estadoCuenta = "Activo";
     }
 
     public int getIdCliente() {
@@ -54,20 +80,36 @@ public class Cliente implements Serializable{
         this.idCliente = idCliente;
     }
 
-    public int getDni() {
-        return dni;
+    public LinkedList<Consulta> getListaConsulta() {
+        return listaConsulta;
     }
 
-    public void setDni(int dni) {
-        this.dni = dni;
+    public void setListaConsulta(LinkedList<Consulta> listaConsulta) {
+        this.listaConsulta = listaConsulta;
     }
 
-    public long getTelefono() {
+    public LinkedList<Pedido> getListaPedido() {
+        return listaPedido;
+    }
+
+    public void setListaPedido(LinkedList<Pedido> listaPedido) {
+        this.listaPedido = listaPedido;
+    }
+
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(long telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     public String getNombres() {
@@ -118,6 +160,14 @@ public class Cliente implements Serializable{
         this.password = password;
     }
 
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
     public String getMetodoPagoPref() {
         return metodoPagoPref;
     }
@@ -134,14 +184,6 @@ public class Cliente implements Serializable{
         this.estadoCuenta = estadoCuenta;
     }
 
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
     public Date getFechaRegistro() {
         return fechaRegistro;
     }
@@ -149,11 +191,25 @@ public class Cliente implements Serializable{
     public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
+    
+    public static Cliente obtenerCliente(List<Cliente> listaClientes, int idCliente) {
+        int izquierda = 0;
+        int derecha = listaClientes.size() - 1;
+        listaClientes.sort(Comparator.comparingInt(clt -> clt.getIdCliente()));
+        while (izquierda <= derecha) {
+            int medio = izquierda + (derecha - izquierda) / 2;
+            Cliente cliente = listaClientes.get(medio);
 
-    
+            if (cliente.getIdCliente() == idCliente) {
+                return cliente;
+            } else if (cliente.getIdCliente() < idCliente) {
+                izquierda = medio + 1;
+            } else {
+                derecha = medio - 1;
+            }
+        }
 
-    
-    
-    
+        return null;
+    }
    
 }

@@ -1,0 +1,206 @@
+* {
+  box-sizing: border-box;
+  font-size:medium;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f4f4f4; /* Fondo ligero para mejor contraste */
+}
+
+.div_principal { 
+  width: 70%;
+  height: auto;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(49, 49, 49);
+  border-radius: 15px;
+  box-shadow: 4px 4px 10px rgb(0, 0, 0);
+  padding-top: 20px;
+  position: relative;
+}
+
+.logo_container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 20px;
+}
+
+#loguito {
+  width: 150px;
+}
+
+.div_division1 {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+}
+
+.div_inputs,
+.div_combobox {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  box-shadow: 4px 4px 10px rgb(0, 0, 0);
+  padding: 10px;
+  margin: 0 10px;
+}
+
+.div_inputs {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px; 
+}
+
+.div_combobox {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+input,
+#cbtiposervicio {
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+}
+
+#cbtiposervicio {
+  background-color: rgb(75, 74, 74);
+  color: aliceblue;
+}
+
+.div_textarea {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  box-shadow: 4px 4px 10px rgb(0, 0, 0);
+  padding: 10px;
+  margin-top: 20px;
+  width: 96%;
+}
+
+#descripcion {
+  width: 100%;
+  height: 100px;
+  border-radius: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+#lbldescripcion {
+  margin-bottom: 5px;
+  align-self: flex-start;
+}
+
+.div_botones {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 30px;
+}
+
+#btregresar,
+#btenviar {
+  width: 120px;
+  height: 45px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 10px rgb(0, 0, 0);
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin: 0 15px;
+}
+
+#btregresar {
+  background-color:  #ccc;
+}
+
+#btenviar {
+  background-color: #11ca7d;
+  color: #000000;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+#consultas-container {
+  width: 100%;
+  padding: 20px;
+}
+
+.consulta {
+  border: 1px solid #ddd;
+  border-left: 5px solid #11ca7d;
+  padding: 10px;
+  margin: 20px 0;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+.consulta h2 {
+  color: #333;
+}
+
+.consulta h3 {
+  color: #666;
+  margin-top: 5px;
+}
+
+.consulta p {
+  color: #333;
+  margin-top: 10px;
+}
+
+.consulta, .fecha,
+.consulta .estado {
+  position: relative;
+  color: #999;
+  float: right;
+  margin-left: 10px;
+}
+
+
+.consulta{
+  min-width:100%;
+}
+
+.fecha{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.consulta .estado {
+  color: #11ca7d;
+}
+
+.boton-seguimiento {
+  background-color: #11ca7d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.boton-seguimiento:hover {
+  background-color: #11ca7d;
+}

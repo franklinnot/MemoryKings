@@ -1,0 +1,393 @@
+/* Estilos generales */
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;    
+    background-color: #f5f5f5;
+}
+
+header, main, footer {
+    flex-shrink: 0;
+}
+
+main {
+    flex: 1;    
+}
+
+/* Encabezado */
+header {
+    background-color: #2C2F35;
+    color: #FDF9FC;
+    padding: 20px 30px; /*  en 10 dice q Reduce el padding para mayor compatibilidad con diseño fijo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.juntarlogo {
+    display: flex;
+    align-items: center;
+}
+
+.espacio-separacion {
+    margin-left: 20px;
+}
+
+.logo img {
+    max-width: 200px;
+}
+
+@media (max-width: 700px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header .juntarlogo {
+        width: 100%;
+        justify-content: center;
+        margin: 10px 0;
+    }    
+}
+
+.menu-btn {
+    background-color: transparent;
+    border: none;
+    color: #09C46A;
+    font-size: 30px;
+    cursor: pointer;
+    outline: none;
+}
+
+.container {
+    position: relative;
+}
+
+input {
+    width: 300px; /* Ajustado para mantener un diseño limpio */
+    padding: 10px;
+    padding-right: 35px;
+    border-radius: 5px;
+    border: 0;
+    outline: none;
+    font-size: 1rem;
+}
+
+#botonBusqueda {
+    background: #09C46A;
+    padding: 10px 15px;
+    position: absolute;
+    border: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 0 5px 5px 0;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+#botonBusqueda:hover {
+    background-color: #515966;
+}
+
+/* Menú desplegable (oculto) */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 109px; /* Ajusta según sea necesario */
+    left: 0;
+    background-color: #ede8ec;
+    border: 1px solid #ede8ec;
+    z-index: 1000;
+}
+
+.dropdown-menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown-menu ul li {
+    border-bottom: 1px solid #ede8ec;
+}
+
+.dropdown-menu ul li a {
+    display: block;
+    padding: 10px 60px;
+    text-decoration: none;
+    color: #515966;
+    font-weight: bold;
+}
+
+.dropdown-menu ul li a:hover {
+    color: #09C46A;
+}
+
+/* Main */
+.contenedor {
+    display: flex;
+    font-family: Arial, sans-serif;   
+    flex-wrap: wrap;    
+    justify-content: space-around;
+    gap: 50px;
+    margin-top: 100px;   
+    padding:40px;
+}
+
+
+.detalle-pedido{   
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);  
+    border-radius: 10px;    
+    min-width: 600px;
+    max-width: 1000px;  
+    min-height: 500px;
+    max-height: 600px;
+    order:1;
+    
+}
+.resumen_pago {
+    display: flex;
+    flex-direction: column;
+    gap: 70px;    
+    padding: 10px;
+    background-color: transparent;  
+    /*width: 320px;*/
+    min-width: 300px;
+    max-width: 1000px;  
+    min-height: 300px;
+    max-height: 450px;
+    order: 3;
+
+}
+.parte {    
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+    padding: 18px;
+    border: transparent;   
+}
+
+.parte-detalle { 
+    background: linear-gradient(to right, #09C46A, #53e39d,#53e39d, #b2eacf, transparent);    
+    grid-column: 1/3;
+    border-radius: 8px 0px 0px 8px;
+}
+
+.parte-cliente, .parte-pedido {
+    background-color: #7d8085; 
+    border-radius: 8px;      
+    grid-column: 1/3; 
+}
+
+.parte-datacliente, .parte-datapedido {
+    background: #ede8ec;    
+}
+
+.input-box {
+    display: flex;
+    gap: 40px;     
+}
+
+.input-field {
+    display: flex;    
+    align-items: center;
+    flex: 1;    
+    padding: 5px;
+    
+}
+#Fecha {     
+    max-width: 42%;
+}
+
+.input-field .bx {
+    order: -1;
+    margin-right: 10px; /* Adjust spacing as needed */
+}
+
+.input-field p {
+    margin: 0;
+    margin-right: 10px;
+    font-size: 16px;      
+    font-weight: normal;
+    min-width: fit-content;
+}
+.input-field input{
+    width: 350px;
+    padding: 10px;
+    padding-right: 35px;
+    border-radius: 5px;
+    border: 0;     
+    outline: none;
+    font-size: 1rem;     
+}
+
+#cantidad_productos{
+    max-width: fit-content;
+}
+
+.grid_resumen, .grid_metodo_pago {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+}
+
+.grid_resumen div {    
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 10px;
+}
+
+.resumen {
+    grid-column: span 2;     
+    background-color: #ecf0f1;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.resumen h2, .metodo_pago h2 {
+    text-align: center;
+    font-size: 1.5em;
+    color: rgb(0, 0, 0);
+    padding: 4px;
+}
+
+.input-field input, .input-field select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;    
+    border-radius: 5px;
+}
+
+/*Seleccion de metodo de pago*/
+.metodo_pago {
+    background-color: #ecf0f1;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.seleccion_pago {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.seleccion_pago p {
+    margin: 0 0 10px 0;
+    font-size: 1.1em;
+    color: #000;
+    text-align: left;
+    width: 100%;
+}
+
+#metodo_pago_select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="20" viewBox="0 0 24 24"><path fill="black" d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 30px;
+}
+
+.option_group {
+    padding: 10px;
+}
+
+.btn_container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn {
+    padding: 10px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #09C46A;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.btn:hover {
+    background-color: #515966;
+}
+
+.btn_pagar {
+    padding: 10px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #09C46A;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    width: 100%;
+}
+.btn_pagar:hover {
+    background-color: #515966;
+}
+
+@media (max-width: 768px) {
+    .contenedor {        
+        flex-direction: column;
+        align-items: center;
+    }
+
+    main {
+        display: flex;
+        margin: 70px 0 100px 0;           
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .detalle-pedido, .resumen_pago {        
+        width: 100%;
+        min-height: auto; /* Ajusta el mínimo según el contenido */
+        /*max-width: 500px;
+        margin: 0 auto 10px auto; /* Ajusta según sea necesario */
+    } 
+}
+
+@media (max-width: 700px) {
+    .grid_resumen, .grid_metodo_pago {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+.btnmenu{
+    position: absolute;
+    transform: scaleX(1.5);
+    left: 2%;
+}
+
+
+

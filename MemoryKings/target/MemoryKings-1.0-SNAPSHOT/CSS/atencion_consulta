@@ -1,0 +1,190 @@
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 30px;
+    width: 500px; /* Ancho predeterminado del modal */
+    max-height: 80vh; /* Altura máxima del modal, ajustada al 80% del viewport height */
+    overflow-y: auto; /* Añade scroll vertical si el contenido es demasiado largo */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-align: center; /* Centra el contenido dentro del modal */
+}
+
+.modal-content {
+    /* Ajusta el contenido interno según el tamaño del modal */
+    max-width: 100%;
+    max-height: calc(100% - 60px); /* Ajusta la altura del contenido interno */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #aaa;
+}
+
+.modal-content textarea {
+    width: calc(100% - 20px); /* Ajusta el ancho del textarea para incluir el padding del modal */
+    height: 200px; /* Ajusta la altura del textarea según tus necesidades */
+    padding: 10px; /* Ajusta el padding del textarea */
+    font-size: 16px; /* Ajusta el tamaño de la fuente del textarea */
+    border: 1px solid #ccc; /* Ajusta el borde del textarea */
+    border-radius: 5px; /* Ajusta el radio de borde del textarea */
+    resize: vertical; /* Permite redimensionar verticalmente el textarea si es necesario */
+}
+
+.modal-content .enviar-btn {
+    margin-top: 20px; /* Espacio superior para separar el botón del textarea */
+    padding: 10px 20px; /* Ajusta el padding del botón */
+    font-size: 16px; /* Ajusta el tamaño de la fuente del botón */
+    background-color: #09C46A; /* Color de fondo del botón */
+    color: white; /* Color de texto del botón */
+    border: none; /* Quita el borde del botón */
+    border-radius: 5px; /* Ajusta el radio de borde del botón */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+}
+
+.modal-content .enviar-btn:hover {
+    background-color: #07a055; /* Cambia el color de fondo al pasar sobre el botón */
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #2C2F35;
+}
+
+.logo img {
+    max-width: 200px;
+}
+
+main {
+    padding: 20px;
+}
+
+.titulo-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.titulo-container h1 {
+    margin: 0;
+    
+}
+
+.subrayado {
+    width: 50%;
+    height: 2px;
+    background-color: #2C2F35;
+    margin-top: 5px;
+}
+
+.busqueda-container {
+    margin-top: 20px;
+    position: relative;
+    display: flex;
+}
+
+.busqueda-container input {
+    padding: 10px;
+    width: 300px;
+    box-sizing: border-box;
+    border-radius: 5px 0 0 5px;
+    border: 1px solid #ddd;
+}
+
+#botonBusqueda {
+    background: #09C46A;
+    padding: 10px 15px;
+    border: 0;
+    border-radius: 0 5px 5px 0;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+#botonBusqueda:hover {
+    background-color: #515966;
+}
+
+.tabla-container {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+.estado {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #FDF9FC;
+}
+
+.atendido {
+    background-color: #09C46A;
+}
+
+.en-proceso {
+    background-color: gray;
+}
+
+button {
+    padding: 5px 10px;
+    font-size: 16px;
+    background-color: #2C2F35;
+    color: #FDF9FC;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+    transition: background-color 0.1s ease;
+}
+
+button:hover {
+    background-color: #515966;
+}
+
+footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.linea-inferior {
+    width: 50%;
+    height: 2px;
+    background-color: #2C2F35;
+}
+
+
+
+td{
+    max-width:300px;
+}

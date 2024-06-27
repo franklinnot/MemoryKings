@@ -1,42 +1,105 @@
 
-
+<%@page import="java.util.Date"%>
+<%@page import="logica.ControladoraLogica"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="logica.Proveedor"%>
+<%@page import="logica.Categoria"%>
+<%@page import="java.text.ParseException"%>
+<%@page import="org.mindrot.jbcrypt.BCrypt"%>
+<%@page import="logica.Mewing"%>
+<%@page import="logica.Cliente"%>
+<%@page import="logica.Empleado"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login</title>
-        <link rel = "stylesheet" href="style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    </head>
-    <body>
-        <div class="container">
-            <div class="form-content">
-                <h1 id="title">Log in</h1>
-                <form action="SvCliente" method="POST">
-                    <div class="input-group">
-                        <div class="input-field">
-                            <i class="fa-solid fa-user"></i>
-                            <input name="txt_email" type="email" placeholder="Email adrress">
-                        </div>
-                        <div class="input-field">
-                            <i class="fa-solid fa-lock"></i>
-                            <input name="txt_password" type="password" placeholder="Password">
-                        </div>
-                        <p> Olvidaste tu contraseña <a href="#">click aqui</a></p>
-                    </div>
-                    <div class="btn-field">
-                        <button id="signUp" type="button">Sign up</button>
-                        <button name="btn_login" id="signIn" type="submit" class="disable">Log in</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <h2>Ver lista de usuarios</h2>
-        <h3>Para ver la lista de ususarios, haga click en el siguiente boton</h3>
-        <form action="SvCliente" method="GET">
-            <button type="submit">Mostrar usuarios</button>
-        </form>
-    </body>
-</html>
+<% ControladoraLogica ctrl_logica = new ControladoraLogica(); %>
+<%
+
+    Object userObject = session.getAttribute("user");
+
+    if (userObject instanceof Mewing) {
+    
+        String section = (String) session.getAttribute("section");
+        
+        if (section.equals("productos")){
+        %>
+            <jsp:include page="HTML/productos.jsp"/>
+        <%
+        }
+        else if(section.equals("carrito")){
+        %>
+            <jsp:include page="HTML/detalle_compra.jsp"/>
+        <%    
+        }
+        else if(section.equals("lista_pedidos")){
+        %>
+            <jsp:include page="HTML/lista_pedidos.jsp"/>
+        <%    
+        }
+        else if(section.equals("consultas")){
+        %>
+            <jsp:include page="HTML/consulta_cliente.jsp"/>
+        <%    
+        }
+        else if(section.equals("seguimiento")){
+        %>
+            <jsp:include page="HTML/seguimiento_consulta.jsp"/>
+        <%    
+        }
+        else if (section.equals("pago")){
+        %>
+        <jsp:include page="HTML/pago.jsp"/>
+        <%
+        } 
+
+
+    } else if (userObject instanceof Empleado) {
+
+        String section = (String) session.getAttribute("section");
+
+        if (section.equals("menu")){
+        %>
+            <jsp:include page="HTML/menu_admin.jsp"/>
+        <%
+        }
+        else if (section.equals("pedidos")){
+        %>
+            <jsp:include page="HTML/atencion_pedido.jsp"/>
+        <%
+        }
+        else if (section.equals("consultas")){
+        %>
+            <jsp:include page="HTML/atencion_consulta.jsp"/>
+        <%
+        }
+        else if (section.equals("responder_consulta")){
+        %>
+            <jsp:include page="HTML/respuesta_consulta.jsp"/>
+        <%
+        }
+        else if(section.equals("carrito")){
+        %>
+            <jsp:include page="HTML/detalle_compra.jsp"/>
+        <%    
+        }
+        else if(section.equals("clientes")){
+        %>
+            <jsp:include page="HTML/clientes.jsp"/>
+        <%    
+        }
+        else if (section.equals("pago")){
+        %>
+        <jsp:include page="HTML/pago.jsp"/>
+        <%
+        }
+        else if(section.equals("envio")){
+        %>
+            <jsp:include page="HTML/enviar_pedido.jsp"/>
+        <%    
+        }
+            
+    } else {
+        %>
+            <jsp:include page="HTML/login.jsp" />
+        <%
+    }
+%>

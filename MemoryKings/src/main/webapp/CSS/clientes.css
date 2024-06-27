@@ -1,0 +1,169 @@
+
+/*cabecera*/
+header{
+    background-color:#09C46A;
+    color: #FDF9FC;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+ /* justamos el logo y el btn menu para que no esten uno sobre el otro*/
+ .juntarlogo {
+    display: flex;
+    align-items: center;
+}
+/*editar label del div btnmenu*/
+.btnmenu label{
+    font-size:25px;
+    cursor:pointer;
+    margin-right: 20px;
+}
+/*editar logo*/
+.logo{
+    display:flex;
+}
+.logo img{
+    height: 50px;
+}
+
+/*cuerpo*/
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+@media (max-width: 700px){
+    header{
+        flex-direction: column;
+    }
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing :border-box;
+    font-family: sans-serif;
+}
+
+/*barra busqueda*/
+.container{
+    position:relative;
+}
+input{
+    width: 350px;
+    padding:10px;
+    padding-right: 35px;
+    border-radius:5px;
+    border:0;
+    outline:none;
+    font-size: 1rem;
+}
+/*editar boton eliminar*/
+button{
+    background-color: #453C39;
+    border: 10px;
+    padding:20px 20px;
+    text-align: center;
+    color:#FDF9FC;
+    font-size: 16px;
+    margin: 17px 45px;
+    cursor: pointer;
+    border-radius: 13px;
+}
+button:hover{
+    background-color: #756f6d;
+}
+.eliminar_cliente{
+    border:2px solid black;
+    padding:20px 80px;
+    
+
+}
+.acciones_cliente {
+    padding: 5px;
+    display: flex;
+    justify-content: center; /* Esto distribuye uniformemente los elementos en el contenedor */
+    align-items: center;
+}
+
+/*boton de busqueda*/
+#botonBusqueda{
+    background: #453C39;
+    padding: 10px 15px;
+    position: absolute;
+    border: 0;
+    top: 0;
+    bottom:0;
+    right:0;
+    margin:auto;
+    border-radius: 0 5px 5px 0;
+    color:#ffffff;
+    cursor: pointer;
+}
+#botonBusqueda:hover{
+    background-color: #756f6d;
+}
+
+
+
+
+
+
+/*DIV QUE ALMACENA AL REGISTRO DE LOS CLIENTES:*/
+.div_contenedor{
+    background: #09C46A;
+    width:1300px;
+    height: 470px;
+    overflow:auto;/*crea una barra scroll al div*/
+    margin: 0 auto;
+    padding-top:10px;
+
+}
+
+article{
+    width: 90%;
+    min-width: 300px;
+    max-width:1300px;
+    height: 100px;/*crea un margen arriba y abajo*/
+    margin:30px ;
+
+    /*segunda etapa*/
+    display: grid;
+    grid-template-columns: 10% repeat(8, 1fr);/*revisar bien esta linea de codigo*/
+    place-items:center;
+
+    /*tercera etapa*/
+    font-size: 1rem;
+    color:#ffffff;
+    font-family:monospace;
+    font-weight: bold;
+    line-height: 1rem;
+    /*cuarta etapa*/
+    gap: 0.2rem;
+    
+    
+    
+}
+h4:hover, p:hover{
+    background-color: #756f6d;
+}
+
+p,h4{
+    background-color: #453C39;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 1.5rem ;
+    cursor: pointer;
+}
+
+h4{
+    text-align: left;
+}
+
+
+
+

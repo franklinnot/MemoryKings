@@ -6,8 +6,8 @@
     text-decoration: none;
 }
 body {
-    background-color: #2C2F35; 
-    background-image: url('Image/fondo.jpg'); 
+    background-color: #FDF9FC; 
+    /*background-image: url('Image/fondo.png');*/
     background-size: cover; 
     background-position: center;
 }
@@ -23,7 +23,7 @@ body {
     width: 100%;
     max-width: 450px;
     background-color: #2C2F35;
-    padding: 50px 60px 70px;
+    padding: 50px 60px 60px;
     text-align: center;
     border-radius: 25px;
 }
@@ -31,7 +31,7 @@ body {
 .form-content h1{
     font-size: 30px;
     margin-bottom: 60px;
-    color: #FFFFFF;
+    color: #FDF9FC;
     position: relative;
 }
 
@@ -40,17 +40,17 @@ body {
     width: 30px;
     height: 4px;
     border-radius: 3px;
-    background: #FFC100;
+    background: #09C46A;
     position: absolute;
     bottom: -12px;
     left: 50%;
     transform: translateX(-50%);
 }
 
-.input-field{
+.input-fi{
     background-color: #515966;
-    margin: 15px 0;
-    border-radius: 3px;
+    margin: 15px 0px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     transition: max-height 05s;
@@ -63,52 +63,74 @@ input{
     border: 0;
     outline: none;
     padding: 18px 15px;
-    color: #FFFFFF;
+    color: #FDF9FC;
 }
 
 input::placeholder{
-    color: #FFFFFF;
+    color: #FDF9FC;
 }
 
-.input-field i{
+.input-fi i{
     margin-left: 15px;
-    color: #FFC100;
+    color: #09C46A;
 }
 
-form p{
-    color: #FFFFFF;
+/*form p{
+    color: #FDF9FC;
     text-align: left;
     font-size: 13px;
 }
 
 form p a {
-    color: #FFC100;
+    color: #09C46A;
     margin-left: 5px;
-}
+}*/
 
 .btn-field {
-    width: 100%;
+    min-width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content:space-between;
+    margin-top: 50px;
 }
 
 .btn-field button {
     flex-basis: 48%;
     font-size: 16px;
-    background-color: #FFC100;
-    color: #FFFFFF;
-    height: 40px;
+    min-width: 100%;
+    background-color: #09C46A;
+    color: #FDF9FC;
+    height: 50px;
     border-radius: 10px;
     border: 0;
     cursor: pointer;
     transition: background 1s;
+   
+}
+.btn-field button#signUp a {
+    color: #515966; 
+}
+
+
+#signUpDiv, #signUp{
+    margin-top: 20px
 }
 
 .input-group {
-    height: 250px;
+    height: 125px;
 }
 
 .btn-field button.disable {
-    background-color: #EAEAEA;
+    background-color: #FDF9FC;
     color: #2C2F35;
+}
+
+#modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FDF9FC;
+    padding: 20px;
+    border: 1px solid #FDF9FC;
+    border-radius: 5px;
 }
